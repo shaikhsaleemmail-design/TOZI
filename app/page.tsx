@@ -1,38 +1,44 @@
-// app/page.tsx
+'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Navbar from './components/Navbar';
-
 
 export default function Home() {
-  return (
-    <main>
-      <Navbar />
-      <section className="h-[90vh] flex flex-col items-center justify-center text-center px-6">
-        <h1 className="text-7xl md:text-9xl font-bold tracking-tight mb-4">TOZI</h1>
-        <p className="text-xl md:text-2xl text-gray-500 font-light max-w-2xl">
-          Fitness Coach & Digital Marketer. <br/>
-          Transforming physiques, scaling brands.
-        </p>
-        <div className="mt-10 flex flex-col md:flex-row gap-4">
-          <Link href="/fitness" className="px-8 py-4 bg-black text-white rounded-full font-medium hover:scale-105 transition-transform">
-            Book Fitness Consultation
-          </Link>
-          <Link href="https://wa.me/918657282577" className="px-8 py-4 border border-gray-300 rounded-full font-medium hover:bg-gray-50 transition-colors">
-            WhatsApp Contact
-          </Link>
-        </div>
-      </section>
+  const [showText, setShowText] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
 
-      <section className="bg-zinc-50 py-32 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8">The Transformation Expert</h2>
-          <p className="text-xl leading-relaxed text-gray-600">
-            With over 8 years of experience in high-performance fitness and data-driven marketing,
-            TOZI bridges the gap between physical excellence and digital dominance.
-            Discipline in the gym, precision in the market.
-          </p>
-        </div>
-      </section>
-    </main>
+  useEffect(() => {
+    setTimeout(() => setShowText(true), 1000);
+    setTimeout(() => setShowButtons(true), 1500);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center px-6">
+      <div className="text-center">
+        {showText && (
+          <>
+            <h1 className="text-7xl md:text-9xl font-black text-white tracking-wider animate-fadeIn" 
+                style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}>
+              TOZI
+            </h1>
+            <p className="text-white text-lg mt-4 animate-fadeIn opacity-80">Fitness Coach & Digital Marketer</p>
+          </>
+        )}
+        
+        {showButtons && (
+          <div className="flex flex-col md:flex-row gap-6 mt-12 animate-fadeIn">
+            <Link href="/fitness-choice">
+              <button className="px-12 py-4 bg-white text-black rounded-full text-xl font-medium hover:scale-105 transition">
+                🏋️ FITNESS
+              </button>
+            </Link>
+            <Link href="/marketing-choice">
+              <button className="px-12 py-4 bg-white text-black rounded-full text-xl font-medium hover:scale-105 transition">
+                📈 DIGITAL MARKETING
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
