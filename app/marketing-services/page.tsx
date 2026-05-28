@@ -1,8 +1,13 @@
 'use client';
 import Link from 'next/link';
 
+interface Service {
+  name: string;
+  description: string;
+}
+
 export default function MarketingServices() {
-  const services = [
+  const services: Service[] = [
     { name: "Website Creation", description: "Custom, fast, and mobile-friendly websites tailored to your brand." },
     { name: "Content Strategy", description: "Data-driven content plans that attract, engage, and convert." },
     { name: "Content Creation", description: "High-quality posts, reels, and graphics for social media." },
@@ -16,21 +21,18 @@ export default function MarketingServices() {
     { name: "Photo Editing", description: "Professional retouching and enhancement for visuals." }
   ];
 
-  const sendToWhatsApp = (serviceName) => {
+  const sendToWhatsApp = (serviceName: string) => {
     const message = `DIGITAL MARKETING ENQUIRY - Selected Service: ${serviceName}%0A%0AHi TOZI, I'm interested in your "${serviceName}" service. Please share more details.`;
     window.open(`https://wa.me/918657282577?text=${message}`, '_blank');
   };
 
   return (
     <div className="min-h-screen bg-black">
-      {/* Back Button */}
       <Link href="/marketing-choice" className="fixed top-8 left-8 text-white text-2xl hover:opacity-50 transition z-50">
         ← BACK
       </Link>
 
       <div className="max-w-6xl mx-auto px-6 py-20">
-        
-        {/* Heading */}
         <h1 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
           What I Can Do for You
         </h1>
@@ -38,7 +40,6 @@ export default function MarketingServices() {
           Choose a service to learn more and connect with me
         </p>
 
-        {/* Service Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <div key={index} className="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:scale-105 transition">
