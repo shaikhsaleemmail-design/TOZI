@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 export default function FitnessAbout() {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const openImage = (imgSrc) => {
+  const openImage = (imgSrc: string) => {
     setSelectedImage(imgSrc);
   };
 
@@ -15,7 +15,7 @@ export default function FitnessAbout() {
 
   return (
     <div className="min-h-screen bg-black">
-      {/* Back Button (page back) */}
+      {/* Back Button */}
       <Link href="/fitness-choice" className="fixed top-8 left-8 text-white text-2xl hover:opacity-50 transition z-50">
         ← BACK
       </Link>
@@ -50,7 +50,7 @@ export default function FitnessAbout() {
           />
         </div>
 
-        {/* Image 3 - Transformation (text right) - fixed text */}
+        {/* Image 3 - Transformation (text right) */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <img 
             src="/images/after2.jpg" 
@@ -64,7 +64,7 @@ export default function FitnessAbout() {
           </div>
         </div>
 
-        {/* Image 4 - Transformation (text left) - fixed text */}
+        {/* Image 4 - Transformation (text left) */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <div className="md:w-1/2 order-2 md:order-1">
             <h2 className="text-2xl font-bold text-white mb-3">Continued Progress</h2>
@@ -78,7 +78,7 @@ export default function FitnessAbout() {
           />
         </div>
 
-        {/* Image 5 - Transformation (text right) - fixed text */}
+        {/* Image 5 - Transformation (text right) */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <img 
             src="/images/after4.jpg" 
@@ -92,7 +92,7 @@ export default function FitnessAbout() {
           </div>
         </div>
 
-        {/* Image 6 - Certificate (text left) - fixed IFSA */}
+        {/* Image 6 - Certificate (text left) */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <div className="md:w-1/2 order-2 md:order-1">
             <h2 className="text-2xl font-bold text-white mb-3">Certified from IFSA</h2>
