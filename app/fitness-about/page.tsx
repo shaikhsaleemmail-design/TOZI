@@ -22,7 +22,7 @@ export default function FitnessAbout() {
 
       <div className="max-w-5xl mx-auto px-6 py-20">
         
-        {/* Image 1 - Before (text right) */}
+        {/* Image 1 - Before */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <img 
             src="/images/before.jpg" 
@@ -36,7 +36,7 @@ export default function FitnessAbout() {
           </div>
         </div>
 
-        {/* Image 2 - First Gain (text left) */}
+        {/* Image 2 - First Gain */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <div className="md:w-1/2 order-2 md:order-1">
             <h2 className="text-2xl font-bold text-white mb-3">My First Muscle Gain</h2>
@@ -50,7 +50,7 @@ export default function FitnessAbout() {
           />
         </div>
 
-        {/* Image 3 - Transformation (text right) */}
+        {/* Image 3 - Transformation */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <img 
             src="/images/after2.jpg" 
@@ -64,7 +64,7 @@ export default function FitnessAbout() {
           </div>
         </div>
 
-        {/* Image 4 - Transformation (text left) */}
+        {/* Image 4 - Continued Progress */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <div className="md:w-1/2 order-2 md:order-1">
             <h2 className="text-2xl font-bold text-white mb-3">Continued Progress</h2>
@@ -78,7 +78,7 @@ export default function FitnessAbout() {
           />
         </div>
 
-        {/* Image 5 - Transformation (text right) */}
+        {/* Image 5 - Mastered Physique */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <img 
             src="/images/after4.jpg" 
@@ -92,7 +92,7 @@ export default function FitnessAbout() {
           </div>
         </div>
 
-        {/* Image 6 - Certificate (text left) */}
+        {/* Image 6 - Certificate */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <div className="md:w-1/2 order-2 md:order-1">
             <h2 className="text-2xl font-bold text-white mb-3">Certified from IFSA</h2>
@@ -126,17 +126,19 @@ export default function FitnessAbout() {
               </div>
             </div>
 
-            {/* Instagram Reel */}
-            <div className="bg-gray-900 rounded-xl p-6">
+            {/* Instagram Reel - Working Button */}
+            <div className="bg-gray-900 rounded-xl p-6 text-center">
               <p className="text-gray-300 mb-4 font-semibold">Instagram Reel</p>
-              <div className="rounded-lg overflow-hidden flex justify-center">
-                <blockquote 
-                  className="instagram-media" 
-                  data-instgrm-captioned 
-                  data-instgrm-permalink="https://www.instagram.com/reel/DX94Lu-MHp_/?utm_source=ig_embed&amp;utm_campaign=loading" 
-                  data-instgrm-version="14" 
-                  style={{ background: '#FFF', border: 0, borderRadius: '3px', boxShadow: '0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)', margin: '1px', maxWidth: '540px', minWidth: '326px', padding: 0, width: '99.375%' }}>
-                </blockquote>
+              <div className="bg-gray-800 rounded-lg p-8">
+                <p className="text-white mb-4">Watch my transformation reel on Instagram</p>
+                <a 
+                  href="https://www.instagram.com/reel/DX94Lu-MHp_/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:scale-105 transition"
+                >
+                  📱 Watch on Instagram →
+                </a>
               </div>
             </div>
           </div>
@@ -144,16 +146,16 @@ export default function FitnessAbout() {
 
         {/* Social Links */}
         <div className="flex flex-wrap gap-4 justify-center mt-12">
-          <a href="https://www.instagram.com/saatozi" target="_blank" className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
+          <a href="https://www.instagram.com/saatozi" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
             Instagram
           </a>
-          <a href="https://youtube.com/@saatozi" target="_blank" className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
+          <a href="https://youtube.com/@saatozi" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
             YouTube
           </a>
-          <a href="https://x.com/Saatozi" target="_blank" className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
+          <a href="https://x.com/Saatozi" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
             X (Twitter)
           </a>
-          <a href="https://wa.me/918657282577" target="_blank" className="px-6 py-3 bg-green-600 text-white rounded-full hover:scale-105 transition">
+          <a href="https://wa.me/918657282577" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-green-600 text-white rounded-full hover:scale-105 transition">
             WhatsApp
           </a>
         </div>
