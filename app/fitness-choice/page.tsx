@@ -1,24 +1,43 @@
+'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function FitnessChoice() {
+  const [showChoose, setShowChoose] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setShowChoose(true), 500);
+    setTimeout(() => setShowButtons(true), 1300);
+  }, []);
+
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center px-6 relative">
-      <Link href="/" className="fixed top-8 left-8 text-white text-2xl hover:opacity-50 transition">
+      <Link href="/" className="fixed top-8 left-8 text-white text-2xl hover:opacity-50 transition z-50">
         ← BACK
       </Link>
 
-      <div className="flex flex-col md:flex-row gap-8 max-w-4xl mx-auto">
-        <Link href="/fitness-about" className="flex-1">
-          <div className="text-center hover:scale-105 transition">
-            <h2 className="text-4xl md:text-5xl font-bold text-white">ABOUT ME</h2>
-          </div>
-        </Link>
+      <div className="text-center">
+        {showChoose && (
+          <p className="text-white text-xl md:text-2xl animate-fadeIn opacity-80 tracking-wide">
+            Choose Your Option
+          </p>
+        )}
 
-        <Link href="/fitness-form" className="flex-1">
-          <div className="text-center hover:scale-105 transition">
-            <h2 className="text-4xl md:text-5xl font-bold text-white">START NOW</h2>
+        {showButtons && (
+          <div className="flex flex-col md:flex-row gap-6 mt-10 animate-fadeIn">
+            <Link href="/fitness-about">
+              <button className="px-12 py-4 bg-white text-black rounded-full text-xl font-medium hover:scale-105 transition">
+                ABOUT
+              </button>
+            </Link>
+            <Link href="/fitness-plans">
+              <button className="px-12 py-4 bg-white text-black rounded-full text-xl font-medium hover:scale-105 transition">
+                START NOW
+              </button>
+            </Link>
           </div>
-        </Link>
+        )}
       </div>
     </div>
   );
