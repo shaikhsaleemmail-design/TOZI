@@ -109,17 +109,34 @@ export default function FitnessAbout() {
         {/* Video Section */}
         <div className="text-center my-20">
           <h2 className="text-3xl font-bold text-white mb-8">Click on the video to play</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gray-900 rounded-xl p-8 text-center">
-              <p className="text-gray-300 mb-4">YouTube Video Title</p>
-              <div className="bg-gray-800 h-48 rounded-lg flex items-center justify-center">
-                <p className="text-gray-500">YouTube embed will appear here</p>
+          <div className="grid md:grid-cols-2 gap-8">
+            
+            {/* YouTube Video */}
+            <div className="bg-gray-900 rounded-xl p-6">
+              <p className="text-gray-300 mb-4 font-semibold">YouTube Video</p>
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <iframe 
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/avQ4SkXRsq0"
+                  title="YouTube video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
-            <div className="bg-gray-900 rounded-xl p-8 text-center">
-              <p className="text-gray-300 mb-4">Instagram Reel Title</p>
-              <div className="bg-gray-800 h-48 rounded-lg flex items-center justify-center">
-                <p className="text-gray-500">Instagram embed will appear here</p>
+
+            {/* Instagram Reel */}
+            <div className="bg-gray-900 rounded-xl p-6">
+              <p className="text-gray-300 mb-4 font-semibold">Instagram Reel</p>
+              <div className="rounded-lg overflow-hidden flex justify-center">
+                <blockquote 
+                  className="instagram-media" 
+                  data-instgrm-captioned 
+                  data-instgrm-permalink="https://www.instagram.com/reel/DX94Lu-MHp_/?utm_source=ig_embed&amp;utm_campaign=loading" 
+                  data-instgrm-version="14" 
+                  style={{ background: '#FFF', border: 0, borderRadius: '3px', boxShadow: '0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)', margin: '1px', maxWidth: '540px', minWidth: '326px', padding: 0, width: '99.375%' }}>
+                </blockquote>
               </div>
             </div>
           </div>
