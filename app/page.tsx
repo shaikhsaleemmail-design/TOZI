@@ -1,69 +1,54 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Lottie from 'lottie-react';
 
 export default function Home() {
   const router = useRouter();
   const [showTOZI, setShowTOZI] = useState(false);
   const [showChoose, setShowChoose] = useState(false);
-  const [showButtons, setShowButtons] = useState(false);
+  const [showButtons, setShowButtons] = useState(true);
   
-  // Animation states
-  const [fitnessAnimating, setFitnessAnimating] = useState(false);
-  const [marketingAnimating, setMarketingAnimating] = useState(false);
-  const [fitnessIcon, setFitnessIcon] = useState('💪');
-  const [marketingIcon, setMarketingIcon] = useState('📈');
+  const [showFitnessAnim, setShowFitnessAnim] = useState(false);
+  const [showMarketingAnim, setShowMarketingAnim] = useState(false);
+  
+  const [squatAnim, setSquatAnim] = useState(null);
+  const [robotAnim, setRobotAnim] = useState(null);
 
   useEffect(() => {
     setTimeout(() => setShowTOZI(true), 500);
     setTimeout(() => setShowChoose(true), 1300);
-    setTimeout(() => setShowButtons(true), 2100);
+    
+    // Load your JSON files
+    fetch('/squat.json')
+      .then(res => res.json())
+      .then(data => setSquatAnim(data))
+      .catch(err => console.log('squat.json not found'));
+      
+    fetch('/robot.json')
+      .then(res => res.json())
+      .then(data => setRobotAnim(data))
+      .catch(err => console.log('robot.json not found'));
   }, []);
 
-  const handleFitnessClick = () => {
-    if (fitnessAnimating) return;
-    
-    setFitnessAnimating(true);
-    
-    // Animation sequence: 💪 → 🏋️ → 🏋️‍♂️ → squatting person
-    setTimeout(() => setFitnessIcon('🏋️'), 200);
-    setTimeout(() => setFitnessIcon('🏋️‍♂️'), 400);
-    setTimeout(() => setFitnessIcon('🦵'), 600);
-    setTimeout(() => setFitnessIcon('🏋️‍♂️'), 800);
-    setTimeout(() => setFitnessIcon('💪'), 1000);
-    
-    // Navigate after animation
-    setTimeout(() => {
-      router.push('/fitness-choice');
-    }, 1200);
+  const handleFitness = () => {
+    setShowButtons(false);
+    setShowFitnessAnim(true);
+    setTimeout(() => router.push('/fitness-choice'), 3000);
   };
 
-  const handleMarketingClick = () => {
-    if (marketingAnimating) return;
-    
-    setMarketingAnimating(true);
-    
-    // Animation sequence: 📈 → 🤖 → robot face winking
-    setTimeout(() => setMarketingIcon('🤖'), 200);
-    setTimeout(() => setMarketingIcon('👁️'), 400);
-    setTimeout(() => setMarketingIcon('😉'), 600);
-    setTimeout(() => setMarketingIcon('🤖'), 800);
-    setTimeout(() => setMarketingIcon('📈'), 1000);
-    
-    // Navigate after animation
-    setTimeout(() => {
-      router.push('/marketing-choice');
-    }, 1200);
+  const handleMarketing = () => {
+    setShowButtons(false);
+    setShowMarketingAnim(true);
+    setTimeout(() => router.push('/marketing-choice'), 3000);
   };
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center px-6">
       <div className="text-center">
         {showTOZI && (
-          <h1 
-            className="text-7xl md:text-9xl font-black text-white tracking-wider animate-fadeIn"
-            style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
-          >
+          <h1 className="text-7xl md:text-9xl font-black text-white tracking-wider animate-fadeIn"
+              style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}>
             TOZI
           </h1>
         )}
@@ -75,27 +60,31 @@ export default function Home() {
         )}
 
         {showButtons && (
-          <div className="flex flex-col md:flex-row gap-6 mt-10 animate-fadeIn items-center justify-center">
-            
-            {/* FITNESS Button with animated icon */}
-            <button
-              onClick={handleFitnessClick}
-              disabled={fitnessAnimating}
-              className="px-12 py-4 bg-green-600 text-white rounded-full text-xl font-medium hover:scale-105 transition-all duration-200 flex items-center gap-3"
-            >
-              <span className="text-2xl transition-all duration-200">{fitnessIcon}</span>
-              <span>FITNESS</span>
+          <div className="flex flex-col md:flex-row gap-6 mt-10 animate-fadeIn">
+            <button onClick={handleFitness} className="px-12 py-4 bg-green-600 text-white rounded-full text-xl font-medium">
+              FITNESS
             </button>
+            <button onClick={handleMarketing} className="px-12 py-4 bg-blue-600 text-white rounded-full text-xl font-medium">
+              DIGITAL MARKETING
+            </button>
+          </div>
+        )}
 
-            {/* DIGITAL MARKETING Button with animated icon */}
-            <button
-              onClick={handleMarketingClick}
-              disabled={marketingAnimating}
-              className="px-12 py-4 bg-blue-600 text-white rounded-full text-xl font-medium hover:scale-105 transition-all duration-200 flex items-center gap-3"
-            >
-              <span className="text-2xl transition-all duration-200">{marketingIcon}</span>
-              <span>DIGITAL MARKETING</span>
-            </button>
+        {showFitnessAnim && squatAnim && (
+          <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
+            <div className="w-80 h-80">
+              <Lottie animationData={squatAnim} loop={false} />
+            </div>
+            <p className="text-green-500 text-xl mt-8">💪 GETTING YOU STRONGER...</p>
+          </div>
+        )}
+
+        {showMarketingAnim && robotAnim && (
+          <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
+            <div className="w-80 h-80">
+              <Lottie animationData={robotAnim} loop={false} />
+            </div>
+            <p className="text-blue-500 text-xl mt-8">🤖 SCALING YOUR BRAND...</p>
           </div>
         )}
       </div>
