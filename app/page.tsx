@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Lottie from 'lottie-react';
 
 export default function Home() {
   const router = useRouter();
@@ -8,10 +9,13 @@ export default function Home() {
   const [showChoose, setShowChoose] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   
-  const [fitnessAnimating, setFitnessAnimating] = useState(false);
-  const [marketingAnimating, setMarketingAnimating] = useState(false);
-  const [fitnessIcon, setFitnessIcon] = useState('💪');
-  const [marketingIcon, setMarketingIcon] = useState('📈');
+  // Animation states
+  const [showSquat, setShowSquat] = useState(false);
+  const [showRobot, setShowRobot] = useState(false);
+
+  // Import Lottie animations
+  const squatAnimation = require('../public/squat.json');
+  const robotAnimation = require('../public/robot.json');
 
   useEffect(() => {
     setTimeout(() => setShowTOZI(true), 500);
@@ -20,35 +24,19 @@ export default function Home() {
   }, []);
 
   const handleFitnessClick = () => {
-    if (fitnessAnimating) return;
-    
-    setFitnessAnimating(true);
-    
-    setTimeout(() => setFitnessIcon('🏋️'), 200);
-    setTimeout(() => setFitnessIcon('🏋️‍♂️'), 400);
-    setTimeout(() => setFitnessIcon('🦵'), 600);
-    setTimeout(() => setFitnessIcon('🏋️‍♂️'), 800);
-    setTimeout(() => setFitnessIcon('💪'), 1000);
-    
+    setShowSquat(true);
+    // Navigate after animation (2 seconds)
     setTimeout(() => {
       router.push('/fitness-choice');
-    }, 1200);
+    }, 2000);
   };
 
   const handleMarketingClick = () => {
-    if (marketingAnimating) return;
-    
-    setMarketingAnimating(true);
-    
-    setTimeout(() => setMarketingIcon('🤖'), 200);
-    setTimeout(() => setMarketingIcon('👁️'), 400);
-    setTimeout(() => setMarketingIcon('😉'), 600);
-    setTimeout(() => setMarketingIcon('🤖'), 800);
-    setTimeout(() => setMarketingIcon('📈'), 1000);
-    
+    setShowRobot(true);
+    // Navigate after animation (2 seconds)
     setTimeout(() => {
       router.push('/marketing-choice');
-    }, 1200);
+    }, 2000);
   };
 
   return (
@@ -69,25 +57,41 @@ export default function Home() {
           </p>
         )}
 
-        {showButtons && (
+        {!showSquat && !showRobot && showButtons && (
           <div className="flex flex-col md:flex-row gap-6 mt-10 animate-fadeIn items-center justify-center">
             <button
               onClick={handleFitnessClick}
-              disabled={fitnessAnimating}
-              className="px-12 py-4 bg-green-600 text-white rounded-full text-xl font-medium hover:scale-105 transition-all duration-200 flex items-center gap-3"
+              className="px-12 py-4 bg-green-600 text-white rounded-full text-xl font-medium hover:scale-105 transition-all duration-200"
             >
-              <span className="text-2xl transition-all duration-200">{fitnessIcon}</span>
-              <span>FITNESS</span>
+              FITNESS
             </button>
 
             <button
               onClick={handleMarketingClick}
-              disabled={marketingAnimating}
-              className="px-12 py-4 bg-blue-600 text-white rounded-full text-xl font-medium hover:scale-105 transition-all duration-200 flex items-center gap-3"
+              className="px-12 py-4 bg-blue-600 text-white rounded-full text-xl font-medium hover:scale-105 transition-all duration-200"
             >
-              <span className="text-2xl transition-all duration-200">{marketingIcon}</span>
-              <span>DIGITAL MARKETING</span>
+              DIGITAL MARKETING
             </button>
+          </div>
+        )}
+
+        {/* Lottie Animation - Squat (Fitness) */}
+        {showSquat && (
+          <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
+            <div className="w-80 h-80">
+              <Lottie animationData={squatAnimation} loop={false} />
+            </div>
+            <p className="text-white text-xl mt-8">Get ready to transform! 💪</p>
+          </div>
+        )}
+
+        {/* Lottie Animation - Robot (Marketing) */}
+        {showRobot && (
+          <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
+            <div className="w-80 h-80">
+              <Lottie animationData={robotAnimation} loop={false} />
+            </div>
+            <p className="text-white text-xl mt-8">Let's scale your brand! 🚀</p>
           </div>
         )}
       </div>
