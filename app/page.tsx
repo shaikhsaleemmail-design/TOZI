@@ -69,6 +69,10 @@ export default function Home() {
     }, 2000);
   };
 
+  const handleJoinCommunity = () => {
+    window.open('https://ig.me/j/AbYr1PJBkE4lwAY7/', '_blank');
+  };
+
   return (
     <div className="relative min-h-screen bg-black flex flex-col items-center justify-center px-4 py-6 overflow-hidden">
       
@@ -93,7 +97,7 @@ export default function Home() {
           </h1>
         )}
 
-        {/* Introduction Line - NEW */}
+        {/* Introduction Line */}
         {showIntro && (
           <p className="text-gray-300 text-sm md:text-base animate-fadeIn mb-1">
             Welcome to my site. I'm <span className="text-white font-semibold">TOZI</span>
@@ -108,39 +112,57 @@ export default function Home() {
         )}
 
         {!showSquat && !showRobot && showButtons && (
-          <div className="flex flex-col md:flex-row gap-3 animate-fadeIn items-center justify-center">
-            
-            <button
-              onClick={handleFitnessClick}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:scale-105 transition-all duration-200 w-56 h-24 flex flex-col items-center justify-center overflow-hidden"
-            >
-              <span className="text-lg font-bold mb-1">FITNESS</span>
-              <div className="relative w-full h-6 overflow-hidden">
-                <div 
-                  key={fitnessIndex}
-                  className="absolute w-full text-[10px] opacity-90 animate-slideLeft"
-                >
-                  {fitnessLines[fitnessIndex]}
+          <>
+            {/* Main Buttons */}
+            <div className="flex flex-col md:flex-row gap-3 animate-fadeIn items-center justify-center">
+              
+              <button
+                onClick={handleFitnessClick}
+                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:scale-105 transition-all duration-200 w-56 h-24 flex flex-col items-center justify-center overflow-hidden"
+              >
+                <span className="text-lg font-bold mb-1">FITNESS</span>
+                <div className="relative w-full h-6 overflow-hidden">
+                  <div 
+                    key={fitnessIndex}
+                    className="absolute w-full text-[10px] opacity-90 animate-slideLeft"
+                  >
+                    {fitnessLines[fitnessIndex]}
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
 
-            <button
-              onClick={handleMarketingClick}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:scale-105 transition-all duration-200 w-56 h-24 flex flex-col items-center justify-center overflow-hidden"
-            >
-              <span className="text-lg font-bold mb-1">DIGITAL MARKETING</span>
-              <div className="relative w-full h-6 overflow-hidden">
-                <div 
-                  key={marketingIndex}
-                  className="absolute w-full text-[10px] opacity-90 animate-slideLeft"
-                >
-                  {marketingLines[marketingIndex]}
+              <button
+                onClick={handleMarketingClick}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:scale-105 transition-all duration-200 w-56 h-24 flex flex-col items-center justify-center overflow-hidden"
+              >
+                <span className="text-lg font-bold mb-1">DIGITAL MARKETING</span>
+                <div className="relative w-full h-6 overflow-hidden">
+                  <div 
+                    key={marketingIndex}
+                    className="absolute w-full text-[10px] opacity-90 animate-slideLeft"
+                  >
+                    {marketingLines[marketingIndex]}
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
 
-          </div>
+            </div>
+
+            {/* Join Community Button - NEW */}
+            <div className="mt-8 animate-fadeIn">
+              <button
+                onClick={handleJoinCommunity}
+                className="px-5 py-2 bg-purple-600 text-white rounded-full text-sm font-medium hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto"
+              >
+                <span>💬</span>
+                <span>Join the Community</span>
+                <span>→</span>
+              </button>
+              <p className="text-gray-500 text-[10px] mt-2">
+                Connect with TOZI's global community on Instagram
+              </p>
+            </div>
+          </>
         )}
 
         {showSquat && (
