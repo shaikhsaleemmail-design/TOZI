@@ -74,17 +74,38 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black flex flex-col items-center justify-center px-4 py-6 overflow-hidden">
+    <div className="relative min-h-screen flex flex-col items-center justify-center px-4 py-6 overflow-hidden">
       
-      <div className="black-hole-bg">
-        <div className="ring"></div>
-        <div className="ring"></div>
-        <div className="ring"></div>
-        <div className="light-beam"></div>
-        <div className="light-beam"></div>
-        <div className="light-beam"></div>
+      {/* Full-Screen Tree Background */}
+      <div 
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/tree-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
+      >
+        {/* Falling Leaves Overlay */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className="leaf absolute text-green-400 opacity-70"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `fall ${5 + Math.random() * 8}s linear infinite, sway ${3 + Math.random() * 4}s ease-in-out infinite`,
+                fontSize: `${10 + Math.random() * 15}px`,
+                animationDelay: `${Math.random() * 10}s`
+              }}
+            >
+              🍃
+            </div>
+          ))}
+        </div>
       </div>
 
+      {/* Content - Above the tree */}
       <div className="relative z-10 text-center w-full max-w-4xl mx-auto">
         
         {/* TOZI Logo */}
@@ -99,26 +120,25 @@ export default function Home() {
 
         {/* Introduction Line */}
         {showIntro && (
-          <p className="text-gray-300 text-sm md:text-base animate-fadeIn mb-1">
+          <p className="text-gray-200 text-sm md:text-base animate-fadeIn mb-1 drop-shadow-md">
             Welcome to my site. I'm <span className="text-white font-semibold">TOZI</span>
           </p>
         )}
 
         {/* Tagline */}
         {showChoose && (
-          <p className="text-white text-sm md:text-base mt-1 animate-fadeIn opacity-80 tracking-wide mb-5">
+          <p className="text-white text-sm md:text-base mt-1 animate-fadeIn opacity-90 tracking-wide mb-5 drop-shadow-md">
             Choose Your Option
           </p>
         )}
 
         {!showSquat && !showRobot && showButtons && (
           <>
-            {/* Main Buttons */}
             <div className="flex flex-col md:flex-row gap-3 animate-fadeIn items-center justify-center">
               
               <button
                 onClick={handleFitnessClick}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:scale-105 transition-all duration-200 w-56 h-24 flex flex-col items-center justify-center overflow-hidden"
+                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:scale-105 transition-all duration-200 w-56 h-24 flex flex-col items-center justify-center overflow-hidden shadow-xl"
               >
                 <span className="text-lg font-bold mb-1">FITNESS</span>
                 <div className="relative w-full h-6 overflow-hidden">
@@ -133,7 +153,7 @@ export default function Home() {
 
               <button
                 onClick={handleMarketingClick}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:scale-105 transition-all duration-200 w-56 h-24 flex flex-col items-center justify-center overflow-hidden"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:scale-105 transition-all duration-200 w-56 h-24 flex flex-col items-center justify-center overflow-hidden shadow-xl"
               >
                 <span className="text-lg font-bold mb-1">DIGITAL MARKETING</span>
                 <div className="relative w-full h-6 overflow-hidden">
@@ -148,17 +168,16 @@ export default function Home() {
 
             </div>
 
-            {/* Join Community Button - NEW */}
             <div className="mt-8 animate-fadeIn">
               <button
                 onClick={handleJoinCommunity}
-                className="px-5 py-2 bg-purple-600 text-white rounded-full text-sm font-medium hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto"
+                className="px-5 py-2 bg-purple-600 text-white rounded-full text-sm font-medium hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto shadow-xl"
               >
                 <span>💬</span>
                 <span>Join the Community</span>
                 <span>→</span>
               </button>
-              <p className="text-gray-500 text-[10px] mt-2">
+              <p className="text-gray-200 text-[10px] mt-2 drop-shadow-md">
                 Connect with TOZI's global community on Instagram
               </p>
             </div>
