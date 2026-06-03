@@ -6,19 +6,54 @@ import Lottie from 'lottie-react';
 export default function Home() {
   const router = useRouter();
   const [showTOZI, setShowTOZI] = useState(false);
+  const [showIntro, setShowIntro] = useState(false);
   const [showChoose, setShowChoose] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   const [showSquat, setShowSquat] = useState(false);
   const [showRobot, setShowRobot] = useState(false);
+  
+  const [fitnessIndex, setFitnessIndex] = useState(0);
+  const [marketingIndex, setMarketingIndex] = useState(0);
 
   const squatAnimation = require('../public/squat.json');
   const robotAnimation = require('../public/robot.json');
 
+  const fitnessLines = [
+    "💪 Diet & Nutrition",
+    "🏋️ Custom Workout Plans",
+    "📊 Progress Tracking",
+    "🎯 Goal Achievement"
+  ];
+
+  const marketingLines = [
+    "📱 Social Media Growth",
+    "🎨 Content Creation",
+    "📈 Paid Ads Strategy",
+    "🚀 Brand Building"
+  ];
+
   useEffect(() => {
     setTimeout(() => setShowTOZI(true), 500);
-    setTimeout(() => setShowChoose(true), 1300);
-    setTimeout(() => setShowButtons(true), 2100);
+    setTimeout(() => setShowIntro(true), 1200);
+    setTimeout(() => setShowChoose(true), 1900);
+    setTimeout(() => setShowButtons(true), 2600);
   }, []);
+
+  useEffect(() => {
+    if (!showButtons) return;
+    const interval = setInterval(() => {
+      setFitnessIndex((prev) => (prev + 1) % fitnessLines.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [showButtons]);
+
+  useEffect(() => {
+    if (!showButtons) return;
+    const interval = setInterval(() => {
+      setMarketingIndex((prev) => (prev + 1) % marketingLines.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [showButtons]);
 
   const handleFitnessClick = () => {
     setShowSquat(true);
@@ -35,9 +70,8 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black flex flex-col items-center justify-center px-4 py-8 overflow-hidden">
+    <div className="relative min-h-screen bg-black flex flex-col items-center justify-center px-4 py-6 overflow-hidden">
       
-      {/* Black Hole Background */}
       <div className="black-hole-bg">
         <div className="ring"></div>
         <div className="ring"></div>
@@ -47,55 +81,62 @@ export default function Home() {
         <div className="light-beam"></div>
       </div>
 
-      {/* Content - Smaller and Compact */}
       <div className="relative z-10 text-center w-full max-w-4xl mx-auto">
         
-        {/* TOZI Logo - Smaller */}
+        {/* TOZI Logo */}
         {showTOZI && (
           <h1 
-            className="text-5xl md:text-7xl font-black tracking-wider animate-fadeIn color-changing mb-2"
+            className="text-4xl md:text-6xl font-black tracking-wider animate-fadeIn color-changing mb-1"
             style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
           >
             TOZI
           </h1>
         )}
 
-        {/* Tagline - Smaller */}
+        {/* Introduction Line - NEW */}
+        {showIntro && (
+          <p className="text-gray-300 text-sm md:text-base animate-fadeIn mb-1">
+            Welcome to my site. I'm <span className="text-white font-semibold">TOZI</span>
+          </p>
+        )}
+
+        {/* Tagline */}
         {showChoose && (
-          <p className="text-white text-base md:text-lg mt-2 animate-fadeIn opacity-80 tracking-wide mb-6">
+          <p className="text-white text-sm md:text-base mt-1 animate-fadeIn opacity-80 tracking-wide mb-5">
             Choose Your Option
           </p>
         )}
 
-        {/* Buttons Section */}
         {!showSquat && !showRobot && showButtons && (
-          <div className="flex flex-col md:flex-row gap-4 animate-fadeIn items-center justify-center">
+          <div className="flex flex-col md:flex-row gap-3 animate-fadeIn items-center justify-center">
             
-            {/* FITNESS Button - Compact */}
             <button
               onClick={handleFitnessClick}
-              className="px-5 py-3 bg-green-600 text-white rounded-xl hover:scale-105 transition-all duration-200 w-64"
+              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:scale-105 transition-all duration-200 w-56 h-24 flex flex-col items-center justify-center overflow-hidden"
             >
-              <span className="text-xl font-bold block">FITNESS</span>
-              <div className="text-[11px] opacity-90 mt-1 space-y-0.5">
-                <div>💪 Diet & Nutrition</div>
-                <div>🏋️ Custom Workout Plans</div>
-                <div>📊 Progress Tracking</div>
-                <div>🎯 Goal Achievement</div>
+              <span className="text-lg font-bold mb-1">FITNESS</span>
+              <div className="relative w-full h-6 overflow-hidden">
+                <div 
+                  key={fitnessIndex}
+                  className="absolute w-full text-[10px] opacity-90 animate-slideLeft"
+                >
+                  {fitnessLines[fitnessIndex]}
+                </div>
               </div>
             </button>
 
-            {/* DIGITAL MARKETING Button - Compact */}
             <button
               onClick={handleMarketingClick}
-              className="px-5 py-3 bg-blue-600 text-white rounded-xl hover:scale-105 transition-all duration-200 w-64"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:scale-105 transition-all duration-200 w-56 h-24 flex flex-col items-center justify-center overflow-hidden"
             >
-              <span className="text-xl font-bold block">DIGITAL MARKETING</span>
-              <div className="text-[11px] opacity-90 mt-1 space-y-0.5">
-                <div>📱 Social Media Growth</div>
-                <div>🎨 Content Creation</div>
-                <div>📈 Paid Ads Strategy</div>
-                <div>🚀 Brand Building</div>
+              <span className="text-lg font-bold mb-1">DIGITAL MARKETING</span>
+              <div className="relative w-full h-6 overflow-hidden">
+                <div 
+                  key={marketingIndex}
+                  className="absolute w-full text-[10px] opacity-90 animate-slideLeft"
+                >
+                  {marketingLines[marketingIndex]}
+                </div>
               </div>
             </button>
 

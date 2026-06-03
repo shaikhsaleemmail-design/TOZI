@@ -33,7 +33,7 @@ body {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Black Hole Animation Background - STRONGER */
+/* Black Hole Animation Background */
 .black-hole-bg {
   position: fixed;
   top: 0;
@@ -45,7 +45,6 @@ body {
   overflow: hidden;
 }
 
-/* Inner black hole core - brighter */
 .black-hole-bg::before {
   content: '';
   position: absolute;
@@ -61,7 +60,6 @@ body {
   animation: swirl 6s infinite linear;
 }
 
-/* Accretion disk - glowing ring around black hole */
 .black-hole-bg::after {
   content: '';
   position: absolute;
@@ -76,7 +74,6 @@ body {
   animation: pulseGlow 2s infinite ease-in-out;
 }
 
-/* Swirling rings - more visible */
 .ring {
   position: absolute;
   top: 50%;
@@ -115,7 +112,6 @@ body {
   animation-duration: 18s;
 }
 
-/* Light beams - new */
 .light-beam {
   position: absolute;
   top: 50%;
@@ -199,7 +195,6 @@ body {
   }
 }
 
-/* Color changing text animation */
 .color-changing {
   animation: colorChange 3s infinite ease-in-out;
 }
@@ -225,4 +220,28 @@ body {
     color: #ffffff;
     text-shadow: 0 0 5px rgba(255,255,255,0.5);
   }
+}
+
+/* Slide Left Animation for Descriptions */
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-slideLeft {
+  animation: slideLeft 2s ease-in-out infinite;
 }
