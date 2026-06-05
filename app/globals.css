@@ -18,6 +18,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Fade In Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -33,193 +34,63 @@ body {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Black Hole Animation Background */
-.black-hole-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background: radial-gradient(circle at center, #000000 0%, #0a0a0a 60%, #000000 100%);
-  overflow: hidden;
-}
-
-.black-hole-bg::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  height: 400px;
-  margin-left: -200px;
-  margin-top: -200px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(20,20,20,0.9) 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);
-  box-shadow: 0 0 150px 80px rgba(0,0,0,0.9), inset 0 0 50px 20px rgba(255,255,255,0.05);
-  animation: swirl 6s infinite linear;
-}
-
-.black-hole-bg::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 500px;
-  height: 500px;
-  margin-left: -250px;
-  margin-top: -250px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,100,0,0.15) 0%, rgba(255,50,0,0.05) 40%, rgba(0,0,0,0) 70%);
-  animation: pulseGlow 2s infinite ease-in-out;
-}
-
-.ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: rotateRing linear infinite;
-}
-
-.ring:nth-child(1) {
-  width: 350px;
-  height: 350px;
-  margin-left: -175px;
-  margin-top: -175px;
-  border: 3px solid rgba(255,150,50,0.25);
-  box-shadow: 0 0 20px rgba(255,100,0,0.3);
-  animation-duration: 8s;
-}
-
-.ring:nth-child(2) {
-  width: 500px;
-  height: 500px;
-  margin-left: -250px;
-  margin-top: -250px;
-  border: 2px solid rgba(255,100,0,0.15);
-  box-shadow: 0 0 30px rgba(255,50,0,0.2);
-  animation-duration: 12s;
-}
-
-.ring:nth-child(3) {
-  width: 680px;
-  height: 680px;
-  margin-left: -340px;
-  margin-top: -340px;
-  border: 1px solid rgba(255,150,50,0.1);
-  animation-duration: 18s;
-}
-
-.light-beam {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 800px;
-  height: 8px;
-  background: linear-gradient(90deg, rgba(255,100,0,0) 0%, rgba(255,100,0,0.6) 30%, rgba(255,100,0,0.8) 50%, rgba(255,100,0,0.6) 70%, rgba(255,100,0,0) 100%);
-  transform-origin: left center;
-  animation: beamRotate 15s linear infinite;
-  border-radius: 50%;
-}
-
-.light-beam:nth-child(4) {
-  transform: translate(-50%, -50%) rotate(45deg);
-  animation-duration: 20s;
-}
-
-.light-beam:nth-child(5) {
-  transform: translate(-50%, -50%) rotate(90deg);
-  animation-duration: 25s;
-}
-
-.light-beam:nth-child(6) {
-  transform: translate(-50%, -50%) rotate(135deg);
-  animation-duration: 30s;
-}
-
-@keyframes swirl {
+/* Zoom In Animation for TOZI */
+@keyframes zoomIn {
   0% {
-    transform: rotate(0deg) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: rotate(180deg) scale(1.08);
-    opacity: 0.85;
+    transform: scale(0.5);
+    opacity: 0;
   }
   100% {
-    transform: rotate(360deg) scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
     transform: scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.8;
+    opacity: 1;
   }
 }
 
-@keyframes rotateRing {
+.animate-zoomIn {
+  animation: zoomIn 1s ease-out forwards;
+}
+
+/* Fast Color Changing for initial TOZI */
+@keyframes colorChangeFast {
+  0% { color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+  20% { color: #ff6600; text-shadow: 0 0 10px rgba(255,102,0,0.6); }
+  40% { color: #ff3366; text-shadow: 0 0 15px rgba(255,51,102,0.5); }
+  60% { color: #00ccff; text-shadow: 0 0 10px rgba(0,204,255,0.5); }
+  80% { color: #ffcc00; text-shadow: 0 0 10px rgba(255,204,0,0.5); }
+  100% { color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+}
+
+.color-changing-fast {
+  animation: colorChangeFast 2s ease-in-out infinite;
+}
+
+/* Slow Color Changing after TOZI becomes small */
+@keyframes colorChangeSlow {
+  0% { color: #ffffff; }
+  25% { color: #ff6600; }
+  50% { color: #ff3366; }
+  75% { color: #00ccff; }
+  100% { color: #ffffff; }
+}
+
+.color-changing-slow {
+  animation: colorChangeSlow 4s ease-in-out infinite;
+}
+
+/* Fade In Up for content */
+@keyframes fadeInUp {
   0% {
-    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 0;
+    transform: translateY(30px);
   }
   100% {
-    transform: translate(-50%, -50%) rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes beamRotate {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-    opacity: 0.3;
-  }
-  25% {
-    opacity: 0.6;
-  }
-  50% {
-    transform: translate(-50%, -50%) rotate(180deg);
-    opacity: 0.3;
-  }
-  75% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-    opacity: 0.3;
-  }
-}
-
-.color-changing {
-  animation: colorChange 3s infinite ease-in-out;
-}
-
-@keyframes colorChange {
-  0% {
-    color: #ffffff;
-    text-shadow: 0 0 5px rgba(255,255,255,0.5);
-  }
-  25% {
-    color: #ff6600;
-    text-shadow: 0 0 10px rgba(255,102,0,0.6);
-  }
-  50% {
-    color: #ff3366;
-    text-shadow: 0 0 15px rgba(255,51,102,0.5);
-  }
-  75% {
-    color: #00ccff;
-    text-shadow: 0 0 10px rgba(0,204,255,0.5);
-  }
-  100% {
-    color: #ffffff;
-    text-shadow: 0 0 5px rgba(255,255,255,0.5);
-  }
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 /* Slide Left Animation for Descriptions */
@@ -244,4 +115,61 @@ body {
 
 .animate-slideLeft {
   animation: slideLeft 2s ease-in-out infinite;
+}
+
+/* Star Twinkle Animation */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Shooting Star Animation */
+@keyframes shoot {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-400px) translateY(200px);
+    opacity: 0;
+  }
+}
+
+/* Falling Star Animation */
+@keyframes starFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes starGlow {
+  0%, 100% {
+    text-shadow: 0 0 2px rgba(100,150,255,0.5);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(100,150,255,0.9);
+  }
 }
