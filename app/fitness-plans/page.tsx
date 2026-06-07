@@ -7,6 +7,8 @@ interface PlanDetails {
   perMonth: string;
   savings: string | null;
   features: string[];
+  color: string;
+  icon: string;
 }
 
 interface Answers {
@@ -66,18 +68,24 @@ export default function FitnessPlans() {
         price: `${prices.currency}${prices.threeMonth}`,
         perMonth: `${prices.currency}${Math.round(prices.threeMonth / 3)}/month`,
         savings: null,
+        color: 'from-emerald-500 to-teal-500',
+        icon: '💪',
         features: ['✓ Personalized workout plan', '✓ Customized diet plan', '✓ Weekly progress tracking', '✓ 1-on-1 virtual coaching', '✓ WhatsApp support']
       },
       '6 Months': {
         price: `${prices.currency}${prices.sixMonth}`,
         perMonth: `${prices.currency}${Math.round(prices.sixMonth / 6)}/month`,
         savings: prices.currency === '₹' ? 'Save ₹2,000' : `Save ${prices.currency}${prices.threeMonth * 2 - prices.sixMonth}`,
+        color: 'from-blue-500 to-indigo-500',
+        icon: '🔥',
         features: ['✓ Personalized workout plan', '✓ Customized diet plan', '✓ Weekly progress tracking', '✓ 1-on-1 virtual coaching', '✓ WhatsApp support', '✓ Free diet chart']
       },
       '12 Months': {
         price: `${prices.currency}${prices.twelveMonth}`,
         perMonth: `${prices.currency}${Math.round(prices.twelveMonth / 12)}/month`,
         savings: prices.currency === '₹' ? 'Save ₹6,000' : `Save ${prices.currency}${prices.threeMonth * 4 - prices.twelveMonth}`,
+        color: 'from-purple-500 to-pink-500',
+        icon: '👑',
         features: ['✓ Personalized workout plan', '✓ Customized diet plan', '✓ Weekly progress tracking', '✓ 1-on-1 virtual coaching', '✓ WhatsApp support', '✓ Free diet chart', '✓ Monthly consultation call']
       }
     };
@@ -140,49 +148,69 @@ export default function FitnessPlans() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center">
       <div className="grain-overlay" />
       <div className="vignette" />
-      
+
       <Link href="/fitness-choice" className="fixed top-8 left-8 text-white/60 text-sm hover:text-gold transition z-50 tracking-wide">
         ← BACK
       </Link>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-20">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 flex flex-col items-center justify-center">
+        
         {!selectedPlan ? (
-          <div className="flex flex-col items-center justify-center">
-            <div className="text-center mb-4">
-              <div className="text-gold text-[1px] opacity-50">◇</div>
+          <>
+            {/* Header */}
+            <div className="text-center w-full mb-12">
+              <div className="text-gold text-[1px] opacity-50 mb-4 animate-pulse">◇</div>
+              <h1 className="text-2xl md:text-4xl font-light gold-text tracking-[0.2em] mb-3">
+                CHOOSE YOUR PLAN
+              </h1>
+              <p className="text-white/40 text-xs tracking-wide uppercase">
+                Longer commitment = bigger savings
+              </p>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent mx-auto mt-6"></div>
             </div>
-            <h1 className="text-3xl md:text-4xl font-light text-white text-center tracking-[0.2em] mb-2">CHOOSE YOUR PLAN</h1>
-            <p className="text-center text-gray-500 text-xs tracking-wide mb-12">Longer commitment = bigger savings</p>
-            <div className="grid md:grid-cols-3 gap-6">
+
+            {/* Plans Grid */}
+            <div className="grid md:grid-cols-3 gap-6 w-full">
               {Object.entries(plans).map(([plan, details]) => (
                 <div 
                   key={plan} 
                   onClick={() => handleSelectPlan(plan)} 
-                  className="premium-pill flex flex-col items-center w-full max-w-sm mx-auto py-6 px-4 hover:scale-105 transition-all duration-300 cursor-pointer"
+                  className="group w-full bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:scale-105 transition-all duration-500 cursor-pointer hover:border-gold/50"
                 >
-                  <h2 className="text-xl font-light text-gold text-center tracking-wide mb-2 uppercase">{plan}</h2>
-                  <p className="text-2xl font-light text-white text-center">{details.price}</p>
-                  <p className="text-gray-400 text-xs text-center mb-3 uppercase">{details.perMonth}</p>
-                  {details.savings && <p className="text-gold/70 text-[10px] text-center mb-3 uppercase">{details.savings}</p>}
-                  <div className="border-t border-gold/20 my-3 w-full"></div>
-                  <div className="text-left text-gray-300 text-[11px] space-y-1 w-full">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-3xl">{details.icon}</span>
+                    <h2 className={`text-xl font-medium bg-gradient-to-r ${details.color} bg-clip-text text-transparent`}>
+                      {plan}
+                    </h2>
+                  </div>
+                  <p className="text-3xl font-light text-white mb-1">{details.price}</p>
+                  <p className="text-gray-400 text-xs mb-3 uppercase">{details.perMonth}</p>
+                  {details.savings && (
+                    <span className="inline-block px-3 py-1 text-[10px] rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 mb-4">
+                      {details.savings}
+                    </span>
+                  )}
+                  <div className={`w-full h-px bg-gradient-to-r from-transparent via-${details.color.split(' ')[1]}/50 to-transparent my-4`}></div>
+                  <div className="text-left text-gray-300 text-xs space-y-2">
                     {details.features.map((feature: string, idx: number) => (
-                      <p key={idx} className="uppercase">{feature}</p>
+                      <p key={idx} className="flex items-start gap-2">
+                        <span className="text-green-400">✓</span> {feature}
+                      </p>
                     ))}
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </>
         ) : !formCompleted ? (
           currentQuestion && (
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="text-gold text-[1px] opacity-50 mb-8">◇</div>
-              <h2 className="text-xl font-light text-white tracking-wide mb-4 uppercase">{selectedPlan} Plan - {plans[selectedPlan]?.price}</h2>
-              <p className="text-gray-500 text-sm mb-8">Question {step} of {questions.length}</p>
+            <div className="w-full max-w-2xl mx-auto text-center">
+              <div className="text-gold text-[1px] opacity-50 mb-8 animate-pulse">◇</div>
+              <h2 className="text-xl font-light text-white tracking-wide mb-4">{selectedPlan} Plan - {plans[selectedPlan]?.price}</h2>
+              <p className="text-white/40 text-sm mb-8">Question {step} of {questions.length}</p>
               <h3 className="text-2xl font-light text-gold mb-8">{currentQuestion.question}</h3>
               {currentQuestion.type === 'select' && currentQuestion.options ? (
                 <div className="space-y-3">
@@ -199,7 +227,7 @@ export default function FitnessPlans() {
                     placeholder={currentQuestion.placeholder} 
                     value={currentValue} 
                     onChange={(e) => setAnswers({ ...answers, [currentQuestion.key]: e.target.value })} 
-                    className="w-full p-4 bg-transparent border border-gold/30 rounded-xl text-white focus:outline-none focus:border-gold" 
+                    className="w-full p-4 bg-white/5 border border-gold/30 rounded-xl text-white focus:outline-none focus:border-gold" 
                   />
                   <button onClick={() => handleAnswer(currentValue)} className="mt-4 premium-pill">
                     Next →
@@ -209,17 +237,23 @@ export default function FitnessPlans() {
             </div>
           )
         ) : (
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="text-gold text-[1px] opacity-50 mb-8">◇</div>
-            <h2 className="text-2xl font-light text-white mb-4 uppercase">Thank You</h2>
+          <div className="w-full max-w-2xl mx-auto text-center">
+            <div className="text-gold text-[1px] opacity-50 mb-8 animate-pulse">◇</div>
+            <h2 className="text-2xl font-light text-white mb-4">Thank You</h2>
             <p className="text-gray-300 mb-8">Choose how you'd like me to contact you:</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={sendToWhatsApp} className="premium-pill">💬 WhatsApp</button>
-              <button onClick={sendEmail} className="premium-pill">📧 Email</button>
-              <button onClick={sendInstagram} className="premium-pill">📸 Instagram DM</button>
+              <button onClick={sendToWhatsApp} className="px-6 py-3 rounded-full bg-green-600/20 border border-green-500/50 text-green-400 hover:bg-green-600 hover:text-white transition">💬 WhatsApp</button>
+              <button onClick={sendEmail} className="px-6 py-3 rounded-full bg-blue-600/20 border border-blue-500/50 text-blue-400 hover:bg-blue-600 hover:text-white transition">📧 Email</button>
+              <button onClick={sendInstagram} className="px-6 py-3 rounded-full bg-pink-600/20 border border-pink-500/50 text-pink-400 hover:bg-pink-600 hover:text-white transition">📸 Instagram DM</button>
             </div>
           </div>
         )}
+
+        {/* Footer */}
+        <div className="text-center w-full mt-16">
+          <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent mx-auto"></div>
+          <div className="text-gold/20 text-[8px] mt-4">◇</div>
+        </div>
       </div>
     </div>
   );
