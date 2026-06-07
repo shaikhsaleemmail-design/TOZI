@@ -1,26 +1,19 @@
 'use client';
 import Link from 'next/link';
 
-interface Service {
-  name: string;
-  description: string;
-  icon: string;
-  color: string;
-}
-
 export default function MarketingServices() {
-  const services: Service[] = [
-    { name: "Website Creation", description: "Custom, fast, and mobile-friendly websites tailored to your brand.", icon: "🌐", color: "from-blue-500 to-cyan-400" },
-    { name: "Content Strategy", description: "Data-driven content plans that attract, engage, and convert.", icon: "📊", color: "from-purple-500 to-pink-500" },
-    { name: "Content Creation", description: "High-quality posts, reels, and graphics for social media.", icon: "✍️", color: "from-yellow-500 to-orange-500" },
-    { name: "Video Editing", description: "Professional editing for reels, YouTube, and ads.", icon: "🎬", color: "from-red-500 to-rose-500" },
-    { name: "Social Media Marketing", description: "Grow your audience and build a loyal community.", icon: "📱", color: "from-indigo-500 to-purple-500" },
-    { name: "Script Writing", description: "Engaging scripts for reels, ads, and YouTube videos.", icon: "📝", color: "from-emerald-500 to-teal-500" },
-    { name: "Search Engine Optimisation (SEO)", description: "Rank higher on Google and get organic traffic.", icon: "🔍", color: "from-sky-500 to-blue-500" },
-    { name: "Paid Advertising (Meta Ads & Google Ads)", description: "ROI-focused ad campaigns that deliver results.", icon: "💰", color: "from-amber-500 to-yellow-500" },
-    { name: "WhatsApp Marketing Automation", description: "Automated broadcasts, replies, and lead nurturing.", icon: "💬", color: "from-green-500 to-emerald-500" },
-    { name: "Brand Strategy", description: "Position your brand for long-term success.", icon: "🎯", color: "from-violet-500 to-purple-500" },
-    { name: "Photo Editing", description: "Professional retouching and enhancement for visuals.", icon: "📸", color: "from-cyan-500 to-blue-500" }
+  const services = [
+    { name: "Website Creation", desc: "Custom, fast, and mobile-friendly websites tailored to your brand." },
+    { name: "Content Strategy", desc: "Data-driven content plans that attract, engage, and convert." },
+    { name: "Content Creation", desc: "High-quality posts, reels, and graphics for social media." },
+    { name: "Video Editing", desc: "Professional editing for reels, YouTube, and ads." },
+    { name: "Social Media Marketing", desc: "Grow your audience and build a loyal community." },
+    { name: "Script Writing", desc: "Engaging scripts for reels, ads, and YouTube videos." },
+    { name: "Search Engine Optimisation (SEO)", desc: "Rank higher on Google and get organic traffic." },
+    { name: "Paid Advertising (Meta Ads & Google Ads)", desc: "ROI-focused ad campaigns that deliver results." },
+    { name: "WhatsApp Marketing Automation", desc: "Automated broadcasts, replies, and lead nurturing." },
+    { name: "Brand Strategy", desc: "Position your brand for long-term success." },
+    { name: "Photo Editing", desc: "Professional retouching and enhancement for visuals." }
   ];
 
   const sendToWhatsApp = (serviceName: string) => {
@@ -39,83 +32,168 @@ export default function MarketingServices() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] flex flex-col items-center">
-      <div className="grain-overlay" />
-      <div className="vignette" />
+    <div className="relative min-h-screen bg-black flex flex-col items-center overflow-hidden">
 
-      <div className="relative z-10 w-full max-w-3xl mx-auto px-6 py-6 flex flex-col items-center">
-        
-        {/* BACK Button - Top Left */}
-        <div className="w-full">
-          <Link href="/marketing-choice" className="inline-block text-white/60 text-sm hover:text-gold transition tracking-wide">
-            ← BACK
-          </Link>
-        </div>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
+        :root { --neon: #00ff88; }
 
-        {/* Content - Moved DOWN with pt-20 (padding top) */}
-        <div className="w-full pt-20">
-          
-          {/* Header */}
-          <div className="text-center w-full mb-10">
-            <div className="text-gold text-[1px] opacity-50 mb-3 animate-pulse">◇</div>
-            <h1 className="text-2xl md:text-3xl font-light gold-text tracking-[0.2em]">
-              WHAT I CAN DO FOR YOU
-            </h1>
-            <p className="text-white/40 text-xs tracking-wide uppercase mt-2">
-              Choose a service to connect with me
-            </p>
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent mx-auto mt-5"></div>
+        .orbitron { font-family: 'Orbitron', monospace; }
+        .space-mono { font-family: 'Space Mono', monospace; }
+
+        .grid-bg {
+          position: fixed; inset: 0;
+          background-image:
+            linear-gradient(rgba(0,255,136,0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,255,136,0.07) 1px, transparent 1px);
+          background-size: 40px 40px;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .scanlines {
+          position: fixed; inset: 0;
+          background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        .corner-tl, .corner-tr, .corner-bl, .corner-br {
+          position: fixed; width: 40px; height: 40px;
+          border-color: #00ff88; border-style: solid; opacity: 0.4;
+          z-index: 50;
+        }
+        .corner-tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
+        .corner-tr { top: 20px; right: 20px; border-width: 2px 2px 0 0; }
+        .corner-bl { bottom: 20px; left: 20px; border-width: 0 0 2px 2px; }
+        .corner-br { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }
+
+        .status-dot { animation: blink 1.2s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        .fade-up { animation: fadeUp 0.6s ease both; }
+        .fade-up-1 { animation: fadeUp 0.6s 0.1s ease both; }
+        .fade-up-2 { animation: fadeUp 0.6s 0.2s ease both; }
+        @keyframes fadeUp {
+          from{opacity:0;transform:translateY(16px)}
+          to{opacity:1;transform:none}
+        }
+
+        .cyber-card {
+          border: 1px solid rgba(0,255,136,0.2);
+          background: rgba(0,255,136,0.02);
+          border-radius: 8px;
+          transition: all 0.3s ease;
+        }
+        .cyber-card:hover {
+          border-color: #00ff88;
+          transform: translateY(-4px);
+          box-shadow: 0 0 30px rgba(0,255,136,0.2);
+        }
+
+        .contact-btn {
+          border: 1px solid rgba(0,255,136,0.4);
+          background: rgba(0,255,136,0.05);
+          border-radius: 6px;
+          transition: all 0.2s ease;
+          font-family: 'Space Mono', monospace;
+          font-size: 11px;
+          font-weight: bold;
+          letter-spacing: 1px;
+        }
+        .contact-btn:hover {
+          background: #00ff88;
+          color: #000;
+          transform: translateY(-2px);
+          border-color: #00ff88;
+        }
+      `}</style>
+
+      {/* Backgrounds */}
+      <div className="grid-bg" />
+      <div className="scanlines" />
+      <div className="corner-tl" />
+      <div className="corner-tr" />
+      <div className="corner-bl" />
+      <div className="corner-br" />
+
+      {/* Fixed coords */}
+      <div className="fixed bottom-6 left-6 z-20 space-mono text-[8px] text-[#00ff88] opacity-30 tracking-widest">
+        MARKETING · SERVICES
+      </div>
+      <div className="fixed bottom-6 right-6 z-20 space-mono text-[8px] text-[#00ff88] opacity-30 tracking-widest">
+        SAATOZI.COM
+      </div>
+
+      {/* BACK Button */}
+      <Link
+        href="/marketing-choice"
+        className="fixed top-8 left-8 z-50 space-mono text-[11px] text-white/40 hover:text-[#00ff88] tracking-[3px] uppercase transition"
+      >
+        ← BACK
+      </Link>
+
+      {/* Main Content */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 py-20">
+
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="fade-up flex items-center justify-center gap-2 mb-4">
+            <div className="status-dot w-2 h-2 rounded-full bg-[#00ff88]" />
+            <span className="space-mono text-[11px] text-[#00ff88] tracking-[3px] uppercase">
+              SERVICE CATALOGUE
+            </span>
           </div>
 
-          {/* Services List */}
-          <div className="w-full space-y-4">
-            {services.map((service, index) => (
-              <div 
-                key={index} 
-                className="w-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:border-gold/50 transition-all duration-300"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xl">{service.icon}</span>
-                  <h2 className={`text-base font-medium bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}>
-                    {service.name}
-                  </h2>
-                </div>
-                <p className="text-gray-300 text-xs leading-relaxed mb-3">
-                  {service.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-2">
-                  <button
-                    onClick={() => sendToWhatsApp(service.name)}
-                    className="px-3 py-1 text-[10px] rounded-full bg-green-600/20 border border-green-500/50 text-green-400 hover:bg-green-600 hover:text-white transition"
-                  >
-                    💬 WhatsApp
-                  </button>
-                  <button
-                    onClick={() => sendEmail(service.name)}
-                    className="px-3 py-1 text-[10px] rounded-full bg-blue-600/20 border border-blue-500/50 text-blue-400 hover:bg-blue-600 hover:text-white transition"
-                  >
-                    📧 Email
-                  </button>
-                  <button
-                    onClick={sendInstagram}
-                    className="px-3 py-1 text-[10px] rounded-full bg-pink-600/20 border border-pink-500/50 text-pink-400 hover:bg-pink-600 hover:text-white transition"
-                  >
-                    📸 Instagram DM
-                  </button>
-                </div>
-                <p className="text-amber-400/50 text-[8px] uppercase tracking-wider">
-                  ⚡ Charges depend on conversation
-                </p>
+          <h1 className="fade-up-1 orbitron text-[clamp(32px,6vw,48px)] font-black text-white tracking-[0.15em] leading-tight mb-4">
+            WHAT I CAN
+            <br />
+            DO FOR YOU
+          </h1>
+
+          <div className="fade-up-2 w-32 h-px bg-gradient-to-r from-transparent via-[#00ff88] to-transparent mx-auto" />
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 gap-5">
+          {services.map((service, idx) => (
+            <div key={idx} className="fade-up-2 cyber-card p-5">
+              <h3 className="orbitron text-[15px] font-bold text-[#00ff88] tracking-wide mb-2">
+                {service.name}
+              </h3>
+              <p className="space-mono text-[11px] text-white/40 leading-relaxed mb-4">
+                {service.desc}
+              </p>
+              
+              {/* Contact Buttons - Larger and Clearer */}
+              <div className="flex flex-wrap gap-3 mt-3">
+                <button
+                  onClick={() => sendToWhatsApp(service.name)}
+                  className="contact-btn px-4 py-2 text-[#00ff88]"
+                >
+                  💬 WHATSAPP
+                </button>
+                <button
+                  onClick={() => sendEmail(service.name)}
+                  className="contact-btn px-4 py-2 text-[#00ff88]"
+                >
+                  📧 EMAIL
+                </button>
+                <button
+                  onClick={sendInstagram}
+                  className="contact-btn px-4 py-2 text-[#00ff88]"
+                >
+                  📸 INSTAGRAM
+                </button>
               </div>
-            ))}
-          </div>
-
-          {/* Footer */}
-          <div className="text-center w-full mt-10">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent mx-auto"></div>
-            <div className="text-gold/20 text-[8px] mt-3">◇</div>
-          </div>
+              
+              <p className="text-[#00ff88]/30 text-[8px] tracking-wider mt-3">
+                ⚡ Charges depend on conversation
+              </p>
+            </div>
+          ))}
         </div>
+
       </div>
     </div>
   );

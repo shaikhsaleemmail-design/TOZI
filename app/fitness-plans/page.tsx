@@ -8,7 +8,6 @@ interface PlanDetails {
   savings: string | null;
   features: string[];
   icon: string;
-  tag: string;
 }
 
 interface Answers {
@@ -30,27 +29,22 @@ interface Question {
   options?: string[];
 }
 
-interface Prices {
-  currency: string;
-  threeMonth: number;
-  sixMonth: number;
-  twelveMonth: number;
-}
-
 export default function FitnessPlans() {
-  const [selectedPlan, setSelectedPlan] = useState<string>('');
-  const [step, setStep] = useState<number>(0);
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({
     name: '', age: '', weight: '', height: '', goal: '', diet: '', experience: '', phone: ''
   });
-  const [formCompleted, setFormCompleted] = useState<boolean>(false);
-  const [prices, setPrices] = useState<Prices | null>(null);
+  const [formCompleted, setFormCompleted] = useState(false);
+  const [userCountry, setUserCountry] = useState('IN');
+  const [prices, setPrices] = useState<{ currency: string; threeMonth: number; sixMonth: number; twelveMonth: number } | null>(null);
 
   useEffect(() => {
     fetch('https://ipapi.co/json/')
       .then(res => res.json())
       .then(data => {
-        const country: string = data.country_code;
+        const country = data.country_code;
+        setUserCountry(country);
         if (country === 'IN') {
           setPrices({ currency: '₹', threeMonth: 6000, sixMonth: 10000, twelveMonth: 18000 });
         } else if (country === 'US' || country === 'CA' || country === 'AE') {
@@ -69,50 +63,49 @@ export default function FitnessPlans() {
   const getPlans = (): Record<string, PlanDetails> | null => {
     if (!prices) return null;
     return {
-      '3 MONTHS': {
+      '3 Months': {
         price: `${prices.currency}${prices.threeMonth}`,
-        perMonth: `${prices.currency}${Math.round(prices.threeMonth / 3)}/mo`,
+        perMonth: `${prices.currency}${Math.round(prices.threeMonth / 3)}/month`,
         savings: null,
         icon: '💪',
-        tag: 'STARTER',
-        features: ['Personalized workout plan', 'Customized diet plan', 'Weekly progress tracking', '1-on-1 virtual coaching', 'WhatsApp support'],
+        features: ['Personalized workout plan', 'Customized diet plan', 'Weekly progress tracking', '1-on-1 virtual coaching', 'WhatsApp support']
       },
-      '6 MONTHS': {
+      '6 Months': {
         price: `${prices.currency}${prices.sixMonth}`,
-        perMonth: `${prices.currency}${Math.round(prices.sixMonth / 6)}/mo`,
-        savings: `Save ${prices.currency}${prices.threeMonth * 2 - prices.sixMonth}`,
+        perMonth: `${prices.currency}${Math.round(prices.sixMonth / 6)}/month`,
+        savings: prices.currency === '₹' ? 'Save ₹2,000' : `Save ${prices.currency}${prices.threeMonth * 2 - prices.sixMonth}`,
         icon: '🔥',
-        tag: 'POPULAR',
-        features: ['Personalized workout plan', 'Customized diet plan', 'Weekly progress tracking', '1-on-1 virtual coaching', 'WhatsApp support', 'Free diet chart'],
+        features: ['Personalized workout plan', 'Customized diet plan', 'Weekly progress tracking', '1-on-1 virtual coaching', 'WhatsApp support', 'Free diet chart']
       },
-      '12 MONTHS': {
+      '12 Months': {
         price: `${prices.currency}${prices.twelveMonth}`,
-        perMonth: `${prices.currency}${Math.round(prices.twelveMonth / 12)}/mo`,
-        savings: `Save ${prices.currency}${prices.threeMonth * 4 - prices.twelveMonth}`,
+        perMonth: `${prices.currency}${Math.round(prices.twelveMonth / 12)}/month`,
+        savings: prices.currency === '₹' ? 'Save ₹6,000' : `Save ${prices.currency}${prices.threeMonth * 4 - prices.twelveMonth}`,
         icon: '👑',
-        tag: 'ELITE',
-        features: ['Personalized workout plan', 'Customized diet plan', 'Weekly progress tracking', '1-on-1 virtual coaching', 'WhatsApp support', 'Free diet chart', 'Monthly consultation call'],
-      },
+        features: ['Personalized workout plan', 'Customized diet plan', 'Weekly progress tracking', '1-on-1 virtual coaching', 'WhatsApp support', 'Free diet chart', 'Monthly consultation call']
+      }
     };
   };
+
+  const plans = getPlans();
 
   const questions: Question[] = [
     { key: 'name', question: 'What is your full name?', type: 'text', placeholder: 'Enter your full name' },
     { key: 'age', question: 'How old are you?', type: 'number', placeholder: 'Enter your age' },
-    { key: 'weight', question: 'Current weight?', type: 'text', placeholder: 'e.g. 75kg' },
-    { key: 'height', question: 'Your height?', type: 'text', placeholder: 'e.g. 175cm' },
+    { key: 'weight', question: 'Current weight?', type: 'text', placeholder: 'e.g., 75kg' },
+    { key: 'height', question: 'Your height?', type: 'text', placeholder: 'e.g., 175cm' },
     { key: 'goal', question: 'Main fitness goal?', type: 'select', options: ['Fat Loss', 'Muscle Gain', 'Strength', 'General Fitness'] },
-    { key: 'diet', question: 'Diet preference?', type: 'select', options: ['Veg', 'Non-Veg', 'Eggetarian'] },
+    { key: 'diet', question: 'Diet type?', type: 'select', options: ['Veg', 'Non-Veg', 'Eggetarian'] },
     { key: 'experience', question: 'Experience level?', type: 'select', options: ['Beginner', 'Intermediate', 'Advanced'] },
-    { key: 'phone', question: 'WhatsApp number?', type: 'tel', placeholder: 'Enter your phone number' },
+    { key: 'phone', question: 'WhatsApp number?', type: 'tel', placeholder: 'Enter your phone number' }
   ];
 
-  const handleSelectPlan = (plan: string): void => {
+  const handleSelectPlan = (plan: string) => {
     setSelectedPlan(plan);
     setStep(1);
   };
 
-  const handleAnswer = (value: string): void => {
+  const handleAnswer = (value: string) => {
     const currentQuestion = step > 0 ? questions[step - 1] : null;
     if (currentQuestion) {
       setAnswers({ ...answers, [currentQuestion.key]: value });
@@ -124,329 +117,190 @@ export default function FitnessPlans() {
     }
   };
 
-  const sendToWhatsApp = (): void => {
-    const plans = getPlans();
+  const sendToWhatsApp = () => {
     const planData = selectedPlan && plans ? plans[selectedPlan] : null;
     const msg = `FITNESS ENQUIRY - ${selectedPlan} (${planData?.price})%0A%0A` +
       Object.entries(answers).map(([k, v]) => `${k}: ${v}`).join('%0A');
     window.open(`https://wa.me/918657282577?text=${msg}`, '_blank');
   };
 
-  const sendEmail = (): void => {
+  const sendEmail = () => {
     window.location.href = `mailto:shaikhsaleem.mail@gmail.com?subject=Fitness Enquiry - ${selectedPlan}&body=${Object.entries(answers).map(([k, v]) => `${k}: ${v}`).join('%0A')}`;
   };
 
-  const sendInstagram = (): void => {
+  const sendInstagram = () => {
     window.open('https://instagram.com/saatozi', '_blank');
   };
 
-  const plans = getPlans();
   const currentQuestion = step > 0 ? questions[step - 1] : null;
   const currentValue = currentQuestion ? answers[currentQuestion.key] : '';
 
   if (!prices || !plans) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div
-          className="status-dot"
-          style={{ fontFamily: "'Space Mono',monospace", fontSize: '10px', color: '#00ff88', letterSpacing: '3px' }}
-        >
-          LOADING...
-        </div>
+        <div className="text-[#00ff88] font-mono">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="relative min-h-screen bg-black flex flex-col items-center justify-center overflow-hidden">
-
+    <div className="min-h-screen bg-black">
+      
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
-        :root { --neon: #00ff88; }
-
         .orbitron { font-family: 'Orbitron', monospace; }
         .space-mono { font-family: 'Space Mono', monospace; }
-
-        .grid-bg {
-          position: fixed; inset: 0;
-          background-image:
-            linear-gradient(rgba(0,255,136,0.07) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,255,136,0.07) 1px, transparent 1px);
-          background-size: 40px 40px;
-          pointer-events: none; z-index: 0;
-        }
-        .scanlines {
-          position: fixed; inset: 0;
-          background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
-          pointer-events: none; z-index: 1;
-        }
-
-        .status-dot { animation: blink 1.2s infinite; }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-        .fade-up { animation: fadeUp 0.6s ease both; }
-        .fade-up-1 { animation: fadeUp 0.6s 0.1s ease both; }
-        .fade-up-2 { animation: fadeUp 0.6s 0.2s ease both; }
-        .fade-up-3 { animation: fadeUp 0.6s 0.3s ease both; }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(16px); }
-          to { opacity: 1; transform: none; }
-        }
-
-        .expand-line {
-          animation: expandLine 0.6s 0.3s ease both;
-          transform: scaleX(0); transform-origin: center;
-        }
-        @keyframes expandLine { to { transform: scaleX(1); } }
-
-        .plan-card {
+        
+        .cyber-card {
           border: 1px solid rgba(0,255,136,0.2);
           background: rgba(0,255,136,0.02);
-          clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-          transition: all 0.25s ease;
-          cursor: pointer;
-          position: relative;
-          overflow: hidden;
+          border-radius: 16px;
+          transition: all 0.3s ease;
         }
-        .plan-card::before {
-          content: '';
-          position: absolute; inset: 0;
-          background: linear-gradient(135deg, rgba(0,255,136,0.06) 0%, transparent 60%);
-          opacity: 0; transition: opacity 0.25s;
-        }
-        .plan-card:hover {
+        .cyber-card:hover {
           border-color: #00ff88;
-          transform: translateY(-6px);
-          box-shadow: 0 0 40px rgba(0,255,136,0.2);
+          transform: translateY(-4px);
+          box-shadow: 0 0 30px rgba(0,255,136,0.2);
         }
-        .plan-card:hover::before { opacity: 1; }
-
+        
         .cyber-btn {
-          clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-          transition: all 0.2s ease;
+          background: rgba(0,255,136,0.1);
+          border: 1px solid #00ff88;
+          border-radius: 8px;
+          padding: 12px 24px;
+          color: #00ff88;
+          font-family: 'Orbitron', monospace;
+          font-size: 12px;
+          font-weight: bold;
+          letter-spacing: 2px;
           cursor: pointer;
+          transition: all 0.2s ease;
         }
         .cyber-btn:hover {
-          background: #00ff88 !important;
-          color: #000 !important;
+          background: #00ff88;
+          color: #000;
           transform: translateY(-2px);
         }
-
-        .input-field {
-          width: 100%;
-          padding: 14px 16px;
-          background: rgba(0,255,136,0.04);
-          border: 1px solid rgba(0,255,136,0.25);
-          color: #fff;
-          font-family: 'Space Mono', monospace;
-          font-size: 12px;
-          letter-spacing: 1px;
-          outline: none;
-          transition: border-color 0.2s;
-          clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-        }
-        .input-field:focus { border-color: #00ff88; }
-        .input-field::placeholder { color: rgba(255,255,255,0.2); }
-
-        .corner-tl, .corner-tr, .corner-bl, .corner-br {
-          position: fixed; width: 40px; height: 40px;
-          border-color: #00ff88; border-style: solid; opacity: 0.4; z-index: 50;
-        }
-        .corner-tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
-        .corner-tr { top: 20px; right: 20px; border-width: 2px 2px 0 0; }
-        .corner-bl { bottom: 20px; left: 20px; border-width: 0 0 2px 2px; }
-        .corner-br { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }
-
-        .progress-bar {
-          height: 2px;
-          background: rgba(0,255,136,0.15);
-          position: relative;
-          overflow: hidden;
-        }
-        .progress-fill {
-          height: 100%;
-          background: #00ff88;
-          transition: width 0.4s ease;
-          box-shadow: 0 0 8px #00ff88;
-        }
+        
+        .status-dot { animation: blink 1.2s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
       `}</style>
 
-      <div className="grid-bg" />
-      <div className="scanlines" />
-      <div className="corner-tl" />
-      <div className="corner-tr" />
-      <div className="corner-bl" />
-      <div className="corner-br" />
-
-      <div className="fixed bottom-6 left-6 z-20 space-mono text-[8px] text-[#00ff88] opacity-30 tracking-widest">
-        FITNESS · PLANS_03
-      </div>
-      <div className="fixed bottom-6 right-6 z-20 space-mono text-[8px] text-[#00ff88] opacity-30 tracking-widest">
-        SAATOZI.COM
+      {/* BACK Button */}
+      <div className="max-w-7xl mx-auto px-6 pt-8">
+        <Link href="/fitness-choice" className="inline-block space-mono text-[11px] text-white/40 hover:text-[#00ff88] tracking-[3px] uppercase transition">
+          ← BACK
+        </Link>
       </div>
 
-      <Link
-        href="/fitness-choice"
-        className="fixed top-8 left-8 z-50 space-mono text-[10px] text-white/40 hover:text-[#00ff88] tracking-[3px] uppercase transition"
-      >
-        ← BACK
-      </Link>
-
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-20">
-
-        {/* PLAN SELECTION */}
-        {selectedPlan === '' && (
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        
+        {!selectedPlan ? (
           <>
-            <div className="text-center mb-14">
-              <div className="fade-up flex items-center justify-center gap-2 mb-4">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center gap-2 mb-4">
                 <div className="status-dot w-2 h-2 rounded-full bg-[#00ff88]" />
                 <span className="space-mono text-[10px] text-[#00ff88] tracking-[3px] uppercase">
-                  Fitness · Choose Your Plan
+                  Select your commitment
                 </span>
               </div>
-              <h1 className="fade-up-1 orbitron text-[clamp(28px,6vw,52px)] font-black text-white tracking-[0.15em] leading-tight mb-4">
-                SELECT YOUR<br />PROGRAM
+              <h1 className="orbitron text-4xl md:text-6xl font-black text-white tracking-[0.1em] mb-3">
+                CHOOSE YOUR PLAN
               </h1>
-              <p className="fade-up-2 space-mono text-[10px] text-white/30 tracking-[2px] uppercase mb-6">
-                Longer commitment = bigger results
+              <p className="space-mono text-[12px] text-white/40 tracking-wide">
+                Longer commitment = bigger savings
               </p>
-              <div className="expand-line w-48 h-px bg-gradient-to-r from-transparent via-[#00ff88] to-transparent mx-auto" />
+              <div className="w-20 h-px bg-gradient-to-r from-transparent via-[#00ff88] to-transparent mx-auto mt-6" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {Object.entries(plans).map(([planName, details], i) => (
-                <div
-                  key={planName}
-                  className="plan-card p-6"
-                  onClick={() => handleSelectPlan(planName)}
-                  style={{ animationDelay: `${i * 0.1}s` }}
+            {/* Plans Grid - Full Width */}
+            <div className="grid md:grid-cols-3 gap-6">
+              {Object.entries(plans).map(([plan, details]) => (
+                <div 
+                  key={plan} 
+                  onClick={() => handleSelectPlan(plan)} 
+                  className="cyber-card p-6 cursor-pointer"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="space-mono text-[9px] text-[#00ff88] tracking-[3px]">{details.tag}</span>
-                    <span className="text-2xl">{details.icon}</span>
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-3xl">{details.icon}</span>
+                    <h2 className="orbitron text-xl font-bold text-[#00ff88] tracking-wide">
+                      {plan}
+                    </h2>
                   </div>
-
-                  <h2 className="orbitron text-lg font-black text-white tracking-wide mb-1">{planName}</h2>
-                  <p className="orbitron text-3xl font-black text-[#00ff88] mb-1">{details.price}</p>
-                  <p className="space-mono text-[9px] text-white/30 tracking-[2px] uppercase mb-3">{details.perMonth}</p>
-
+                  <p className="orbitron text-3xl font-bold text-white mb-1">{details.price}</p>
+                  <p className="space-mono text-[11px] text-white/40 mb-3">{details.perMonth}</p>
                   {details.savings && (
-                    <div className="inline-block px-3 py-1 mb-4 space-mono text-[8px] tracking-[2px] text-[#00ff88] border border-[#00ff88] bg-[rgba(0,255,136,0.08)]"
-                      style={{ clipPath: 'polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%)' }}>
+                    <span className="inline-block px-3 py-1 text-[10px] rounded-full bg-[#00ff88]/20 text-[#00ff88] border border-[#00ff88]/30 mb-4">
                       {details.savings}
-                    </div>
+                    </span>
                   )}
-
-                  <div className="w-full h-px bg-[rgba(0,255,136,0.15)] my-4" />
-
+                  <div className="w-full h-px bg-gradient-to-r from-transparent via-[#00ff88]/30 to-transparent my-4" />
                   <div className="space-y-2">
-                    {details.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2">
-                        <span className="text-[#00ff88] text-[10px] mt-0.5">▸</span>
-                        <span className="space-mono text-[9px] text-white/50 tracking-wide leading-relaxed">{feature}</span>
-                      </div>
+                    {details.features.map((feature: string, idx: number) => (
+                      <p key={idx} className="space-mono text-[11px] text-white/50 flex items-start gap-2">
+                        <span className="text-[#00ff88]">✓</span> {feature}
+                      </p>
                     ))}
-                  </div>
-
-                  <div className="mt-6 w-full py-3 text-center space-mono text-[9px] text-[#00ff88] tracking-[3px] border border-[rgba(0,255,136,0.3)] bg-[rgba(0,255,136,0.04)]"
-                    style={{ clipPath: 'polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%)' }}>
-                    SELECT →
                   </div>
                 </div>
               ))}
             </div>
           </>
-        )}
-
-        {/* FORM QUESTIONS */}
-        {selectedPlan !== '' && !formCompleted && currentQuestion && (
-          <div className="w-full max-w-lg mx-auto text-center">
-            <div className="flex items-center justify-center gap-2 mb-8">
-              <div className="status-dot w-2 h-2 rounded-full bg-[#00ff88]" />
-              <span className="space-mono text-[10px] text-[#00ff88] tracking-[3px] uppercase">
-                {selectedPlan} · Question {step} of {questions.length}
-              </span>
-            </div>
-
-            <div className="progress-bar w-full mb-10 rounded-none">
-              <div
-                className="progress-fill"
-                style={{ width: `${((step - 1) / questions.length) * 100}%` }}
-              />
-            </div>
-
-            <h2 className="orbitron text-[clamp(18px,4vw,28px)] font-black text-white tracking-wide mb-10">
-              {currentQuestion.question}
-            </h2>
-
-            {currentQuestion.type === 'select' && currentQuestion.options ? (
-              <div className="space-y-3">
-                {currentQuestion.options.map((opt) => (
-                  <button
-                    key={opt}
-                    onClick={() => handleAnswer(opt)}
-                    className="cyber-btn w-full py-4 space-mono text-[10px] text-[#00ff88] border border-[rgba(0,255,136,0.3)] bg-[rgba(0,255,136,0.04)] tracking-[3px] uppercase"
-                  >
-                    {opt}
-                  </button>
-                ))}
+        ) : !formCompleted ? (
+          currentQuestion && (
+            <div className="max-w-2xl mx-auto">
+              <div className="text-center mb-6">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="status-dot w-2 h-2 rounded-full bg-[#00ff88]" />
+                  <span className="space-mono text-[10px] text-[#00ff88] tracking-[3px] uppercase">
+                    Question {step} of {questions.length}
+                  </span>
+                </div>
+                <div className="w-full bg-white/10 rounded-full h-1 max-w-xs mx-auto">
+                  <div className="bg-[#00ff88] h-1 rounded-full transition-all duration-300" style={{ width: `${((step) / questions.length) * 100}%` }} />
+                </div>
               </div>
-            ) : (
-              <div className="space-y-4">
-                <input
-                  type={currentQuestion.type}
-                  placeholder={currentQuestion.placeholder}
-                  value={currentValue}
-                  onChange={(e) => setAnswers({ ...answers, [currentQuestion.key]: e.target.value })}
-                  className="input-field"
-                />
-                <button
-                  onClick={() => handleAnswer(currentValue)}
-                  className="cyber-btn w-full py-4 space-mono text-[10px] text-[#00ff88] border border-[rgba(0,255,136,0.3)] bg-[rgba(0,255,136,0.04)] tracking-[3px] uppercase"
-                >
-                  NEXT →
-                </button>
+              <div className="cyber-card p-8">
+                <h2 className="orbitron text-2xl md:text-3xl font-bold text-white tracking-wide text-center mb-8">
+                  {currentQuestion.question}
+                </h2>
+                {currentQuestion.type === 'select' && currentQuestion.options ? (
+                  <div className="space-y-3">
+                    {currentQuestion.options.map((opt) => (
+                      <button key={opt} onClick={() => handleAnswer(opt)} className="cyber-btn w-full">
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div>
+                    <input 
+                      type={currentQuestion.type} 
+                      placeholder={currentQuestion.placeholder} 
+                      value={currentValue} 
+                      onChange={(e) => setAnswers({ ...answers, [currentQuestion.key]: e.target.value })} 
+                      className="w-full px-5 py-4 bg-white/5 border border-[#00ff88]/30 rounded-lg text-white space-mono text-[14px] focus:outline-none focus:border-[#00ff88] mb-4" 
+                    />
+                    <button onClick={() => handleAnswer(currentValue)} className="cyber-btn w-full">
+                      NEXT →
+                    </button>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        )}
-
-        {/* COMPLETED - CONTACT OPTIONS */}
-        {formCompleted && (
-          <div className="w-full max-w-lg mx-auto text-center">
-            <div className="flex items-center justify-center gap-2 mb-8">
-              <div className="status-dot w-2 h-2 rounded-full bg-[#00ff88]" />
-              <span className="space-mono text-[10px] text-[#00ff88] tracking-[3px] uppercase">
-                Mission Complete
-              </span>
             </div>
-
-            <h2 className="orbitron text-[clamp(24px,5vw,40px)] font-black text-white tracking-wide mb-4">
-              YOU&apos;RE IN
-            </h2>
-            <p className="space-mono text-[10px] text-white/40 tracking-[2px] mb-10 uppercase">
-              Choose how to connect with TOZI
-            </p>
-
-            <div className="space-y-3">
-              <button
-                onClick={sendToWhatsApp}
-                className="cyber-btn w-full py-4 space-mono text-[10px] text-[#00ff88] border border-[rgba(0,255,136,0.3)] bg-[rgba(0,255,136,0.04)] tracking-[3px] uppercase"
-              >
-                💬 WHATSAPP
-              </button>
-              <button
-                onClick={sendEmail}
-                className="cyber-btn w-full py-4 space-mono text-[10px] text-[#00ff88] border border-[rgba(0,255,136,0.3)] bg-[rgba(0,255,136,0.04)] tracking-[3px] uppercase"
-              >
-                📧 EMAIL
-              </button>
-              <button
-                onClick={sendInstagram}
-                className="cyber-btn w-full py-4 space-mono text-[10px] text-[#00ff88] border border-[rgba(0,255,136,0.3)] bg-[rgba(0,255,136,0.04)] tracking-[3px] uppercase"
-              >
-                📸 INSTAGRAM DM
-              </button>
+          )
+        ) : (
+          <div className="max-w-2xl mx-auto">
+            <div className="cyber-card p-8 text-center">
+              <div className="status-dot w-2 h-2 rounded-full bg-[#00ff88] mx-auto mb-4" />
+              <h2 className="orbitron text-3xl md:text-4xl font-bold text-white tracking-wide mb-4">THANK YOU</h2>
+              <p className="space-mono text-[13px] text-white/40 leading-relaxed mb-8">Choose how you'd like me to contact you:</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onClick={sendToWhatsApp} className="cyber-btn">💬 WHATSAPP</button>
+                <button onClick={sendEmail} className="cyber-btn">📧 EMAIL</button>
+                <button onClick={sendInstagram} className="cyber-btn">📸 INSTAGRAM</button>
+              </div>
             </div>
           </div>
         )}
