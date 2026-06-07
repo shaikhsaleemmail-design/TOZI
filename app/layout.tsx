@@ -12,14 +12,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Premium font for TOZI logo - fixed weights (300 removed, not supported)
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-// Premium font for body text
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -28,7 +26,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "TOZI - Fitness Coach & Digital Marketer",
-  description: "Transform your body and brand with TOZI. Fitness coaching and digital marketing services.",
+  description: "Transform your body and brand with TOZI.",
 };
 
 export default function RootLayout({
@@ -37,14 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${inter.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${inter.variable}`}>
       <head>
         <script async src="//www.instagram.com/embed.js"></script>
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="bg-black">{children}</body>
     </html>
   );
 }

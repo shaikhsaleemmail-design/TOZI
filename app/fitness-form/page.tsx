@@ -46,21 +46,14 @@ export default function FitnessForm() {
   if (submitted) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <style>{`
-          @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
-          .orbitron { font-family: 'Orbitron', monospace; }
-          .space-mono { font-family: 'Space Mono', monospace; }
-        `}</style>
-        
-        <Link href="/fitness-choice" className="fixed top-8 left-8 z-50 space-mono text-[11px] text-white/40 hover:text-[#00ff88] tracking-[3px] uppercase transition">
+        <Link href="/fitness-choice" className="fixed top-8 left-8 text-white/40 hover:text-[#00ff88] text-sm tracking-wider transition z-50">
           ← BACK
         </Link>
-        
-        <div className="text-center px-6">
+        <div className="text-center">
           <div className="w-2 h-2 rounded-full bg-[#00ff88] mx-auto mb-4 animate-pulse" />
-          <h1 className="orbitron text-3xl md:text-4xl font-bold text-white tracking-wide mb-4">THANK YOU</h1>
-          <p className="space-mono text-[13px] text-white/40 leading-relaxed">I'll review your answers and reach out on WhatsApp within 24 hours.</p>
-          <p className="space-mono text-[11px] text-[#00ff88] mt-6 opacity-60">STAY DISCIPLINED</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-white tracking-wide mb-4" style={{ fontFamily: "'Orbitron', monospace" }}>THANK YOU</h1>
+          <p className="text-sm text-white/40 leading-relaxed" style={{ fontFamily: "'Space Mono', monospace" }}>I'll review your answers and reach out on WhatsApp within 24 hours.</p>
+          <p className="text-xs text-[#00ff88] mt-6 opacity-60">STAY DISCIPLINED</p>
         </div>
       </div>
     );
@@ -69,81 +62,34 @@ export default function FitnessForm() {
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
       
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
-        .orbitron { font-family: 'Orbitron', monospace; }
-        .space-mono { font-family: 'Space Mono', monospace; }
-        
-        .cyber-card {
-          border: 1px solid rgba(0,255,136,0.2);
-          background: rgba(0,255,136,0.02);
-          border-radius: 16px;
-        }
-        
-        .cyber-input {
-          background: rgba(0,255,136,0.05);
-          border: 1px solid rgba(0,255,136,0.3);
-          border-radius: 12px;
-          padding: 14px 18px;
-          color: white;
-          font-family: 'Space Mono', monospace;
-          font-size: 14px;
-          width: 100%;
-        }
-        .cyber-input:focus {
-          outline: none;
-          border-color: #00ff88;
-        }
-        
-        .cyber-btn {
-          background: rgba(0,255,136,0.1);
-          border: 1px solid #00ff88;
-          border-radius: 12px;
-          padding: 14px 28px;
-          color: #00ff88;
-          font-family: 'Orbitron', monospace;
-          font-size: 12px;
-          font-weight: bold;
-          letter-spacing: 2px;
-          cursor: pointer;
-          width: 100%;
-        }
-        .cyber-btn:hover {
-          background: #00ff88;
-          color: #000;
-        }
-        
-        .status-dot { animation: blink 1.2s infinite; }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-      `}</style>
-
       {/* BACK Button */}
       <Link
         href="/fitness-choice"
-        className="fixed top-8 left-8 z-50 space-mono text-[11px] text-white/40 hover:text-[#00ff88] tracking-[3px] uppercase transition"
+        className="fixed top-8 left-8 text-white/40 hover:text-[#00ff88] text-sm tracking-wider transition z-50"
+        style={{ fontFamily: "'Space Mono', monospace" }}
       >
         ← BACK
       </Link>
 
-      {/* Main Content - Perfectly Centered */}
-      <div className="w-full max-w-lg mx-auto px-6">
+      {/* Main Content - Perfect Center */}
+      <div className="w-full max-w-md mx-auto px-6">
         
         {/* Progress */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <div className="status-dot w-1.5 h-1.5 rounded-full bg-[#00ff88]" />
-            <span className="space-mono text-[9px] text-[#00ff88] tracking-[3px] uppercase">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
+            <span className="text-[10px] text-[#00ff88] tracking-[3px] uppercase" style={{ fontFamily: "'Space Mono', monospace" }}>
               {step + 1} / {questions.length}
             </span>
           </div>
-          <div className="w-full bg-white/10 rounded-full h-0.5 max-w-[200px] mx-auto">
+          <div className="w-full bg-white/10 rounded-full h-0.5 max-w-[180px] mx-auto">
             <div className="bg-[#00ff88] h-0.5 rounded-full transition-all duration-300" style={{ width: `${((step + 1) / questions.length) * 100}%` }} />
           </div>
         </div>
 
         {/* Question Card */}
-        <div className="cyber-card p-6 md:p-7">
-          <h2 className="orbitron text-xl md:text-2xl font-bold text-white tracking-wide text-center mb-6">
+        <div className="border border-[#00ff88]/20 bg-[#00ff88]/5 rounded-2xl p-6 md:p-7">
+          <h2 className="text-xl md:text-2xl font-bold text-white tracking-wide text-center mb-6" style={{ fontFamily: "'Orbitron', monospace" }}>
             {currentQuestion.question}
           </h2>
 
@@ -153,7 +99,8 @@ export default function FitnessForm() {
                 <button
                   key={opt}
                   onClick={() => handleAnswer(opt)}
-                  className="cyber-btn text-center"
+                  className="w-full py-3 px-4 bg-[#00ff88]/10 border border-[#00ff88] rounded-xl text-[#00ff88] text-sm font-bold tracking-wider hover:bg-[#00ff88] hover:text-black transition-all duration-200"
+                  style={{ fontFamily: "'Orbitron', monospace" }}
                 >
                   {opt}
                 </button>
@@ -166,12 +113,14 @@ export default function FitnessForm() {
                 placeholder={currentQuestion.placeholder}
                 value={currentValue}
                 onChange={(e) => setAnswers({ ...answers, [currentQuestion.key]: e.target.value })}
-                className="cyber-input mb-4"
+                className="w-full p-4 bg-[#00ff88]/5 border border-[#00ff88]/30 rounded-xl text-white text-sm outline-none focus:border-[#00ff88] transition-all duration-200 mb-4"
+                style={{ fontFamily: "'Space Mono', monospace" }}
                 autoFocus
               />
               <button
                 onClick={() => handleAnswer(currentValue)}
-                className="cyber-btn"
+                className="w-full py-3 px-4 bg-[#00ff88]/10 border border-[#00ff88] rounded-xl text-[#00ff88] text-sm font-bold tracking-wider hover:bg-[#00ff88] hover:text-black transition-all duration-200"
+                style={{ fontFamily: "'Orbitron', monospace" }}
               >
                 NEXT →
               </button>
