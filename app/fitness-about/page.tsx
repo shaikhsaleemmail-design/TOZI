@@ -14,13 +14,27 @@ export default function FitnessAbout() {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#050505]">
+      {/* Grain Texture */}
+      <div className="grain-overlay" />
+      <div className="vignette" />
+
       {/* Back Button */}
-      <Link href="/fitness-choice" className="fixed top-8 left-8 text-white text-2xl hover:opacity-50 transition z-50">
+      <Link href="/fitness-choice" className="fixed top-8 left-8 text-white/60 text-sm hover:text-gold transition z-50 tracking-wide">
         ← BACK
       </Link>
 
-      <div className="max-w-5xl mx-auto px-6 py-20">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 py-20">
+        
+        {/* Diamond Separator */}
+        <div className="text-center mb-12">
+          <div className="text-gold text-[1px] opacity-50">◇</div>
+        </div>
+
+        {/* Title */}
+        <h1 className="text-3xl md:text-4xl font-light text-white text-center tracking-[0.2em] mb-12">
+          MY FITNESS JOURNEY
+        </h1>
         
         {/* Image 1 - Before */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
@@ -31,16 +45,16 @@ export default function FitnessAbout() {
             onClick={() => openImage('/images/before.jpg')}
           />
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-bold text-white mb-3">Before I Started</h2>
-            <p className="text-gray-300 leading-relaxed">No discipline, no routine, low energy. This was my starting point.</p>
+            <h2 className="text-xl font-light text-gold tracking-wide mb-3">Before I Started</h2>
+            <p className="text-gray-300 text-sm leading-relaxed font-light">No discipline, no routine, low energy. This was my starting point.</p>
           </div>
         </div>
 
         {/* Image 2 - First Gain */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <div className="md:w-1/2 order-2 md:order-1">
-            <h2 className="text-2xl font-bold text-white mb-3">My First Muscle Gain</h2>
-            <p className="text-gray-300 leading-relaxed">Consistency started paying off. First signs of real transformation.</p>
+            <h2 className="text-xl font-light text-gold tracking-wide mb-3">My First Muscle Gain</h2>
+            <p className="text-gray-300 text-sm leading-relaxed font-light">Consistency started paying off. First signs of real transformation.</p>
           </div>
           <img 
             src="/images/after1.jpg" 
@@ -59,16 +73,16 @@ export default function FitnessAbout() {
             onClick={() => openImage('/images/after2.jpg')}
           />
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-bold text-white mb-3">My Body Transformation</h2>
-            <p className="text-gray-300 leading-relaxed">Revealed the muscle underneath. Leaner, stronger, more confident.</p>
+            <h2 className="text-xl font-light text-gold tracking-wide mb-3">My Body Transformation</h2>
+            <p className="text-gray-300 text-sm leading-relaxed font-light">Revealed the muscle underneath. Leaner, stronger, more confident.</p>
           </div>
         </div>
 
         {/* Image 4 - Continued Progress */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <div className="md:w-1/2 order-2 md:order-1">
-            <h2 className="text-2xl font-bold text-white mb-3">Continued Progress</h2>
-            <p className="text-gray-300 leading-relaxed">Peak condition. Vascular, defined, and disciplined.</p>
+            <h2 className="text-xl font-light text-gold tracking-wide mb-3">Continued Progress</h2>
+            <p className="text-gray-300 text-sm leading-relaxed font-light">Peak condition. Vascular, defined, and disciplined.</p>
           </div>
           <img 
             src="/images/after3.jpg" 
@@ -87,16 +101,16 @@ export default function FitnessAbout() {
             onClick={() => openImage('/images/after4.jpg')}
           />
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-bold text-white mb-3">Mastered My Physique</h2>
-            <p className="text-gray-300 leading-relaxed">This is what dedication looks like. Years of hard work paying off.</p>
+            <h2 className="text-xl font-light text-gold tracking-wide mb-3">Mastered My Physique</h2>
+            <p className="text-gray-300 text-sm leading-relaxed font-light">This is what dedication looks like. Years of hard work paying off.</p>
           </div>
         </div>
 
         {/* Image 6 - Certificate */}
         <div className="flex flex-col md:flex-row gap-8 mb-20 items-center">
           <div className="md:w-1/2 order-2 md:order-1">
-            <h2 className="text-2xl font-bold text-white mb-3">Certified from IFSA</h2>
-            <p className="text-gray-300 leading-relaxed">Turned my passion into profession. Now I help others transform.</p>
+            <h2 className="text-xl font-light text-gold tracking-wide mb-3">Certified from IFSA</h2>
+            <p className="text-gray-300 text-sm leading-relaxed font-light">Turned my passion into profession. Now I help others transform.</p>
           </div>
           <img 
             src="/images/certificate.jpg" 
@@ -106,14 +120,16 @@ export default function FitnessAbout() {
           />
         </div>
 
-        {/* Video Section */}
+        {/* Video Section - Centered */}
         <div className="text-center my-20">
-          <h2 className="text-3xl font-bold text-white mb-8">Click on the video to play</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="text-gold text-[1px] opacity-50 mb-8">◇</div>
+          <h2 className="text-xl font-light text-white tracking-[0.2em] mb-12">WATCH MY JOURNEY</h2>
+          
+          <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
             
             {/* YouTube Video */}
-            <div className="bg-gray-900 rounded-xl p-6">
-              <p className="text-gray-300 mb-4 font-semibold">YouTube Video</p>
+            <div className="premium-pill flex-col p-6 w-full max-w-md mx-auto">
+              <p className="text-gold text-sm font-light tracking-wide mb-4 text-center">YouTube</p>
               <div className="aspect-video rounded-lg overflow-hidden">
                 <iframe 
                   className="w-full h-full"
@@ -126,50 +142,60 @@ export default function FitnessAbout() {
               </div>
             </div>
 
-            {/* Instagram Reel - Working Button */}
-            <div className="bg-gray-900 rounded-xl p-6 text-center">
-              <p className="text-gray-300 mb-4 font-semibold">Instagram Reel</p>
-              <div className="bg-gray-800 rounded-lg p-8">
-                <p className="text-white mb-4">Watch my transformation reel on Instagram</p>
+            {/* Instagram Reel */}
+            <div className="premium-pill flex-col p-6 w-full max-w-md mx-auto">
+              <p className="text-gold text-sm font-light tracking-wide mb-4 text-center">Instagram Reel</p>
+              <div className="bg-transparent rounded-lg p-4 text-center">
+                <p className="text-white/70 text-xs mb-3">Watch my transformation reel</p>
                 <a 
                   href="https://www.instagram.com/reel/DX94Lu-MHp_/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:scale-105 transition"
+                  className="inline-block px-6 py-2 premium-pill text-sm"
                 >
-                  📱 Watch on Instagram →
+                  Watch on Instagram →
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="flex flex-wrap gap-4 justify-center mt-12">
-          <a href="https://www.instagram.com/saatozi" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
+        {/* Diamond Separator */}
+        <div className="text-center my-12">
+          <div className="text-gold/20 text-[8px]">◇</div>
+        </div>
+
+        {/* Social Links - Centered */}
+        <div className="flex flex-wrap gap-4 justify-center items-center mt-8">
+          <a href="https://www.instagram.com/saatozi" target="_blank" rel="noopener noreferrer" className="premium-pill text-sm">
             Instagram
           </a>
-          <a href="https://youtube.com/@saatozi" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
+          <a href="https://youtube.com/@saatozi" target="_blank" rel="noopener noreferrer" className="premium-pill text-sm">
             YouTube
           </a>
-          <a href="https://x.com/Saatozi" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
+          <a href="https://x.com/Saatozi" target="_blank" rel="noopener noreferrer" className="premium-pill text-sm">
             X (Twitter)
           </a>
-          <a href="https://wa.me/918657282577" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-green-600 text-white rounded-full hover:scale-105 transition">
+          <a href="https://wa.me/918657282577" target="_blank" rel="noopener noreferrer" className="premium-pill text-sm">
             WhatsApp
           </a>
+        </div>
+
+        {/* Diamond Separator at Bottom */}
+        <div className="text-center mt-16">
+          <div className="text-gold/20 text-[8px]">◇</div>
         </div>
       </div>
 
       {/* Full Screen Image Modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-95 z-[100] flex items-center justify-center cursor-pointer"
+          className="fixed inset-0 bg-black/95 backdrop-blur-md z-[100] flex items-center justify-center cursor-pointer"
           onClick={closeImage}
         >
           <button 
             onClick={closeImage}
-            className="fixed top-8 left-8 text-white text-2xl hover:opacity-50 transition z-[101]"
+            className="fixed top-8 left-8 text-white/60 text-sm hover:text-gold transition z-[101] tracking-wide"
           >
             ← BACK
           </button>

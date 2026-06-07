@@ -1,28 +1,76 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gold: #d4af37;
+  --gold-light: #f0d675;
+  --gold-dark: #b8860b;
+  --charcoal: #050505;
+  --text-muted: #666666;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--charcoal);
+  color: #ffffff;
+  font-family: 'Inter', var(--font-inter), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
 }
 
-/* Fade In Animation */
-@keyframes fadeIn {
+/* Premium Grain Texture */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Vignette Effect */
+.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+}
+
+/* Premium Gold Gradient Text */
+.gold-text {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Gold Glow Behind TOZI */
+.gold-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(212,175,55,0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Animations */
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -30,80 +78,25 @@ body {
   }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-/* Zoom In Animation for TOZI */
-@keyframes zoomIn {
-  0% {
-    transform: scale(0.5);
+@keyframes fadeIn {
+  from {
     opacity: 0;
   }
-  100% {
-    transform: scale(1);
+  to {
     opacity: 1;
   }
 }
 
-.animate-zoomIn {
-  animation: zoomIn 1s ease-out forwards;
-}
-
-/* Fast Color Changing for initial TOZI */
-@keyframes colorChangeFast {
-  0% { color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
-  20% { color: #ff6600; text-shadow: 0 0 10px rgba(255,102,0,0.6); }
-  40% { color: #ff3366; text-shadow: 0 0 15px rgba(255,51,102,0.5); }
-  60% { color: #00ccff; text-shadow: 0 0 10px rgba(0,204,255,0.5); }
-  80% { color: #ffcc00; text-shadow: 0 0 10px rgba(255,204,0,0.5); }
-  100% { color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
-}
-
-.color-changing-fast {
-  animation: colorChangeFast 2s ease-in-out infinite;
-}
-
-/* Slow Color Changing after TOZI becomes small */
-@keyframes colorChangeSlow {
-  0% { color: #ffffff; }
-  25% { color: #ff6600; }
-  50% { color: #ff3366; }
-  75% { color: #00ccff; }
-  100% { color: #ffffff; }
-}
-
-.color-changing-slow {
-  animation: colorChangeSlow 4s ease-in-out infinite;
-}
-
-/* Fade In Up for content */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-/* Slide Left Animation for Descriptions */
-@keyframes slideLeft {
+@keyframes slideLeftPremium {
   0% {
     transform: translateX(100%);
     opacity: 0;
   }
-  10% {
+  15% {
     transform: translateX(0);
     opacity: 1;
   }
-  90% {
+  85% {
     transform: translateX(0);
     opacity: 1;
   }
@@ -113,63 +106,63 @@ body {
   }
 }
 
-.animate-slideLeft {
-  animation: slideLeft 2s ease-in-out infinite;
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
 }
 
-/* Star Twinkle Animation */
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
-/* Shooting Star Animation */
-@keyframes shoot {
-  0% {
-    transform: translateX(0) translateY(0);
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  95% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-400px) translateY(200px);
-    opacity: 0;
-  }
+.animate-slideLeftPremium {
+  animation: slideLeftPremium 2.5s ease-in-out infinite;
 }
 
-/* Falling Star Animation */
-@keyframes starFall {
-  0% {
-    transform: translateY(-10vh) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.8;
-  }
-  90% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
+/* Stagger Delays */
+.delay-100 { animation-delay: 0.1s; opacity: 0; }
+.delay-200 { animation-delay: 0.2s; opacity: 0; }
+.delay-300 { animation-delay: 0.3s; opacity: 0; }
+.delay-400 { animation-delay: 0.4s; opacity: 0; }
+.delay-500 { animation-delay: 0.5s; opacity: 0; }
+.delay-600 { animation-delay: 0.6s; opacity: 0; }
+.delay-700 { animation-delay: 0.7s; opacity: 0; }
+.delay-800 { animation-delay: 0.8s; opacity: 0; }
+
+/* Premium Pill Button */
+.premium-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 100px;
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  cursor: pointer;
 }
 
-@keyframes starGlow {
-  0%, 100% {
-    text-shadow: 0 0 2px rgba(100,150,255,0.5);
-  }
-  50% {
-    text-shadow: 0 0 10px rgba(100,150,255,0.9);
-  }
+.premium-pill:hover {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.08);
+  color: var(--gold-light);
+  transform: scale(1.02);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 2px;
 }

@@ -12,32 +12,25 @@ export default function MarketingChoice() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center px-6 relative">
-      <Link href="/" className="fixed top-8 left-8 text-white text-2xl hover:opacity-50 transition z-50">
-        ← BACK
-      </Link>
+    <div className="relative min-h-screen bg-[#050505] flex flex-col items-center justify-center px-4 overflow-hidden">
+      <div className="grain-overlay" />
+      <div className="vignette" />
 
-      <div className="text-center">
-        {showChoose && (
-          <p className="text-white text-xl md:text-2xl animate-fadeIn opacity-80 tracking-wide">
-            Choose Your Option
-          </p>
-        )}
+      <div className="relative z-10 text-center w-full max-w-4xl mx-auto">
+        <Link href="/" className="fixed top-8 left-8 text-white/60 text-sm hover:text-gold transition z-50 tracking-wide">← BACK</Link>
+
+        <div className="mb-12"><div className="text-gold text-[1px] opacity-50">◇</div></div>
+
+        {showChoose && <p className="text-white/50 text-xs md:text-sm tracking-[0.2em] uppercase animate-fadeInUp mb-12">Choose Your Option</p>}
 
         {showButtons && (
-          <div className="flex flex-col md:flex-row gap-6 mt-10 animate-fadeIn">
-            <Link href="/marketing-about">
-              <button className="px-12 py-4 bg-white text-black rounded-full text-xl font-medium hover:scale-105 transition">
-                ABOUT
-              </button>
-            </Link>
-            <Link href="/marketing-services">
-              <button className="px-12 py-4 bg-white text-black rounded-full text-xl font-medium hover:scale-105 transition">
-                SELECT PLAN
-              </button>
-            </Link>
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+            <Link href="/marketing-about"><button className="premium-pill w-64 h-24 flex flex-col items-center justify-center"><span className="text-gold text-lg font-light tracking-[0.2em]">ABOUT</span><span className="text-gray-400 text-[10px] mt-1">My journey & story</span></button></Link>
+            <Link href="/marketing-services"><button className="premium-pill w-64 h-24 flex flex-col items-center justify-center"><span className="text-gold text-lg font-light tracking-[0.2em]">SERVICES</span><span className="text-gray-400 text-[10px] mt-1">What I can do for you</span></button></Link>
           </div>
         )}
+
+        <div className="mt-16"><div className="text-gold/20 text-[8px]">◇</div></div>
       </div>
     </div>
   );
