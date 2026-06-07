@@ -148,28 +148,31 @@ export default function FitnessPlans() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-[#050505] flex flex-col items-center">
       <div className="grain-overlay" />
       <div className="vignette" />
 
-      <Link href="/fitness-choice" className="fixed top-8 left-8 text-white/60 text-sm hover:text-gold transition z-50 tracking-wide">
-        ← BACK
-      </Link>
-
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 flex flex-col items-center justify-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-12 flex flex-col items-center">
         
         {!selectedPlan ? (
           <>
+            {/* BACK Button - Separate, not overlapping heading */}
+            <div className="w-full mb-6">
+              <Link href="/fitness-choice" className="inline-block text-white/60 text-sm hover:text-gold transition tracking-wide">
+                ← BACK
+              </Link>
+            </div>
+
             {/* Header */}
-            <div className="text-center w-full mb-12">
-              <div className="text-gold text-[1px] opacity-50 mb-4 animate-pulse">◇</div>
-              <h1 className="text-2xl md:text-4xl font-light gold-text tracking-[0.2em] mb-3">
+            <div className="text-center w-full mb-10">
+              <div className="text-gold text-[1px] opacity-50 mb-3 animate-pulse">◇</div>
+              <h1 className="text-2xl md:text-4xl font-light gold-text tracking-[0.2em] mb-2">
                 CHOOSE YOUR PLAN
               </h1>
               <p className="text-white/40 text-xs tracking-wide uppercase">
                 Longer commitment = bigger savings
               </p>
-              <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent mx-auto mt-6"></div>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent mx-auto mt-5"></div>
             </div>
 
             {/* Plans Grid */}
@@ -178,26 +181,26 @@ export default function FitnessPlans() {
                 <div 
                   key={plan} 
                   onClick={() => handleSelectPlan(plan)} 
-                  className="group w-full bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:scale-105 transition-all duration-500 cursor-pointer hover:border-gold/50"
+                  className="group w-full bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-5 hover:scale-105 transition-all duration-500 cursor-pointer hover:border-gold/50"
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-3xl">{details.icon}</span>
-                    <h2 className={`text-xl font-medium bg-gradient-to-r ${details.color} bg-clip-text text-transparent`}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl">{details.icon}</span>
+                    <h2 className={`text-lg font-medium bg-gradient-to-r ${details.color} bg-clip-text text-transparent`}>
                       {plan}
                     </h2>
                   </div>
-                  <p className="text-3xl font-light text-white mb-1">{details.price}</p>
-                  <p className="text-gray-400 text-xs mb-3 uppercase">{details.perMonth}</p>
+                  <p className="text-2xl font-light text-white mb-0.5">{details.price}</p>
+                  <p className="text-gray-400 text-[10px] mb-2 uppercase">{details.perMonth}</p>
                   {details.savings && (
-                    <span className="inline-block px-3 py-1 text-[10px] rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 mb-4">
+                    <span className="inline-block px-2 py-0.5 text-[9px] rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 mb-3">
                       {details.savings}
                     </span>
                   )}
-                  <div className={`w-full h-px bg-gradient-to-r from-transparent via-${details.color.split(' ')[1]}/50 to-transparent my-4`}></div>
-                  <div className="text-left text-gray-300 text-xs space-y-2">
+                  <div className={`w-full h-px bg-gradient-to-r from-transparent via-${details.color.split(' ')[1]}/50 to-transparent my-3`}></div>
+                  <div className="text-left text-gray-300 text-[10px] space-y-1.5">
                     {details.features.map((feature: string, idx: number) => (
-                      <p key={idx} className="flex items-start gap-2">
-                        <span className="text-green-400">✓</span> {feature}
+                      <p key={idx} className="flex items-start gap-1.5">
+                        <span className="text-green-400 text-[10px]">✓</span> {feature}
                       </p>
                     ))}
                   </div>
@@ -208,14 +211,14 @@ export default function FitnessPlans() {
         ) : !formCompleted ? (
           currentQuestion && (
             <div className="w-full max-w-2xl mx-auto text-center">
-              <div className="text-gold text-[1px] opacity-50 mb-8 animate-pulse">◇</div>
-              <h2 className="text-xl font-light text-white tracking-wide mb-4">{selectedPlan} Plan - {plans[selectedPlan]?.price}</h2>
-              <p className="text-white/40 text-sm mb-8">Question {step} of {questions.length}</p>
-              <h3 className="text-2xl font-light text-gold mb-8">{currentQuestion.question}</h3>
+              <div className="text-gold text-[1px] opacity-50 mb-6 animate-pulse">◇</div>
+              <h2 className="text-lg font-light text-white tracking-wide mb-3">{selectedPlan} Plan - {plans[selectedPlan]?.price}</h2>
+              <p className="text-white/40 text-xs mb-6">Question {step} of {questions.length}</p>
+              <h3 className="text-xl font-light text-gold mb-6">{currentQuestion.question}</h3>
               {currentQuestion.type === 'select' && currentQuestion.options ? (
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {currentQuestion.options.map((opt) => (
-                    <button key={opt} onClick={() => handleAnswer(opt)} className="w-full py-3 premium-pill">
+                    <button key={opt} onClick={() => handleAnswer(opt)} className="w-full py-2 premium-pill text-sm">
                       {opt}
                     </button>
                   ))}
@@ -227,9 +230,9 @@ export default function FitnessPlans() {
                     placeholder={currentQuestion.placeholder} 
                     value={currentValue} 
                     onChange={(e) => setAnswers({ ...answers, [currentQuestion.key]: e.target.value })} 
-                    className="w-full p-4 bg-white/5 border border-gold/30 rounded-xl text-white focus:outline-none focus:border-gold" 
+                    className="w-full p-3 bg-white/5 border border-gold/30 rounded-xl text-white focus:outline-none focus:border-gold text-sm" 
                   />
-                  <button onClick={() => handleAnswer(currentValue)} className="mt-4 premium-pill">
+                  <button onClick={() => handleAnswer(currentValue)} className="mt-3 premium-pill text-sm">
                     Next →
                   </button>
                 </div>
@@ -238,21 +241,20 @@ export default function FitnessPlans() {
           )
         ) : (
           <div className="w-full max-w-2xl mx-auto text-center">
-            <div className="text-gold text-[1px] opacity-50 mb-8 animate-pulse">◇</div>
-            <h2 className="text-2xl font-light text-white mb-4">Thank You</h2>
-            <p className="text-gray-300 mb-8">Choose how you'd like me to contact you:</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={sendToWhatsApp} className="px-6 py-3 rounded-full bg-green-600/20 border border-green-500/50 text-green-400 hover:bg-green-600 hover:text-white transition">💬 WhatsApp</button>
-              <button onClick={sendEmail} className="px-6 py-3 rounded-full bg-blue-600/20 border border-blue-500/50 text-blue-400 hover:bg-blue-600 hover:text-white transition">📧 Email</button>
-              <button onClick={sendInstagram} className="px-6 py-3 rounded-full bg-pink-600/20 border border-pink-500/50 text-pink-400 hover:bg-pink-600 hover:text-white transition">📸 Instagram DM</button>
+            <div className="text-gold text-[1px] opacity-50 mb-6 animate-pulse">◇</div>
+            <h2 className="text-xl font-light text-white mb-3">Thank You</h2>
+            <p className="text-gray-300 text-sm mb-6">Choose how you'd like me to contact you:</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button onClick={sendToWhatsApp} className="px-5 py-2 text-sm rounded-full bg-green-600/20 border border-green-500/50 text-green-400 hover:bg-green-600 hover:text-white transition">💬 WhatsApp</button>
+              <button onClick={sendEmail} className="px-5 py-2 text-sm rounded-full bg-blue-600/20 border border-blue-500/50 text-blue-400 hover:bg-blue-600 hover:text-white transition">📧 Email</button>
+              <button onClick={sendInstagram} className="px-5 py-2 text-sm rounded-full bg-pink-600/20 border border-pink-500/50 text-pink-400 hover:bg-pink-600 hover:text-white transition">📸 Instagram DM</button>
             </div>
           </div>
         )}
 
-        {/* Footer */}
-        <div className="text-center w-full mt-16">
+        <div className="text-center w-full mt-10">
           <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent mx-auto"></div>
-          <div className="text-gold/20 text-[8px] mt-4">◇</div>
+          <div className="text-gold/20 text-[8px] mt-3">◇</div>
         </div>
       </div>
     </div>
