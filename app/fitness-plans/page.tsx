@@ -37,7 +37,6 @@ export default function FitnessPlans() {
     name: '', age: '', weight: '', height: '', goal: '', diet: '', experience: '', phone: ''
   });
   const [formCompleted, setFormCompleted] = useState(false);
-  const [userCountry, setUserCountry] = useState('IN');
   const [prices, setPrices] = useState<{ currency: string; threeMonth: number; sixMonth: number; twelveMonth: number } | null>(null);
 
   useEffect(() => {
@@ -45,7 +44,6 @@ export default function FitnessPlans() {
       .then(res => res.json())
       .then(data => {
         const country = data.country_code;
-        setUserCountry(country);
         if (country === 'IN') {
           setPrices({ currency: '₹', threeMonth: 6000, sixMonth: 10000, twelveMonth: 18000 });
         } else if (country === 'US' || country === 'CA' || country === 'AE') {
@@ -148,21 +146,23 @@ export default function FitnessPlans() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] flex flex-col items-center">
+    <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center">
       <div className="grain-overlay" />
       <div className="vignette" />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-12 flex flex-col items-center">
-        
+      {/* BACK Button - Fixed top-left, never moves */}
+      <Link
+        href="/fitness-choice"
+        className="fixed top-8 left-8 text-white/60 text-sm hover:text-gold transition z-50 tracking-wide"
+      >
+        ← BACK
+      </Link>
+
+      {/* Main Content */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-20 flex flex-col items-center justify-center">
+
         {!selectedPlan ? (
           <>
-            {/* BACK Button - Separate, not overlapping heading */}
-            <div className="w-full mb-6">
-              <Link href="/fitness-choice" className="inline-block text-white/60 text-sm hover:text-gold transition tracking-wide">
-                ← BACK
-              </Link>
-            </div>
-
             {/* Header */}
             <div className="text-center w-full mb-10">
               <div className="text-gold text-[1px] opacity-50 mb-3 animate-pulse">◇</div>
@@ -178,9 +178,9 @@ export default function FitnessPlans() {
             {/* Plans Grid */}
             <div className="grid md:grid-cols-3 gap-6 w-full">
               {Object.entries(plans).map(([plan, details]) => (
-                <div 
-                  key={plan} 
-                  onClick={() => handleSelectPlan(plan)} 
+                <div
+                  key={plan}
+                  onClick={() => handleSelectPlan(plan)}
                   className="group w-full bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-5 hover:scale-105 transition-all duration-500 cursor-pointer hover:border-gold/50"
                 >
                   <div className="flex items-center gap-2 mb-2">
@@ -196,7 +196,7 @@ export default function FitnessPlans() {
                       {details.savings}
                     </span>
                   )}
-                  <div className={`w-full h-px bg-gradient-to-r from-transparent via-${details.color.split(' ')[1]}/50 to-transparent my-3`}></div>
+                  <div className="w-full h-px bg-white/10 my-3"></div>
                   <div className="text-left text-gray-300 text-[10px] space-y-1.5">
                     {details.features.map((feature: string, idx: number) => (
                       <p key={idx} className="flex items-start gap-1.5">
@@ -208,11 +208,14 @@ export default function FitnessPlans() {
               ))}
             </div>
           </>
+
         ) : !formCompleted ? (
           currentQuestion && (
             <div className="w-full max-w-2xl mx-auto text-center">
               <div className="text-gold text-[1px] opacity-50 mb-6 animate-pulse">◇</div>
-              <h2 className="text-lg font-light text-white tracking-wide mb-3">{selectedPlan} Plan - {plans[selectedPlan]?.price}</h2>
+              <h2 className="text-lg font-light text-white tracking-wide mb-3">
+                {selectedPlan} Plan - {plans[selectedPlan]?.price}
+              </h2>
               <p className="text-white/40 text-xs mb-6">Question {step} of {questions.length}</p>
               <h3 className="text-xl font-light text-gold mb-6">{currentQuestion.question}</h3>
               {currentQuestion.type === 'select' && currentQuestion.options ? (
@@ -225,12 +228,12 @@ export default function FitnessPlans() {
                 </div>
               ) : (
                 <div>
-                  <input 
-                    type={currentQuestion.type} 
-                    placeholder={currentQuestion.placeholder} 
-                    value={currentValue} 
-                    onChange={(e) => setAnswers({ ...answers, [currentQuestion.key]: e.target.value })} 
-                    className="w-full p-3 bg-white/5 border border-gold/30 rounded-xl text-white focus:outline-none focus:border-gold text-sm" 
+                  <input
+                    type={currentQuestion.type}
+                    placeholder={currentQuestion.placeholder}
+                    value={currentValue}
+                    onChange={(e) => setAnswers({ ...answers, [currentQuestion.key]: e.target.value })}
+                    className="w-full p-3 bg-white/5 border border-gold/30 rounded-xl text-white focus:outline-none focus:border-gold text-sm"
                   />
                   <button onClick={() => handleAnswer(currentValue)} className="mt-3 premium-pill text-sm">
                     Next →
@@ -239,23 +242,32 @@ export default function FitnessPlans() {
               )}
             </div>
           )
+
         ) : (
           <div className="w-full max-w-2xl mx-auto text-center">
             <div className="text-gold text-[1px] opacity-50 mb-6 animate-pulse">◇</div>
             <h2 className="text-xl font-light text-white mb-3">Thank You</h2>
             <p className="text-gray-300 text-sm mb-6">Choose how you'd like me to contact you:</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <button onClick={sendToWhatsApp} className="px-5 py-2 text-sm rounded-full bg-green-600/20 border border-green-500/50 text-green-400 hover:bg-green-600 hover:text-white transition">💬 WhatsApp</button>
-              <button onClick={sendEmail} className="px-5 py-2 text-sm rounded-full bg-blue-600/20 border border-blue-500/50 text-blue-400 hover:bg-blue-600 hover:text-white transition">📧 Email</button>
-              <button onClick={sendInstagram} className="px-5 py-2 text-sm rounded-full bg-pink-600/20 border border-pink-500/50 text-pink-400 hover:bg-pink-600 hover:text-white transition">📸 Instagram DM</button>
+              <button onClick={sendToWhatsApp} className="px-5 py-2 text-sm rounded-full bg-green-600/20 border border-green-500/50 text-green-400 hover:bg-green-600 hover:text-white transition">
+                💬 WhatsApp
+              </button>
+              <button onClick={sendEmail} className="px-5 py-2 text-sm rounded-full bg-blue-600/20 border border-blue-500/50 text-blue-400 hover:bg-blue-600 hover:text-white transition">
+                📧 Email
+              </button>
+              <button onClick={sendInstagram} className="px-5 py-2 text-sm rounded-full bg-pink-600/20 border border-pink-500/50 text-pink-400 hover:bg-pink-600 hover:text-white transition">
+                📸 Instagram DM
+              </button>
             </div>
           </div>
         )}
 
+        {/* Bottom Divider */}
         <div className="text-center w-full mt-10">
           <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent mx-auto"></div>
           <div className="text-gold/20 text-[8px] mt-3">◇</div>
         </div>
+
       </div>
     </div>
   );
