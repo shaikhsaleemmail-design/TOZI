@@ -5,187 +5,160 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center overflow-hidden">
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative', background: 'linear-gradient(180deg, #f7f7f8 0%, #ececee 55%, #e2e2e6 100%)' }}>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
-        :root { --neon: #00ff88; }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
-        .orbitron { font-family: 'Orbitron', monospace; }
-        .space-mono { font-family: 'Space Mono', monospace; }
+        .poppins { font-family: 'Poppins', sans-serif; }
 
-        .grid-bg {
-          position: fixed; inset: 0;
-          background-image:
-            linear-gradient(rgba(0,255,136,0.07) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,255,136,0.07) 1px, transparent 1px);
-          background-size: 40px 40px;
-          animation: gridPulse 4s ease-in-out infinite;
+        .studio-glow {
+          position: absolute;
+          top: 45%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 900px;
+          height: 500px;
+          background: radial-gradient(ellipse at center, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
           pointer-events: none;
           z-index: 0;
         }
-        @keyframes gridPulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
 
-        .scanlines {
-          position: fixed; inset: 0;
-          background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
-          pointer-events: none;
-          z-index: 1;
-        }
-
-        .orb {
-          position: fixed; width: 500px; height: 500px; border-radius: 50%;
-          background: radial-gradient(circle, rgba(0,255,136,0.10) 0%, transparent 70%);
-          top: 50%; left: 50%; transform: translate(-50%, -50%);
-          animation: orbPulse 3s ease-in-out infinite;
-          pointer-events: none;
-          z-index: 0;
-        }
-        @keyframes orbPulse {
-          0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.8}
-          50%{transform:translate(-50%,-50%) scale(1.2);opacity:1}
-        }
-
-        .logo-wrap { position: relative; display: inline-block; }
-        .logo-wrap::before, .logo-wrap::after {
-          content: 'TOZI';
-          position: absolute; top: 0; left: 0; right: 0;
-          font-family: 'Orbitron', monospace;
-          font-size: inherit; font-weight: 900; letter-spacing: 0.15em;
-        }
-        .logo-wrap::before {
-          color: #00ff88;
-          clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-          animation: glitch1 3s infinite;
-        }
-        .logo-wrap::after {
-          color: #ff0066;
-          clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-          animation: glitch2 3s infinite;
-        }
-        @keyframes glitch1 {
-          0%,90%,100%{transform:none;opacity:0}
-          91%{transform:translateX(-4px);opacity:0.8}
-          93%{transform:translateX(4px);opacity:0.8}
-          95%{transform:none;opacity:0}
-        }
-        @keyframes glitch2 {
-          0%,85%,100%{transform:none;opacity:0}
-          86%{transform:translateX(4px);opacity:0.8}
-          88%{transform:translateX(-4px);opacity:0.8}
-          90%{transform:none;opacity:0}
-        }
-
-        .status-dot { animation: blink 1.2s infinite; }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-        .fade-up { animation: fadeUp 0.6s ease both; }
-        .fade-up-1 { animation: fadeUp 0.6s 0.1s ease both; }
-        .fade-up-2 { animation: fadeUp 0.6s 0.25s ease both; }
-        .fade-up-3 { animation: fadeUp 0.6s 0.4s ease both; }
+        .fade-up { animation: fadeUp 0.7s ease both; }
+        .fade-up-1 { animation: fadeUp 0.7s 0.15s ease both; }
+        .fade-up-2 { animation: fadeUp 0.7s 0.3s ease both; }
+        .fade-up-3 { animation: fadeUp 0.7s 0.45s ease both; }
+        .fade-up-4 { animation: fadeUp 0.7s 0.6s ease both; }
         @keyframes fadeUp {
-          from{opacity:0;transform:translateY(16px)}
-          to{opacity:1;transform:none}
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: none; }
         }
 
         .expand-line {
-          animation: expandLine 0.6s 0.35s ease both;
+          animation: expandLine 0.8s 0.4s ease both;
           transform: scaleX(0);
           transform-origin: center;
         }
-        @keyframes expandLine { to{transform:scaleX(1)} }
+        @keyframes expandLine { to { transform: scaleX(1); } }
 
-        .cyber-btn {
-          clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-          transition: all 0.2s ease;
+        .path-btn {
+          transition: all 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
           position: relative;
           overflow: hidden;
+          border: none;
+          cursor: pointer;
         }
-        .cyber-btn:hover {
-          background: #00ff88 !important;
-          color: #000 !important;
-          transform: translateY(-3px);
-          box-shadow: 0 0 40px rgba(0,255,136,0.5);
+        .path-btn:hover {
+          transform: translateY(-4px) scale(1.03);
         }
-        .cyber-btn::before {
-          content: '';
-          position: absolute; top: 0; left: -100%;
-          width: 100%; height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-          transition: 0.3s;
+        .path-btn-fitness {
+          background: #FF6B4A;
+          color: #fff;
+          box-shadow: 0 8px 24px rgba(255,107,74,0.28);
         }
-        .cyber-btn:hover::before { left: 100%; }
+        .path-btn-fitness:hover {
+          box-shadow: 0 12px 32px rgba(255,107,74,0.4);
+        }
+        .path-btn-marketing {
+          background: #2DD4BF;
+          color: #08332e;
+          box-shadow: 0 8px 24px rgba(45,212,191,0.28);
+        }
+        .path-btn-marketing:hover {
+          box-shadow: 0 12px 32px rgba(45,212,191,0.4);
+        }
 
-        .corner-tl, .corner-tr, .corner-bl, .corner-br {
-          position: fixed; width: 40px; height: 40px;
-          border-color: #00ff88; border-style: solid; opacity: 0.4;
-          z-index: 50;
+        .status-dot { animation: blink 1.4s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+        .drift-orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(1px);
+          pointer-events: none;
         }
-        .corner-tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
-        .corner-tr { top: 20px; right: 20px; border-width: 2px 2px 0 0; }
-        .corner-bl { bottom: 20px; left: 20px; border-width: 0 0 2px 2px; }
-        .corner-br { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }
+        .drift-orb-1 {
+          width: 10px; height: 10px;
+          background: #FF6B4A;
+          opacity: 0.35;
+          top: 22%; left: 20%;
+          animation: drift1 7s ease-in-out infinite;
+        }
+        .drift-orb-2 {
+          width: 14px; height: 14px;
+          background: #2DD4BF;
+          opacity: 0.3;
+          top: 28%; right: 18%;
+          animation: drift2 8s ease-in-out infinite;
+        }
+        .drift-orb-3 {
+          width: 8px; height: 8px;
+          background: #FF6B4A;
+          opacity: 0.25;
+          bottom: 25%; right: 24%;
+          animation: drift1 6s ease-in-out infinite;
+        }
+        .drift-orb-4 {
+          width: 9px; height: 9px;
+          background: #2DD4BF;
+          opacity: 0.28;
+          bottom: 22%; left: 22%;
+          animation: drift2 6.5s ease-in-out infinite;
+        }
+        @keyframes drift1 {
+          0%,100% { transform: translate(0,0); }
+          50% { transform: translate(12px,-18px); }
+        }
+        @keyframes drift2 {
+          0%,100% { transform: translate(0,0); }
+          50% { transform: translate(-14px,14px); }
+        }
+
+        @media (max-width: 640px) {
+          .btn-row { flex-direction: column; }
+        }
       `}</style>
 
-      {/* Backgrounds */}
-      <div className="grid-bg" />
-      <div className="scanlines" />
-      <div className="orb" />
-      <div className="corner-tl" />
-      <div className="corner-tr" />
-      <div className="corner-bl" />
-      <div className="corner-br" />
+      <div className="studio-glow" />
+      <div className="drift-orb drift-orb-1" />
+      <div className="drift-orb drift-orb-2" />
+      <div className="drift-orb drift-orb-3" />
+      <div className="drift-orb drift-orb-4" />
 
-      {/* Fixed Coords */}
-      <div className="fixed bottom-6 left-6 z-20 space-mono text-[8px] text-[#00ff88] opacity-30 tracking-widest">SYS_v2.0 · ONLINE</div>
-      <div className="fixed bottom-6 right-6 z-20 space-mono text-[8px] text-[#00ff88] opacity-30 tracking-widest">SAATOZI.COM</div>
+      <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '0 24px' }}>
 
-      {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6">
-
-        {/* Status Bar */}
-        <div className="fade-up flex items-center gap-2 mb-8">
-          <div className="status-dot w-2 h-2 rounded-full bg-[#00ff88]" />
-          <span className="space-mono text-[10px] text-[#00ff88] tracking-[3px] uppercase">System Online — Choose your path</span>
+        <div className="fade-up poppins" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '32px' }}>
+          <div className="status-dot" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#111' }} />
+          <span style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase', color: '#555' }}>Fitness coach and digital marketer</span>
         </div>
 
-        {/* TOZI Logo */}
-        <div className="fade-up-1 mb-4">
-          <h1 className="logo-wrap orbitron text-[clamp(64px,15vw,110px)] font-black text-white tracking-[0.15em] leading-none">TOZI</h1>
+        <div className="fade-up-1 poppins" style={{ marginBottom: '24px' }}>
+          <h1 style={{ fontSize: 'clamp(64px,15vw,110px)', fontWeight: 900, letterSpacing: '-2px', lineHeight: 1, color: '#111', margin: 0 }}>TOZI</h1>
         </div>
 
-        {/* Tagline */}
-        <div className="fade-up-2 mb-6">
-          <p className="space-mono text-[10px] text-[#00ff88] opacity-60 tracking-[4px] uppercase">Fitness · Digital Marketing · Results</p>
+        <div className="fade-up-2 poppins" style={{ marginBottom: '14px' }}>
+          <p style={{ fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase', color: '#777', margin: 0 }}>Choose your path</p>
         </div>
 
-        {/* CHOOSE YOUR PATH - ADDED BACK */}
-        <div className="fade-up-2 mb-6">
-          <p className="space-mono text-[11px] text-white/40 tracking-[3px] uppercase">CHOOSE YOUR PATH</p>
-        </div>
+        <div className="expand-line" style={{ width: '224px', height: '1px', marginBottom: '40px', background: 'linear-gradient(90deg, transparent, #ccc, transparent)' }} />
 
-        {/* Divider */}
-        <div className="expand-line w-64 h-px bg-gradient-to-r from-transparent via-[#00ff88] to-transparent mb-10" />
-
-        {/* Buttons */}
-        <div className="fade-up-3 flex flex-col sm:flex-row gap-4 justify-center mb-14">
-          <button onClick={() => router.push('/fitness-choice')} className="cyber-btn orbitron font-bold text-[11px] tracking-[3px] uppercase text-[#00ff88] border border-[#00ff88] bg-[rgba(0,255,136,0.05)] px-10 py-5 backdrop-blur-sm">
-            FITNESS
-            <span className="block space-mono text-[8px] opacity-50 tracking-[2px] font-normal mt-1">Workout · Nutrition · Goals</span>
+        <div className="fade-up-3 btn-row" style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginBottom: '48px', flexWrap: 'wrap' }}>
+          <button onClick={() => router.push('/fitness-choice')} className="path-btn path-btn-fitness poppins" style={{ padding: '20px 40px', borderRadius: '16px', fontWeight: 600, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            Fitness
+            <span style={{ display: 'block', fontSize: '10px', opacity: 0.85, fontWeight: 400, marginTop: '4px', textTransform: 'none', letterSpacing: 'normal' }}>Workout, nutrition, goals</span>
           </button>
-          <button onClick={() => router.push('/marketing-choice')} className="cyber-btn orbitron font-bold text-[11px] tracking-[3px] uppercase text-[#00ff88] border border-[#00ff88] bg-[rgba(0,255,136,0.05)] px-10 py-5 backdrop-blur-sm">
-            MARKETING
-            <span className="block space-mono text-[8px] opacity-50 tracking-[2px] font-normal mt-1">Growth · Content · Strategy</span>
+          <button onClick={() => router.push('/marketing-choice')} className="path-btn path-btn-marketing poppins" style={{ padding: '20px 40px', borderRadius: '16px', fontWeight: 600, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            Marketing
+            <span style={{ display: 'block', fontSize: '10px', opacity: 0.85, fontWeight: 400, marginTop: '4px', textTransform: 'none', letterSpacing: 'normal' }}>Growth, content, strategy</span>
           </button>
         </div>
 
-        {/* Join Community */}
-        <div className="fade-up-4 flex items-center gap-4">
-          <div className="w-12 h-px bg-[#00ff88] opacity-20" />
-          <button onClick={() => window.open('https://ig.me/j/AbYr1PJBkE4lwAY7/', '_blank')} className="space-mono text-[9px] text-white/40 hover:text-[#00ff88] tracking-[3px] uppercase transition">
-            ✦ JOIN THE CIRCLE
+        <div className="fade-up-4 poppins" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div style={{ width: '40px', height: '1px', background: '#ccc' }} />
+          <button onClick={() => window.open('https://ig.me/j/AbYr1PJBkE4lwAY7/', '_blank')} style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: '#888', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Poppins', sans-serif" }}>
+            Join the circle
           </button>
-          <div className="w-12 h-px bg-[#00ff88] opacity-20" />
+          <div style={{ width: '40px', height: '1px', background: '#ccc' }} />
         </div>
 
       </div>

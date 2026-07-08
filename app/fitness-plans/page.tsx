@@ -103,55 +103,51 @@ export default function FitnessPlans() {
     window.open('https://instagram.com/saatozi', '_blank');
   };
 
+  const bg = { minHeight: '100vh', background: '#f7f7f8', fontFamily: "'Poppins', sans-serif" };
+  const backLink = { position: 'fixed' as const, top: '32px', left: '32px', zIndex: 50, fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#999', textDecoration: 'none' };
+  const cardStyle = { border: '1px solid rgba(0,0,0,0.06)', background: '#ffffff', borderRadius: '20px', boxShadow: '0 4px 16px rgba(0,0,0,0.04)' };
+
   if (!prices || !plans) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-[#00ff88] font-mono">Loading...</div>
+      <div style={{ ...bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ color: '#FF6B4A', fontFamily: 'monospace' }}>Loading...</div>
       </div>
     );
   }
 
-  // Plan Selection Screen
   if (!selectedPlan) {
     return (
-      <div className="min-h-screen bg-black">
-        <Link href="/fitness-choice" className="fixed top-8 left-8 z-50 space-mono text-[11px] text-white/40 hover:text-[#00ff88] tracking-[3px] uppercase transition">
-          ← BACK
-        </Link>
-        <div className="min-h-screen flex items-center justify-center px-6">
-          <div className="w-full max-w-6xl mx-auto">
-            <div className="text-center mb-10">
-              <h1 className="orbitron text-4xl md:text-6xl font-black text-white tracking-[0.15em]" style={{ fontFamily: "'Orbitron', monospace" }}>
-                CHOOSE YOUR PLAN
-              </h1>
-              <p className="space-mono text-[11px] text-white/40 mt-2" style={{ fontFamily: "'Space Mono', monospace" }}>
-                Longer commitment = bigger savings
-              </p>
-              <div className="w-20 h-px bg-gradient-to-r from-transparent via-[#00ff88] to-transparent mx-auto mt-5" />
+      <div style={bg}>
+        <Link href="/fitness-choice" style={backLink}>← Back</Link>
+        <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 24px' }}>
+          <div style={{ width: '100%', maxWidth: '1100px', margin: '0 auto' }}>
+            <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+              <h1 style={{ fontSize: 'clamp(32px,6vw,52px)', fontWeight: 900, color: '#111', letterSpacing: '-1px' }}>Choose your plan</h1>
+              <p style={{ fontSize: '13px', color: '#888', marginTop: '8px' }}>Longer commitment, bigger savings</p>
             </div>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
               {Object.entries(plans).map(([plan, details]) => (
                 <div
                   key={plan}
                   onClick={() => handleSelectPlan(plan)}
-                  className="border border-[#00ff88]/20 bg-[#00ff88]/5 rounded-2xl p-6 cursor-pointer hover:border-[#00ff88] hover:scale-105 transition-all duration-300"
+                  style={{ ...cardStyle, padding: '24px', cursor: 'pointer', transition: 'all 0.25s ease' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 16px 40px rgba(255,107,74,0.18)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.04)'; }}
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-3xl">{details.icon}</span>
-                    <h2 className="orbitron text-xl font-bold text-[#00ff88]">{plan}</h2>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                    <span style={{ fontSize: '28px' }}>{details.icon}</span>
+                    <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#FF6B4A' }}>{plan}</h2>
                   </div>
-                  <p className="orbitron text-3xl font-bold text-white mb-1">{details.price}</p>
-                  <p className="space-mono text-[10px] text-white/40 mb-3">{details.per}</p>
+                  <p style={{ fontSize: '28px', fontWeight: 800, color: '#111', marginBottom: '2px' }}>{details.price}</p>
+                  <p style={{ fontSize: '12px', color: '#999', marginBottom: '12px' }}>{details.per}</p>
                   {details.savings && (
-                    <span className="inline-block px-2 py-1 text-[9px] rounded-full bg-[#00ff88]/20 text-[#00ff88] border border-[#00ff88]/30 mb-3">
-                      {details.savings}
-                    </span>
+                    <span style={{ display: 'inline-block', padding: '4px 10px', fontSize: '11px', borderRadius: '20px', background: '#FFEDE7', color: '#D8531E', marginBottom: '12px' }}>{details.savings}</span>
                   )}
-                  <div className="w-full h-px bg-gradient-to-r from-transparent via-[#00ff88]/30 to-transparent my-3" />
-                  <div className="space-y-1.5">
+                  <div style={{ width: '100%', height: '1px', background: '#eee', margin: '12px 0' }} />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     {details.features.map((feature, idx) => (
-                      <p key={idx} className="space-mono text-[10px] text-white/40 flex items-start gap-1.5">
-                        <span className="text-[#00ff88]">✓</span> {feature}
+                      <p key={idx} style={{ fontSize: '12px', color: '#666', display: 'flex', gap: '6px' }}>
+                        <span style={{ color: '#FF6B4A' }}>✓</span> {feature}
                       </p>
                     ))}
                   </div>
@@ -164,41 +160,31 @@ export default function FitnessPlans() {
     );
   }
 
-  // Form Questions Screen
   if (selectedPlan && !formCompleted) {
     const currentQ = questions[step - 1];
     const currentValue = answers[currentQ?.key as keyof typeof answers] || '';
 
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <Link href="/fitness-choice" className="fixed top-8 left-8 z-50 space-mono text-[11px] text-white/40 hover:text-[#00ff88] tracking-[3px] uppercase transition">
-          ← BACK
-        </Link>
-        <div className="w-full max-w-md mx-auto px-6">
-          <div className="text-center mb-6">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
-              <span className="space-mono text-[10px] text-[#00ff88] tracking-[3px] uppercase">
-                {step} / {questions.length}
-              </span>
-            </div>
-            <div className="w-full bg-white/10 rounded-full h-0.5 max-w-[180px] mx-auto">
-              <div className="bg-[#00ff88] h-0.5 rounded-full transition-all duration-300" style={{ width: `${((step) / questions.length) * 100}%` }} />
+      <div style={{ ...bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Link href="/fitness-choice" style={backLink}>← Back</Link>
+        <div style={{ width: '100%', maxWidth: '440px', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+            <span style={{ fontSize: '11px', color: '#FF6B4A', letterSpacing: '2px' }}>{step} / {questions.length}</span>
+            <div style={{ width: '100%', maxWidth: '180px', margin: '10px auto 0', background: '#eee', borderRadius: '10px', height: '4px' }}>
+              <div style={{ background: '#FF6B4A', height: '4px', borderRadius: '10px', width: `${(step / questions.length) * 100}%`, transition: 'width 0.3s ease' }} />
             </div>
           </div>
 
-          <div className="border border-[#00ff88]/20 bg-[#00ff88]/5 rounded-2xl p-6">
-            <h2 className="orbitron text-xl md:text-2xl font-bold text-white tracking-wide text-center mb-6">
-              {currentQ.question}
-            </h2>
+          <div style={{ ...cardStyle, padding: '32px' }}>
+            <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#111', textAlign: 'center', marginBottom: '24px' }}>{currentQ.question}</h2>
 
             {currentQ.type === 'select' ? (
-              <div className="space-y-2.5">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {currentQ.options?.map((opt) => (
                   <button
                     key={opt}
                     onClick={() => handleAnswer(opt)}
-                    className="w-full py-3 bg-[#00ff88]/10 border border-[#00ff88] rounded-xl text-[#00ff88] text-sm font-bold tracking-wider hover:bg-[#00ff88] hover:text-black transition-all"
+                    style={{ padding: '14px', background: '#FFEDE7', border: '1px solid #FF6B4A', borderRadius: '12px', color: '#D8531E', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}
                   >
                     {opt}
                   </button>
@@ -211,15 +197,14 @@ export default function FitnessPlans() {
                   placeholder={currentQ.placeholder}
                   value={currentValue}
                   onChange={(e) => setAnswers({ ...answers, [currentQ.key]: e.target.value })}
-                  className="w-full p-4 bg-[#00ff88]/5 border border-[#00ff88]/30 rounded-xl text-white text-sm outline-none focus:border-[#00ff88] mb-4"
-                  style={{ fontFamily: "'Space Mono', monospace" }}
+                  style={{ width: '100%', padding: '14px', background: '#f7f7f8', border: '1px solid #ddd', borderRadius: '12px', fontSize: '14px', marginBottom: '16px', outline: 'none' }}
                   autoFocus
                 />
                 <button
                   onClick={() => handleAnswer(currentValue)}
-                  className="w-full py-3 bg-[#00ff88]/10 border border-[#00ff88] rounded-xl text-[#00ff88] text-sm font-bold tracking-wider hover:bg-[#00ff88] hover:text-black transition-all"
+                  style={{ width: '100%', padding: '14px', background: '#FF6B4A', border: 'none', borderRadius: '12px', color: '#fff', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}
                 >
-                  NEXT →
+                  Next →
                 </button>
               </div>
             )}
@@ -229,30 +214,16 @@ export default function FitnessPlans() {
     );
   }
 
-  // Thank You Screen
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <Link href="/fitness-choice" className="fixed top-8 left-8 z-50 space-mono text-[11px] text-white/40 hover:text-[#00ff88] tracking-[3px] uppercase transition">
-        ← BACK
-      </Link>
-      <div className="text-center px-6">
-        <div className="w-2 h-2 rounded-full bg-[#00ff88] mx-auto mb-4 animate-pulse" />
-        <h1 className="orbitron text-3xl md:text-4xl font-bold text-white tracking-wide mb-4" style={{ fontFamily: "'Orbitron', monospace" }}>
-          THANK YOU
-        </h1>
-        <p className="space-mono text-[13px] text-white/40 leading-relaxed mb-6" style={{ fontFamily: "'Space Mono', monospace" }}>
-          Choose how you'd like me to contact you:
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onClick={sendToWhatsApp} className="px-6 py-3 bg-[#00ff88]/10 border border-[#00ff88] rounded-xl text-[#00ff88] text-sm font-bold hover:bg-[#00ff88] hover:text-black transition-all">
-            💬 WHATSAPP
-          </button>
-          <button onClick={sendEmail} className="px-6 py-3 bg-[#00ff88]/10 border border-[#00ff88] rounded-xl text-[#00ff88] text-sm font-bold hover:bg-[#00ff88] hover:text-black transition-all">
-            📧 EMAIL
-          </button>
-          <button onClick={sendInstagram} className="px-6 py-3 bg-[#00ff88]/10 border border-[#00ff88] rounded-xl text-[#00ff88] text-sm font-bold hover:bg-[#00ff88] hover:text-black transition-all">
-            📸 INSTAGRAM
-          </button>
+    <div style={{ ...bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Link href="/fitness-choice" style={backLink}>← Back</Link>
+      <div style={{ textAlign: 'center', padding: '0 24px' }}>
+        <h1 style={{ fontSize: 'clamp(28px,5vw,40px)', fontWeight: 800, color: '#111', marginBottom: '16px' }}>Thank you</h1>
+        <p style={{ fontSize: '14px', color: '#888', marginBottom: '28px' }}>Choose how you'd like me to contact you:</p>
+        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <button onClick={sendToWhatsApp} style={{ padding: '14px 24px', background: '#FFEDE7', border: '1px solid #FF6B4A', borderRadius: '12px', color: '#D8531E', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}>💬 WhatsApp</button>
+          <button onClick={sendEmail} style={{ padding: '14px 24px', background: '#FFEDE7', border: '1px solid #FF6B4A', borderRadius: '12px', color: '#D8531E', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}>📧 Email</button>
+          <button onClick={sendInstagram} style={{ padding: '14px 24px', background: '#FFEDE7', border: '1px solid #FF6B4A', borderRadius: '12px', color: '#D8531E', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}>📸 Instagram</button>
         </div>
       </div>
     </div>
