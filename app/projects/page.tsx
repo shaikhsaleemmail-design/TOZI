@@ -10,11 +10,7 @@ export default function ProjectsPage() {
     setLoaded(true);
   }, []);
 
-  const project = {
-    name: "Adiyash Gym — Multi-Branch Fitness Website",
-    description:
-      "A multi-location gym website for 7 branches across Mumbai, featuring online booking, a branch locator, and WhatsApp lead routing.",
-    tech: ["Next.js", "Tailwind CSS"],
+  const gymWebsite = {
     images: [
       "/images/projects/adiyash-gym-home.png",
       "/images/projects/adiyash-gym-offer.png",
@@ -23,13 +19,72 @@ export default function ProjectsPage() {
     url: "https://www.adiyashgym.in/"
   };
 
+  const projects = [
+    {
+      name: "Meta Leads Tracker + Follow-up Report",
+      color: "#3B82F6",
+      tint: "rgba(59, 130, 246, 0.1)",
+      tintBorder: "rgba(59, 130, 246, 0.25)",
+      description:
+        "Every lead used to land in three different places — Instagram DMs, the website, and Meta ads. I built a Google Sheets + Apps Script system that pulls them all into one live tracker with automatic follow-up reports, so no enquiry falls through the cracks and the team always knows who to call next.",
+      tech: ["Google Sheets", "Apps Script", "Meta Business", "Instagram"]
+    },
+    {
+      name: "Gym Website (adiyash-gym-website)",
+      color: "#2DD4BF",
+      tint: "rgba(45, 212, 191, 0.1)",
+      tintBorder: "rgba(45, 212, 191, 0.25)",
+      description:
+        "The marketing site for all 7 branches of the gym chain, built to convert visitors into leads, not just look nice. It has a branch locator, live offers, and WhatsApp-routed enquiries, all in one fast, mobile-first site.",
+      tech: ["Next.js", "Tailwind CSS"],
+      hasDemo: true
+    },
+    {
+      name: "CRM (adiyash-crm)",
+      color: "#8B5CF6",
+      tint: "rgba(139, 92, 246, 0.1)",
+      tintBorder: "rgba(139, 92, 246, 0.25)",
+      description:
+        "The system that actually runs the gym day-to-day — member profiles, enquiries, subscriptions, billing, attendance, and staff, all in one place. Built on Next.js and Supabase, it replaced spreadsheets and paper registers across all 7 branches with one real-time source of truth.",
+      tech: ["Next.js", "Supabase", "TypeScript"]
+    },
+    {
+      name: "Biometric Integration",
+      color: "#F59E0B",
+      tint: "rgba(245, 158, 11, 0.1)",
+      tintBorder: "rgba(245, 158, 11, 0.25)",
+      description:
+        "Connected eSSL fingerprint machines at every branch to the CRM through custom ESP32 relay boards, so a member's attendance is logged the instant they scan in — no manual entry, no end-of-day reconciliation. Attendance went from a guessing game to a live number the business can actually trust.",
+      tech: ["eSSL", "ESP32", "IoT"]
+    },
+    {
+      name: "Automation Software (adiyashauto)",
+      color: "#25D366",
+      tint: "rgba(37, 211, 102, 0.1)",
+      tintBorder: "rgba(37, 211, 102, 0.25)",
+      description:
+        "A WhatsApp automation engine wired into Meta's WhatsApp Business API that sends bill receipts, renewal reminders, balance-due nudges, and re-engages inactive members automatically. It also follows up on enquiries — work that used to eat hours of staff time every day now happens without anyone lifting a finger.",
+      tech: ["FastAPI", "MongoDB", "WhatsApp Business API"]
+    },
+    {
+      name: "Integrations & APIs",
+      color: "#EC4899",
+      tint: "rgba(236, 72, 153, 0.1)",
+      tintBorder: "rgba(236, 72, 153, 0.25)",
+      description:
+        "The connective tissue holding everything together — Meta Cloud API, Supabase, MongoDB, Railway, and Vercel, all wired to talk to each other so leads, payments, attendance, and messages flow between systems without manual re-entry. This is what turns six separate tools into one working ecosystem.",
+      tech: ["Meta Cloud API", "Supabase", "MongoDB", "Railway", "Vercel"]
+    }
+  ];
+
   return (
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(180deg, #f7f7f8 0%, #ececee 55%, #e2e2e6 100%)',
-      padding: '80px 24px 60px'
+      padding: '80px 24px 60px',
+      fontFamily: "'Poppins', sans-serif"
     }}>
-      
+
       {/* Back Button */}
       <Link
         href="/marketing-services"
@@ -53,15 +108,95 @@ export default function ProjectsPage() {
 
       {/* Main Content */}
       <div style={{
-        maxWidth: '960px',
+        maxWidth: '820px',
         margin: '0 auto',
         transition: 'all 0.7s ease',
         opacity: loaded ? 1 : 0,
         transform: loaded ? 'translateY(0)' : 'translateY(20px)'
       }}>
-        
-        {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+
+        {/* About Me Section */}
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '4px 16px',
+            borderRadius: '100px',
+            background: 'rgba(45, 212, 191, 0.1)',
+            border: '1px solid rgba(45, 212, 191, 0.2)',
+            marginBottom: '20px'
+          }}>
+            <span style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: '#2DD4BF',
+              display: 'inline-block'
+            }} />
+            <span style={{
+              fontSize: '10px',
+              color: '#2DD4BF',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 500
+            }}>
+              The builder behind this
+            </span>
+          </div>
+          <h1 style={{
+            fontSize: 'clamp(36px, 7vw, 64px)',
+            fontWeight: 900,
+            color: '#111',
+            letterSpacing: '-0.02em',
+            marginBottom: '20px',
+            lineHeight: 1.05
+          }}>
+            VIBE <span style={{ color: '#2DD4BF' }}>CODER</span>
+          </h1>
+        </div>
+
+        <div style={{
+          background: '#ffffff',
+          border: '1px solid rgba(0,0,0,0.06)',
+          borderRadius: '20px',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+          padding: '28px 32px',
+          marginBottom: '20px'
+        }}>
+          <p style={{ fontSize: '14px', color: '#555', lineHeight: 1.8, margin: 0 }}>
+            I'm Saleem Shaikh — <strong style={{ color: '#111' }}>Tozi</strong>. I started with zero coding
+            background. No degree, no bootcamp, just curiosity and a lot of trial and error. I build real,
+            working software by describing what I want to AI and reviewing and directing the results, not by
+            writing code myself. That's what I mean by <strong style={{ color: '#0F9E86' }}>Vibe Coder</strong>.
+          </p>
+        </div>
+
+        <div style={{
+          background: '#ffffff',
+          border: '1px solid rgba(0,0,0,0.06)',
+          borderRadius: '20px',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+          padding: '28px 32px',
+          marginBottom: '40px'
+        }}>
+          <p style={{ fontSize: '14px', color: '#555', lineHeight: 1.8, margin: 0 }}>
+            Today I run the entire tech stack behind my family's gym business — a 7-branch chain in Mumbai.
+            Lead tracking, the marketing website, the CRM, biometric attendance, WhatsApp automation, and all
+            the integrations wiring it together. Everything below is live and actually running the business,
+            not a portfolio exercise.
+          </p>
+        </div>
+
+        <div style={{
+          width: '48px',
+          height: '2px',
+          background: 'rgba(45, 212, 191, 0.4)',
+          margin: '0 auto 40px'
+        }} />
+
+        {/* Projects Header */}
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -86,201 +221,189 @@ export default function ProjectsPage() {
               textTransform: 'uppercase',
               fontWeight: 500
             }}>
-              Client Work
+              Client work
             </span>
           </div>
-          <h1 style={{
-            fontSize: 'clamp(32px, 5vw, 56px)',
+          <h2 style={{
+            fontSize: 'clamp(28px, 5vw, 44px)',
             fontWeight: 800,
             color: '#111',
             letterSpacing: '-0.02em',
             marginBottom: '8px'
           }}>
             MY <span style={{ color: '#2DD4BF' }}>WORK</span>
-          </h1>
-          <p style={{ fontSize: '14px', color: '#888' }}>A showcase of projects I've built</p>
-          <div style={{
-            width: '48px',
-            height: '2px',
-            background: 'rgba(45, 212, 191, 0.4)',
-            margin: '16px auto 0'
-          }} />
+          </h2>
+          <p style={{ fontSize: '14px', color: '#888' }}>A showcase of what I've built and shipped</p>
         </div>
 
-        {/* Project Card */}
-        <div style={{
-          background: '#ffffff',
-          border: '1px solid rgba(0,0,0,0.06)',
-          borderRadius: '20px',
-          boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
-          overflow: 'hidden',
-          transition: 'all 0.3s ease',
-          cursor: 'default'
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-4px)';
-          e.currentTarget.style.boxShadow = '0 12px 40px rgba(45, 212, 191, 0.12)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'translateY(0)';
-          e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.04)';
-        }}>
-          
-          {/* Main Image */}
-          <div
-            onClick={() => setSelectedImage(project.images[0])}
-            style={{
-              position: 'relative',
-              width: '100%',
-              paddingTop: '56.25%',
-              overflow: 'hidden',
-              cursor: 'pointer'
-            }}
-          >
-            <img
-              src={project.images[0]}
-              alt={project.name}
+        {/* Project Cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {projects.map((project, idx) => (
+            <div
+              key={idx}
               style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                transition: 'transform 0.5s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            />
-            <div style={{
-              position: 'absolute',
-              bottom: '12px',
-              right: '12px',
-              fontSize: '10px',
-              color: 'rgba(255,255,255,0.7)',
-              background: 'rgba(0,0,0,0.5)',
-              padding: '4px 12px',
-              borderRadius: '100px'
-            }}>
-              Click to expand
-            </div>
-          </div>
-
-          {/* Secondary Images Row */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '4px',
-            padding: '4px'
-          }}>
-            {project.images.slice(1).map((img, idx) => (
-              <div
-                key={idx}
-                onClick={() => setSelectedImage(img)}
-                style={{
-                  position: 'relative',
-                  paddingTop: '56.25%',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                  borderRadius: '8px'
-                }}
-              >
-                <img
-                  src={img}
-                  alt={`Screenshot ${idx + 2}`}
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    transition: 'transform 0.5s ease'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Project Details */}
-          <div style={{ padding: '24px 28px 32px' }}>
-            <h2 style={{
-              fontSize: '20px',
-              fontWeight: 700,
-              color: '#111',
-              marginBottom: '12px',
-              letterSpacing: '-0.01em'
-            }}>
-              {project.name}
-            </h2>
-            <p style={{
-              fontSize: '14px',
-              color: '#555',
-              lineHeight: '1.7',
-              marginBottom: '16px'
-            }}>
-              {project.description}
-            </p>
-
-            {/* Tech Tags */}
-            <div style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '8px',
-              marginBottom: '20px'
-            }}>
-              {project.tech.map((tech) => (
-                <span
-                  key={tech}
-                  style={{
-                    padding: '4px 14px',
-                    fontSize: '11px',
-                    fontWeight: 500,
-                    color: '#0F9E86',
-                    background: 'rgba(45, 212, 191, 0.1)',
-                    border: '1px solid rgba(45, 212, 191, 0.2)',
-                    borderRadius: '100px'
-                  }}
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            {/* Live Site Button */}
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '12px 24px',
-                background: '#2DD4BF',
-                color: '#fff',
-                fontSize: '14px',
-                fontWeight: 500,
-                borderRadius: '12px',
-                textDecoration: 'none',
+                background: '#ffffff',
+                border: '1px solid rgba(0,0,0,0.06)',
+                borderLeft: `4px solid ${project.color}`,
+                borderRadius: '16px',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+                overflow: 'hidden',
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#26bfab';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(45, 212, 191, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.boxShadow = `0 12px 32px ${project.tint}`;
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#2DD4BF';
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.04)';
               }}
             >
-              Visit live site →
-            </a>
-          </div>
+              {project.hasDemo && (
+                <div
+                  onClick={() => setSelectedImage(gymWebsite.images[0])}
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    paddingTop: '48%',
+                    overflow: 'hidden',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <img
+                    src={gymWebsite.images[0]}
+                    alt={project.name}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '12px',
+                    right: '12px',
+                    fontSize: '10px',
+                    color: 'rgba(255,255,255,0.7)',
+                    background: 'rgba(0,0,0,0.5)',
+                    padding: '4px 12px',
+                    borderRadius: '100px'
+                  }}>
+                    Click to expand
+                  </div>
+                </div>
+              )}
+
+              {project.hasDemo && (
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '4px',
+                  padding: '4px'
+                }}>
+                  {gymWebsite.images.slice(1).map((img, i) => (
+                    <div
+                      key={i}
+                      onClick={() => setSelectedImage(img)}
+                      style={{
+                        position: 'relative',
+                        paddingTop: '48%',
+                        overflow: 'hidden',
+                        cursor: 'pointer',
+                        borderRadius: '8px'
+                      }}
+                    >
+                      <img
+                        src={img}
+                        alt={`Screenshot ${i + 2}`}
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div style={{ padding: '24px 28px 28px' }}>
+                <h3 style={{
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  color: '#111',
+                  marginBottom: '10px',
+                  letterSpacing: '-0.01em'
+                }}>
+                  {project.name}
+                </h3>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#555',
+                  lineHeight: '1.7',
+                  marginBottom: '16px'
+                }}>
+                  {project.description}
+                </p>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: project.hasDemo ? '20px' : 0 }}>
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      style={{
+                        padding: '4px 14px',
+                        fontSize: '11px',
+                        fontWeight: 500,
+                        color: project.color,
+                        background: project.tint,
+                        border: `1px solid ${project.tintBorder}`,
+                        borderRadius: '100px'
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {project.hasDemo && (
+                  <a
+                    href={gymWebsite.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      padding: '12px 24px',
+                      background: project.color,
+                      color: '#fff',
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      borderRadius: '12px',
+                      textDecoration: 'none',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = `0 8px 24px ${project.tint}`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
+                  >
+                    Visit live site →
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Footer Note */}

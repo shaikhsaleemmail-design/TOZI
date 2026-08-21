@@ -78,6 +78,10 @@ export default function MarketingServices() {
         ← Back
       </Link>
 
+      <Link href="/projects" className="projects-link" style={{ position: 'fixed', top: '24px', right: '32px', zIndex: 50, display: 'inline-block', padding: '10px 20px', borderRadius: '10px', fontSize: '11px', fontWeight: 600, textDecoration: 'none', letterSpacing: '1px', textTransform: 'uppercase' }}>
+        View my projects →
+      </Link>
+
       <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '96px 24px 64px' }}>
 
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
