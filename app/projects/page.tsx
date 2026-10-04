@@ -156,7 +156,7 @@ export default function ProjectsPage() {
           </h1>
         </div>
 
-        <div style={{
+        <div data-reveal style={{
           background: '#ffffff',
           border: '1px solid rgba(0,0,0,0.06)',
           borderRadius: '20px',
@@ -172,7 +172,7 @@ export default function ProjectsPage() {
           </p>
         </div>
 
-        <div style={{
+        <div data-reveal style={{
           background: '#ffffff',
           border: '1px solid rgba(0,0,0,0.06)',
           borderRadius: '20px',
@@ -224,7 +224,7 @@ export default function ProjectsPage() {
               Client work
             </span>
           </div>
-          <h2 style={{
+          <h2 data-reveal style={{
             fontSize: 'clamp(28px, 5vw, 44px)',
             fontWeight: 800,
             color: '#111',
@@ -241,6 +241,7 @@ export default function ProjectsPage() {
           {projects.map((project, idx) => (
             <div
               key={idx}
+              data-reveal
               style={{
                 background: '#ffffff',
                 border: '1px solid rgba(0,0,0,0.06)',

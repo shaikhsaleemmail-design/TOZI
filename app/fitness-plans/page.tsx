@@ -129,6 +129,7 @@ export default function FitnessPlans() {
               {Object.entries(plans).map(([plan, details]) => (
                 <div
                   key={plan}
+                  data-reveal
                   onClick={() => handleSelectPlan(plan)}
                   style={{ ...cardStyle, padding: '24px', cursor: 'pointer', transition: 'all 0.25s ease' }}
                   onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 16px 40px rgba(255,107,74,0.18)'; }}
@@ -175,7 +176,7 @@ export default function FitnessPlans() {
             </div>
           </div>
 
-          <div style={{ ...cardStyle, padding: '32px' }}>
+          <div key={step} data-reveal style={{ ...cardStyle, padding: '32px' }}>
             <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#111', textAlign: 'center', marginBottom: '24px' }}>{currentQ.question}</h2>
 
             {currentQ.type === 'select' ? (

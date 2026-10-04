@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import MotionLayer from "./MotionLayer";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -19,11 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={poppins.variable}>
+    <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <head>
         <script async src="//www.instagram.com/embed.js"></script>
+        <script dangerouslySetInnerHTML={{ __html: "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('mo')" }} />
       </head>
-      <body style={{ background: "#f7f7f8" }}>{children}</body>
+      <body style={{ background: "#f7f7f8" }}>
+        {children}
+        <MotionLayer />
+      </body>
     </html>
   );
 }

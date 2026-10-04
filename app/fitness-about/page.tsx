@@ -35,6 +35,67 @@ export default function FitnessAbout() {
           transition: all 0.2s ease;
         }
         .social-link:hover { background: #FF6B4A; color: #fff; }
+
+        /* ---- Scroll story motion: follows your scroll position, reverses when you scroll up ---- */
+        .story-img {
+          position: relative;
+          z-index: 1;
+          display: block;
+          border: 1px solid rgba(0,0,0,0.06);
+          background: #ffffff;
+          border-radius: 16px;
+          box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .story-photo:hover .story-img { border-color: rgba(255,107,74,0.35); box-shadow: 0 16px 40px rgba(255,107,74,0.18); }
+        .story-num {
+          position: absolute;
+          top: -46px;
+          z-index: 0;
+          font-size: 120px;
+          font-weight: 900;
+          line-height: 1;
+          color: rgba(255,107,74,0.14);
+          pointer-events: none;
+        }
+
+        @keyframes photoFromLeft {
+          from { opacity: 0; transform: translateX(-140px) rotate(-7deg) scale(0.88); filter: blur(10px); }
+          to { opacity: 1; transform: none; filter: blur(0); }
+        }
+        @keyframes photoFromRight {
+          from { opacity: 0; transform: translateX(140px) rotate(7deg) scale(0.88); filter: blur(10px); }
+          to { opacity: 1; transform: none; filter: blur(0); }
+        }
+        @keyframes textFromRight {
+          from { opacity: 0; transform: translateX(90px); }
+          to { opacity: 1; transform: none; }
+        }
+        @keyframes textFromLeft {
+          from { opacity: 0; transform: translateX(-90px); }
+          to { opacity: 1; transform: none; }
+        }
+        @keyframes imgDrift {
+          from { transform: translateY(26px) scale(1); }
+          to { transform: translateY(-26px) scale(1.06); }
+        }
+        @keyframes numDrift {
+          from { transform: translateY(70px); }
+          to { transform: translateY(-70px); }
+        }
+
+        @supports (animation-timeline: view()) {
+          html.mo .story-photo.from-left { animation: photoFromLeft linear both; animation-timeline: view(); animation-range: entry 0% entry 75%; }
+          html.mo .story-photo.from-right { animation: photoFromRight linear both; animation-timeline: view(); animation-range: entry 0% entry 75%; }
+          html.mo .story-text.text-from-right { animation: textFromRight linear both; animation-timeline: view(); animation-range: entry 15% entry 90%; }
+          html.mo .story-text.text-from-left { animation: textFromLeft linear both; animation-timeline: view(); animation-range: entry 15% entry 90%; }
+          html.mo .story-img { animation: imgDrift linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+          html.mo .story-num { animation: numDrift linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+        }
+
+        @media (max-width: 640px) {
+          .story-num { font-size: 80px; top: -30px; }
+        }
       `}</style>
 
       <Link href="/fitness-choice" style={{ position: 'fixed', top: '32px', left: '32px', zIndex: 50, fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: '#999', textDecoration: 'none' }}>
@@ -54,14 +115,17 @@ export default function FitnessAbout() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '48px', marginBottom: '64px' }}>
           {images.map((img, idx) => (
             <div key={idx} style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', alignItems: 'center', flexDirection: idx % 2 === 1 ? 'row-reverse' : 'row' }}>
-              <img
-                src={img.src}
-                alt={img.title}
-                className="fit-card"
-                style={{ width: '100%', maxWidth: '440px', flex: '1 1 400px', height: '280px', objectFit: 'cover', cursor: 'pointer', padding: '4px' }}
-                onClick={() => setSelectedImage(img.src)}
-              />
-              <div style={{ flex: '1 1 300px' }}>
+              <div className={`story-photo ${idx % 2 === 1 ? 'from-right' : 'from-left'}`} style={{ position: 'relative', flex: '1 1 400px', maxWidth: '440px' }}>
+                <span className="story-num" aria-hidden="true" style={idx % 2 === 1 ? { right: '-8px' } : { left: '-8px' }}>{String(idx + 1).padStart(2, '0')}</span>
+                <img
+                  src={img.src}
+                  alt={img.title}
+                  className="story-img"
+                  style={{ width: '100%', height: '280px', objectFit: 'cover', cursor: 'pointer', padding: '4px' }}
+                  onClick={() => setSelectedImage(img.src)}
+                />
+              </div>
+              <div className={`story-text ${idx % 2 === 1 ? 'text-from-left' : 'text-from-right'}`} style={{ flex: '1 1 300px' }}>
                 <div style={{ fontSize: '11px', color: '#FF6B4A', letterSpacing: '2px', marginBottom: '8px' }}>{String(idx + 1).padStart(2, '0')} / {img.title}</div>
                 <p style={{ fontSize: '14px', color: '#666', lineHeight: 1.6, marginBottom: '12px' }}>{img.desc}</p>
                 <button onClick={() => setSelectedImage(img.src)} style={{ fontSize: '11px', color: '#FF6B4A', letterSpacing: '1px', textTransform: 'uppercase', background: 'none', border: 'none', cursor: 'pointer' }}>View full →</button>
