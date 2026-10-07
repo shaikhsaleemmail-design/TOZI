@@ -15,7 +15,7 @@ export default function FitnessAbout() {
   ];
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f7f7f8', fontFamily: "'Poppins', sans-serif" }}>
+    <div style={{ minHeight: '100vh', background: 'transparent', fontFamily: "'Poppins', sans-serif" }}>
 
       <style>{`
         .fit-card {

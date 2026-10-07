@@ -6,7 +6,7 @@ export default function MarketingChoice() {
   const router = useRouter();
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', background: 'linear-gradient(180deg, #f7f7f8 0%, #ececee 55%, #e2e2e6 100%)', fontFamily: "'Poppins', sans-serif" }}>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', background: 'transparent', fontFamily: "'Poppins', sans-serif" }}>
 
       <style>{`
         .mkt-card {

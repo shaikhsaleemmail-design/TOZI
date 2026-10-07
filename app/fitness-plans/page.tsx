@@ -103,7 +103,7 @@ export default function FitnessPlans() {
     window.open('https://instagram.com/saatozi', '_blank');
   };
 
-  const bg = { minHeight: '100vh', background: '#f7f7f8', fontFamily: "'Poppins', sans-serif" };
+  const bg = { minHeight: '100vh', background: 'transparent', fontFamily: "'Poppins', sans-serif" };
   const backLink = { position: 'fixed' as const, top: '32px', left: '32px', zIndex: 50, fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#999', textDecoration: 'none' };
   const cardStyle = { border: '1px solid rgba(0,0,0,0.06)', background: '#ffffff', borderRadius: '20px', boxShadow: '0 4px 16px rgba(0,0,0,0.04)' };
 

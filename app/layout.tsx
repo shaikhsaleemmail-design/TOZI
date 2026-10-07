@@ -26,7 +26,7 @@ export default function RootLayout({
         <script async src="//www.instagram.com/embed.js"></script>
         <script dangerouslySetInnerHTML={{ __html: "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('mo')" }} />
       </head>
-      <body style={{ background: "#f7f7f8" }}>
+      <body>
         {children}
         <MotionLayer />
         <CursorTracker />
