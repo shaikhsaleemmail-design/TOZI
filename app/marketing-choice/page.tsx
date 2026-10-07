@@ -36,13 +36,8 @@ export default function MarketingChoice() {
         <h1 style={{ fontSize: 'clamp(40px,7vw,64px)', fontWeight: 900, color: '#111', letterSpacing: '-1px', marginBottom: '48px' }}>Marketing division</h1>
 
         <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', maxWidth: '700px', margin: '0 auto' }}>
-          <div onClick={() => router.push('/marketing-about')} className="mkt-card" style={{ borderRadius: '20px', padding: '40px', width: '260px' }}>
-            <div style={{ fontSize: '11px', color: '#2DD4BF', letterSpacing: '2px', marginBottom: '12px' }}>01</div>
-            <h2 style={{ fontSize: '24px', fontWeight: 700, color: '#111', marginBottom: '10px' }}>About me</h2>
-            <p style={{ fontSize: '13px', color: '#888', lineHeight: 1.6 }}>My journey, experience, philosophy</p>
-          </div>
           <div onClick={() => router.push('/marketing-services')} className="mkt-card" style={{ borderRadius: '20px', padding: '40px', width: '260px' }}>
-            <div style={{ fontSize: '11px', color: '#2DD4BF', letterSpacing: '2px', marginBottom: '12px' }}>02</div>
+            <div style={{ fontSize: '11px', color: '#2DD4BF', letterSpacing: '2px', marginBottom: '12px' }}>01</div>
             <h2 style={{ fontSize: '24px', fontWeight: 700, color: '#111', marginBottom: '10px' }}>Services</h2>
             <p style={{ fontSize: '13px', color: '#888', lineHeight: 1.6 }}>What I can do for you, deliverables</p>
           </div>

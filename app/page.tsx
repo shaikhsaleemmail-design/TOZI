@@ -208,6 +208,12 @@ export default function Home() {
           </button>
         </div>
 
+        <div className="fade-up-3" style={{ marginBottom: '40px' }}>
+          <button onMouseMove={magnetMove} onMouseLeave={magnetLeave} onClick={() => router.push('/portfolio')} className="path-btn poppins" style={{ padding: '14px 36px', borderRadius: '14px', fontWeight: 600, fontSize: '12px', letterSpacing: '1px', textTransform: 'uppercase', background: '#111', color: '#fff', boxShadow: '0 8px 24px rgba(0,0,0,0.2)' }}>
+            Portfolio
+          </button>
+        </div>
+
         <div className="fade-up-4 poppins" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ width: '40px', height: '1px', background: '#ccc' }} />
           <button onClick={() => window.open('https://ig.me/j/AbYr1PJBkE4lwAY7/', '_blank')} style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: '#888', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Poppins', sans-serif" }}>

@@ -78,8 +78,8 @@ export default function MarketingServices() {
         ← Back
       </Link>
 
-      <Link href="/projects" className="projects-link" style={{ position: 'fixed', top: '24px', right: '32px', zIndex: 50, display: 'inline-block', padding: '10px 20px', borderRadius: '10px', fontSize: '11px', fontWeight: 600, textDecoration: 'none', letterSpacing: '1px', textTransform: 'uppercase' }}>
-        View my projects →
+      <Link href="/portfolio" className="projects-link" style={{ position: 'fixed', top: '24px', right: '32px', zIndex: 50, display: 'inline-block', padding: '10px 20px', borderRadius: '10px', fontSize: '11px', fontWeight: 600, textDecoration: 'none', letterSpacing: '1px', textTransform: 'uppercase' }}>
+        View my portfolio →
       </Link>
 
       <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '96px 24px 64px' }}>
@@ -110,8 +110,8 @@ export default function MarketingServices() {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: '48px' }}>
-          <Link href="/projects" className="projects-link" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: '12px', fontSize: '13px', fontWeight: 600, textDecoration: 'none', letterSpacing: '1px', textTransform: 'uppercase' }}>
-            View my projects →
+          <Link href="/portfolio" className="projects-link" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: '12px', fontSize: '13px', fontWeight: 600, textDecoration: 'none', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            View my portfolio →
           </Link>
         </div>
 

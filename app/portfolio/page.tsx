@@ -19,7 +19,33 @@ export default function ProjectsPage() {
     url: "https://www.adiyashgym.in/"
   };
 
+  const skills = [
+    { group: "Web", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
+    { group: "Backend & Data", items: ["Python", "FastAPI", "Supabase", "MongoDB"] },
+    { group: "Automation & AI", items: ["AI-assisted development", "WhatsApp Business API", "Meta Graph API", "YouTube API", "Remotion"] },
+    { group: "Deploy & Tools", items: ["Railway", "Vercel", "Netlify", "Docker", "Git"] },
+    { group: "Marketing", items: ["Paid ads", "Lead tracking", "Video editing", "Photo editing"] }
+  ];
+
   const projects = [
+    {
+      name: "Info Hub: AI Video Automation",
+      color: "#EF4444",
+      tint: "rgba(239, 68, 68, 0.1)",
+      tintBorder: "rgba(239, 68, 68, 0.25)",
+      description:
+        "A personal project: a faceless video channel that runs itself. It writes the scripts, makes the voice-over and visuals, builds vertical videos, and posts them to Instagram, Facebook and YouTube on a daily schedule. It has an approval dashboard and a status report that tracks growth.",
+      tech: ["Python", "FastAPI", "Remotion", "Meta Graph API", "YouTube API", "Docker", "Railway"]
+    },
+    {
+      name: "This Website (TOZI)",
+      color: "#111111",
+      tint: "rgba(17, 17, 17, 0.06)",
+      tintBorder: "rgba(17, 17, 17, 0.2)",
+      description:
+        "My own site: fitness journey with scroll-story animations, marketing services, and this portfolio. Built mobile-first with smooth scroll motion and no animation libraries.",
+      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Netlify"]
+    },
     {
       name: "Meta Leads Tracker + Follow-up Report",
       color: "#3B82F6",
@@ -87,7 +113,7 @@ export default function ProjectsPage() {
 
       {/* Back Button */}
       <Link
-        href="/marketing-services"
+        href="/"
         style={{
           position: 'fixed',
           top: '32px',
@@ -188,6 +214,43 @@ export default function ProjectsPage() {
           </p>
         </div>
 
+        <div data-reveal style={{
+          background: '#ffffff',
+          border: '1px solid rgba(0,0,0,0.06)',
+          borderRadius: '20px',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+          padding: '28px 32px',
+          marginBottom: '20px'
+        }}>
+          <p style={{ fontSize: '14px', color: '#555', lineHeight: 1.8, margin: 0 }}>
+            My marketing journey started the same way, with curiosity. I taught myself digital marketing from
+            YouTube, social media and hands-on experiments, and applied every idea in real time: websites,
+            automation, paid ads, video and photo editing. Today I combine all of it with AI. My approach is
+            simple: <strong style={{ color: '#0F9E86' }}>learn, test, adapt, and execute</strong>.
+          </p>
+        </div>
+
+        <div data-reveal style={{
+          background: '#ffffff',
+          border: '1px solid rgba(0,0,0,0.06)',
+          borderRadius: '20px',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+          padding: '28px 32px',
+          marginBottom: '40px'
+        }}>
+          <div style={{ fontSize: '11px', color: '#0F9E86', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '16px' }}>Skills</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            {skills.map((s) => (
+              <div key={s.group} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px' }}>
+                <span style={{ width: '130px', fontSize: '12px', fontWeight: 600, color: '#111' }}>{s.group}</span>
+                {s.items.map((item) => (
+                  <span key={item} style={{ padding: '4px 12px', fontSize: '11px', fontWeight: 500, color: '#0F9E86', background: 'rgba(45, 212, 191, 0.1)', border: '1px solid rgba(45, 212, 191, 0.25)', borderRadius: '100px' }}>{item}</span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div style={{
           width: '48px',
           height: '2px',
@@ -221,7 +284,7 @@ export default function ProjectsPage() {
               textTransform: 'uppercase',
               fontWeight: 500
             }}>
-              Client work
+              Personal and client work
             </span>
           </div>
           <h2 data-reveal style={{
@@ -409,7 +472,11 @@ export default function ProjectsPage() {
 
         {/* Footer Note */}
         <div style={{ textAlign: 'center', marginTop: '48px' }}>
-          <p style={{ fontSize: '12px', color: '#aaa' }}>More projects coming soon</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center' }}>
+            <a href="https://github.com/shaikhsaleemmail-design" target="_blank" rel="noopener noreferrer" style={{ padding: '10px 20px', borderRadius: '10px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none', border: '1px solid rgba(0,0,0,0.08)', background: '#fff', color: '#0F9E86' }}>GitHub</a>
+            <a href="https://www.instagram.com/saatozi" target="_blank" rel="noopener noreferrer" style={{ padding: '10px 20px', borderRadius: '10px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none', border: '1px solid rgba(0,0,0,0.08)', background: '#fff', color: '#0F9E86' }}>Instagram</a>
+            <a href="https://wa.me/918657282577" target="_blank" rel="noopener noreferrer" style={{ padding: '10px 20px', borderRadius: '10px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none', border: '1px solid rgba(0,0,0,0.08)', background: '#fff', color: '#0F9E86' }}>WhatsApp</a>
+          </div>
         </div>
 
         {/* Image Modal */}
