@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import MotionLayer from "./MotionLayer";
+import CursorTracker from "./CursorTracker";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body style={{ background: "#f7f7f8" }}>
         {children}
         <MotionLayer />
+        <CursorTracker />
       </body>
     </html>
   );
