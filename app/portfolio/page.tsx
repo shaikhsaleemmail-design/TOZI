@@ -473,7 +473,6 @@ export default function ProjectsPage() {
         {/* Footer Note */}
         <div style={{ textAlign: 'center', marginTop: '48px' }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center' }}>
-            <a href="https://github.com/shaikhsaleemmail-design" target="_blank" rel="noopener noreferrer" style={{ padding: '10px 20px', borderRadius: '10px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none', border: '1px solid rgba(0,0,0,0.08)', background: '#fff', color: '#0F9E86' }}>GitHub</a>
             <a href="https://www.instagram.com/saatozi" target="_blank" rel="noopener noreferrer" style={{ padding: '10px 20px', borderRadius: '10px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none', border: '1px solid rgba(0,0,0,0.08)', background: '#fff', color: '#0F9E86' }}>Instagram</a>
             <a href="https://wa.me/918657282577" target="_blank" rel="noopener noreferrer" style={{ padding: '10px 20px', borderRadius: '10px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none', border: '1px solid rgba(0,0,0,0.08)', background: '#fff', color: '#0F9E86' }}>WhatsApp</a>
           </div>
