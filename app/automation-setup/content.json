@@ -10,165 +10,708 @@
   ],
   "chapters": [
     {
-      "num": 1, "title": "Why This Matters",
+      "num": 1,
+      "title": "Why This Matters",
       "intro": "AI can edit, post and boost your videos. Only the shooting is yours.",
       "steps": [
-        {"id": "1.1", "title": "What you will build", "do": ["A system that edits your clips, posts them to Instagram, Facebook and YouTube every day, and can boost them with ads.", "You shoot. AI does the rest."]},
-        {"id": "1.2", "title": "Who this is for", "do": ["Creators. Not big business: a business setup is different and will be a separate video.", "You do not need to know coding. If you can follow steps, you can do this."]},
-        {"id": "1.3", "title": "How to use this page", "do": ["Watch the video and follow along with this page open on your laptop.", "Whenever a step shows a prompt, click Copy and paste it into your AI. The AI then does that part of the setup with you.", "Pause the video any time. Go slowly."]}
+        {
+          "id": "1.1",
+          "title": "What you will build",
+          "do": [
+            "A system that edits your clips, posts them to Instagram, Facebook and YouTube every day, and can boost them with ads.",
+            "You shoot. AI does the rest."
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Who this is for",
+          "do": [
+            "Creators. Not big business: a business setup is different and will be a separate video.",
+            "You do not need to know coding. If you can follow steps, you can do this."
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "How to use this page",
+          "do": [
+            "Watch the video and follow along with this page open on your laptop.",
+            "Whenever a step shows a prompt, click Copy and paste it into your AI. The AI then does that part of the setup with you.",
+            "Pause the video any time. Go slowly."
+          ]
+        }
       ]
     },
     {
-      "num": 2, "title": "What You Need",
+      "num": 2,
+      "title": "What You Need",
       "intro": "A laptop, wifi, a phone to shoot, and a few accounts.",
       "steps": [
-        {"id": "2.1", "title": "The laptop (specs only, no brand)", "do": [
-          "Windows 10 or 11, 64-bit.", "Processor: 6 cores or more (Ryzen 5 / Core i5 or better, recent generation).", "RAM: 16 GB minimum. 32 GB is better.", "Storage: SSD, 512 GB minimum. 1 TB is better. Video files are big.",
-          "Graphics card (GPU): NVIDIA RTX 4050 or better, with at least 6 GB video memory. NVIDIA works with most editing tools.", "Good cooling. Editing and rendering make laptops hot."],
-         "tip": "Honest note: the daily posting runs on a cloud server, not on your laptop. The graphics card only matters when you edit or render videos on your own laptop. A weaker laptop still works for learning, just slower."},
-        {"id": "2.2", "title": "Three laptop levels to look for", "do": [
-          "Starter: RTX 4050 (6 GB), 16 GB RAM, 512 GB SSD, 6-core processor.", "Balanced: RTX 4060 (8 GB), 16 to 32 GB RAM, 1 TB SSD, 8-core processor.", "Strong: RTX 4070 or better (8 GB or more), 32 GB RAM, 1 TB SSD, 8-core or more."]},
-        {"id": "2.3", "title": "Wifi and phone", "do": ["Stable wifi. Uploading videos needs good upload speed.", "A phone with a decent camera for shooting your clips."]},
-        {"id": "2.4", "title": "What is free and what is paid", "do": ["Free: VS Code, Git, Node.js, Python, ffmpeg, Chrome, free stock clips and free voices.", "Paid: a Claude plan (about Rs 2,000 a month) and a cloud server (Railway, about 5 US dollars a month).", "Optional: a domain name, and money for ads."]}
+        {
+          "id": "2.1",
+          "title": "The laptop (specs only, no brand)",
+          "do": [
+            "Windows 10 or 11, 64-bit.",
+            "Processor: 6 cores or more (Ryzen 5 / Core i5 or better, recent generation).",
+            "RAM: 16 GB minimum. 32 GB is better.",
+            "Storage: SSD, 512 GB minimum. 1 TB is better. Video files are big.",
+            "Graphics card (GPU): NVIDIA RTX 4050 or better, with at least 6 GB video memory. NVIDIA works with most editing tools.",
+            "Good cooling. Editing and rendering make laptops hot."
+          ],
+          "tip": "Honest note: the daily posting runs on a cloud server, not on your laptop. The graphics card only matters when you edit or render videos on your own laptop. A weaker laptop still works for learning, just slower."
+        },
+        {
+          "id": "2.2",
+          "title": "Three laptop levels to look for",
+          "do": [
+            "Starter: RTX 4050 (6 GB), 16 GB RAM, 512 GB SSD, 6-core processor.",
+            "Balanced: RTX 4060 (8 GB), 16 to 32 GB RAM, 1 TB SSD, 8-core processor.",
+            "Strong: RTX 4070 or better (8 GB or more), 32 GB RAM, 1 TB SSD, 8-core or more."
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "The laptop I use",
+          "do": [
+            "Processor: AMD Ryzen 7, 6 cores.",
+            "RAM: 16 GB.",
+            "Storage: 512 GB SSD.",
+            "Graphics card: NVIDIA RTX 3050 with 4 GB video memory.",
+            "This is a little below the Starter level above, and everything in this guide runs on it. Heavy video editing is slower, but the daily posting runs on the cloud server. So a laptop like this is enough to start."
+          ]
+        },
+        {
+          "id": "2.4",
+          "title": "Wifi and phone",
+          "do": [
+            "Stable wifi. Uploading videos needs good upload speed.",
+            "A phone with a decent camera for shooting your clips."
+          ]
+        },
+        {
+          "id": "2.5",
+          "title": "What is free and what is paid",
+          "do": [
+            "Free: VS Code, Git, Node.js, Python, ffmpeg, Chrome, free stock clips and free voices.",
+            "Paid: a Claude plan (about Rs 2,000 a month) and a cloud server (Railway, about 5 US dollars a month).",
+            "Optional: a domain name, and money for ads."
+          ]
+        }
       ]
     },
     {
-      "num": 3, "title": "Install Before You Start",
-      "intro": "Install a few free tools. Do them in this order.",
+      "num": 3,
+      "title": "Plans to Buy",
+      "intro": "Only one plan is a must: Claude. You need it first, because Claude Code will not work without it.",
       "steps": [
-        {"id": "3.1", "title": "Google Chrome", "do": ["Download Chrome from google.com/chrome and install it.", "Use Chrome for all the Meta and Google steps."]},
-        {"id": "3.2", "title": "Visual Studio Code (VS Code)", "do": ["Go to code.visualstudio.com and download for Windows.", "Run the installer. Tick 'Add to PATH' and 'Open with Code' when asked.", "Open VS Code once to check it starts."]},
-        {"id": "3.3", "title": "Git", "do": ["Go to git-scm.com and download Git for Windows.", "Install with the default options. Keep clicking Next.", "Check it: open the Terminal in VS Code and type: git --version"]},
-        {"id": "3.4", "title": "Node.js", "do": ["Go to nodejs.org and download the LTS version.", "Install with the default options.", "Check it: node --version"]},
-        {"id": "3.5", "title": "Python 3.12", "do": ["Go to python.org/downloads and download Python 3.12.", "On the first screen, TICK 'Add python.exe to PATH'. This is the most common mistake.", "Check it: python --version"]},
-        {"id": "3.6", "title": "ffmpeg (the video tool)", "do": ["Open PowerShell and run: winget install Gyan.FFmpeg", "Close and open the terminal again.", "Check it: ffmpeg -version"]},
-        {"id": "3.7", "title": "Claude Code", "do": ["In PowerShell, run the native installer shown on Anthropic's Claude Code page.", "In VS Code, open Extensions, search 'Claude Code' and install the official one from Anthropic.", "You will sign in after you buy the plan (next chapter)."],
-         "tip": "Check the exact install command on Anthropic's own page before you run it. Commands change."},
-        {"id": "3.8", "title": "Check everything", "do": ["Run the five version checks again. If one fails, use the prompt below."],
-         "prompt_id": "P3.8", "prompt": "I am setting up a creator automation system on Windows. Please check which of these tools are installed on my laptop: Git, Node.js, Python 3.12, ffmpeg, VS Code. Run only read-only version checks, show me a simple table, and for each missing tool tell me the exact install step. Do one tool at a time and wait for me to say done before the next. Ask me before you run anything that changes my laptop."}
+        {
+          "id": "3.1",
+          "title": "Buy a Claude plan",
+          "do": [
+            "Go to claude.ai/pricing and choose the Pro plan. In India it is about Rs 2,000 a month including GST.",
+            "Pay and sign in.",
+            "If you run out of usage later, the bigger Max plan gives more. You do not need it to start."
+          ],
+          "tip": "Check the price on the page. It can change."
+        },
+        {
+          "id": "3.2",
+          "title": "Plans that can wait",
+          "do": [
+            "Railway (the cloud server): you buy it in Chapter 11, about 5 US dollars a month.",
+            "Ads money: only in Chapter 12, and only if you want.",
+            "Voice and music: not needed. We use free voices."
+          ]
+        }
       ]
     },
     {
-      "num": 4, "title": "Plans to Buy",
-      "intro": "Only one plan is a must: Claude. The rest can wait.",
+      "num": 4,
+      "title": "Install Before You Start",
+      "intro": "You install only 3 things yourself. Then your AI installs everything else, one by one.",
       "steps": [
-        {"id": "4.1", "title": "Buy a Claude plan", "do": ["Go to claude.ai/pricing and choose the Pro plan. In India it is about Rs 2,000 a month including GST.", "Pay and sign in.", "If you find yourself running out of usage later, the bigger Max plan gives more."], "tip": "Check the price on the page. It can change."},
-        {"id": "4.2", "title": "Sign in to Claude Code", "do": ["Open VS Code, open the Claude Code panel and click Sign in.", "A browser opens. Log in with the same account you used to buy the plan."]},
-        {"id": "4.3", "title": "Plans that can wait", "do": ["Railway (the cloud server): you buy it in Chapter 11, about 5 US dollars a month.", "Ads money: only in Chapter 12.", "Voice and music: not needed. We use free voices."]}
+        {
+          "id": "4.1",
+          "title": "Google Chrome",
+          "do": [
+            "Download Chrome from google.com/chrome and install it.",
+            "Use Chrome for all the Meta and Google steps."
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Visual Studio Code (VS Code)",
+          "do": [
+            "Go to code.visualstudio.com and download for Windows.",
+            "Run the installer. Tick 'Add to PATH' and 'Open with Code' when asked.",
+            "Open VS Code once to check it starts."
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "Connect Claude Code inside VS Code",
+          "do": [
+            "In VS Code, click Extensions on the left and search 'Claude Code'.",
+            "Install the official one from Anthropic.",
+            "Open the Claude Code panel and click Sign in. A browser opens: log in with the same account you paid with in Chapter 3.",
+            "Type hello. If it replies, it is connected.",
+            "If it asks you to install something more, follow the steps it shows on the screen."
+          ],
+          "tip": "Anthropic updates how Claude Code installs. If a step looks different, follow what Anthropic's own Claude Code page shows."
+        },
+        {
+          "id": "4.4",
+          "title": "Let your AI install everything else",
+          "do": [
+            "Copy the prompt below and paste it into Claude Code in VS Code.",
+            "The AI checks and installs Git, Node.js, Python 3.12 and ffmpeg, one at a time."
+          ],
+          "prompt_id": "P4.4",
+          "prompt": "I am a beginner setting up a creator automation system on Windows. Please install these tools for me one at a time, in this order: 1) Git, 2) Node.js (LTS version), 3) Python 3.12 (make sure python is added to PATH), 4) ffmpeg. For each tool: first check whether it is already installed with a read-only version check, and skip it if it is. If it is missing, tell me in one simple line what it is for, ask 'Can I install it?' and wait for my yes. Then install it with winget in this terminal and check the version. If Windows asks for permission (a 'Do you want to allow this app' window), tell me to click Yes. If a tool needs the terminal to be closed and opened again, tell me clearly and wait until I say done. After all four tools, show me a simple table with every tool and its version. Do not install anything else and do not change any other settings."
+        },
+        {
+          "id": "4.5",
+          "title": "What you will see while it installs",
+          "do": [
+            "The AI asks 'Can I install it?' for each missing tool. Say yes.",
+            "Windows may show 'Do you want to allow this app'. Click Yes.",
+            "Wait for it to finish. If it says to restart the terminal, close and open it, then tell the AI 'done'.",
+            "At the end you get a table with every version. If each tool shows a version number, everything is installed.",
+            "If you get stuck, tell the AI the error. It will fix it with you."
+          ]
+        },
+        {
+          "id": "4.6",
+          "title": "Check it yourself (optional)",
+          "do": [
+            "In the VS Code terminal type these one by one: git --version, node --version, python --version, ffmpeg -version.",
+            "Each one should show a version number."
+          ]
+        }
       ]
     },
     {
-      "num": 5, "title": "Accounts",
+      "num": 5,
+      "title": "Accounts",
       "intro": "Make clean new accounts for your channel. Use made-up names while you practice.",
       "steps": [
-        {"id": "5.1", "title": "A new Gmail", "do": ["Create a new Gmail just for this work, for example demo.creator.hub@gmail.com.", "Turn on 2-step verification."]},
-        {"id": "5.2", "title": "A Facebook account", "do": ["You need a personal Facebook account with your real details. Meta needs a real person to run a Page.", "Turn on two-factor login in Settings."]},
-        {"id": "5.3", "title": "Create a Facebook Page", "do": ["On Facebook, open Pages and click Create new Page.", "Name: Demo Creator Hub. Pick a category that fits your content.", "Add a profile picture and a cover photo.", "Note: Facebook does not allow the | symbol in a Page name."]},
-        {"id": "5.4", "title": "An Instagram account (Creator)", "do": ["Create a new Instagram account, for example @demo.creator.hub.", "Go to Settings, then Account type and tools, and switch to a Professional account. Choose Creator."]},
-        {"id": "5.5", "title": "Link Instagram to the Page", "do": ["In your Facebook Page settings, open Linked accounts and connect the Instagram account.", "Log in to Instagram when asked and allow the link.", "Menu names can change, so look for 'linked accounts'."]},
-        {"id": "5.6", "title": "A YouTube channel", "do": ["Open youtube.com with the new Gmail and create a channel.", "Set the country, language and 'not made for kids'. Verify your phone number."]},
-        {"id": "5.7", "title": "Write it down safely", "do": ["Make a private note with every account name. Never put passwords in this website, in chat, or in a video."]}
+        {
+          "id": "5.1",
+          "title": "A new Gmail",
+          "do": [
+            "Create a new Gmail just for this work, for example demo.creator.hub@gmail.com.",
+            "Turn on 2-step verification."
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "A Facebook account",
+          "do": [
+            "You need a personal Facebook account with your real details. Meta needs a real person to run a Page.",
+            "Turn on two-factor login in Settings."
+          ]
+        },
+        {
+          "id": "5.3",
+          "title": "Create a Facebook Page",
+          "do": [
+            "On Facebook, open Pages and click Create new Page.",
+            "Name: Demo Creator Hub. Pick a category that fits your content.",
+            "Add a profile picture and a cover photo.",
+            "Note: Facebook does not allow the | symbol in a Page name."
+          ]
+        },
+        {
+          "id": "5.4",
+          "title": "An Instagram account (Creator)",
+          "do": [
+            "Create a new Instagram account, for example @demo.creator.hub.",
+            "Go to Settings, then Account type and tools, and switch to a Professional account. Choose Creator."
+          ]
+        },
+        {
+          "id": "5.5",
+          "title": "Link Instagram to the Page",
+          "do": [
+            "In your Facebook Page settings, open Linked accounts and connect the Instagram account.",
+            "Log in to Instagram when asked and allow the link.",
+            "Menu names can change, so look for 'linked accounts'."
+          ]
+        },
+        {
+          "id": "5.6",
+          "title": "A YouTube channel",
+          "do": [
+            "Open youtube.com with the new Gmail and create a channel.",
+            "Set the country, language and 'not made for kids'. Verify your phone number."
+          ]
+        },
+        {
+          "id": "5.7",
+          "title": "Write it down safely",
+          "do": [
+            "Make a private note with every account name. Never put passwords in this website, in chat, or in a video."
+          ]
+        }
       ]
     },
     {
-      "num": 6, "title": "Meta Setup",
+      "num": 6,
+      "title": "Meta Setup",
       "intro": "The longest chapter. This gives your system permission to post for you.",
       "steps": [
-        {"id": "6.1", "title": "Create a business portfolio", "do": ["Open business.facebook.com in Chrome, logged in to your Facebook account.", "Create a business portfolio. Name: Demo Hub Portfolio. Enter your name and business email.", "Meta may create a portfolio for you automatically when you make a Page. If you already have one, use it."]},
-        {"id": "6.2", "title": "Add your Page", "do": ["Open Business settings.", "Go to Accounts, then Pages, then Add.", "Choose 'Add a Page' and pick Demo Creator Hub."]},
-        {"id": "6.3", "title": "Add your Instagram account", "do": ["In Business settings go to Accounts, then Instagram accounts, then Add.", "Log in to the Instagram account and accept."]},
-        {"id": "6.4", "title": "Become a Meta developer", "do": ["Open developers.facebook.com and click Get started.", "Accept the terms and verify your account if asked."]},
-        {"id": "6.5", "title": "Create the app", "do": ["Click Create app.", "App name: Demo Publisher. Add your email.", "Choose the use cases for Pages and Instagram: managing your Page, and Instagram content publishing with Facebook login.", "Connect the app to Demo Hub Portfolio when asked."],
-         "tip": "If the app creation does not work or shows a wrong-password message, try again in the same Chrome where you are already logged in to Facebook."},
-        {"id": "6.6", "title": "Permissions inside the app", "do": ["Open the app, then Use cases, and customize each use case.", "Add these permissions: pages_show_list, pages_read_engagement, pages_manage_posts, instagram_basic, instagram_content_publish.", "The permissions must be added here FIRST. If you skip this, the token screen shows only 2 permissions."]},
-        {"id": "6.7", "title": "App basic settings", "do": ["Open App settings, then Basic.", "Add a privacy policy page, terms page and data deletion page URLs. These can be simple pages on any website you own.", "You can keep the app in Development mode. That is fine for posting to your own accounts."]},
-        {"id": "6.8", "title": "Create a system user", "do": ["Business settings, then Users, then System users, then Add.", "Name: demobot (small letters, no hyphens, no capitals). Role: Admin.", "A system user is a robot account. Its token does not expire."]},
-        {"id": "6.9", "title": "Give the robot access", "do": ["Select demobot and click Add assets.", "Under Pages choose Demo Creator Hub and turn on Full control.", "Under Instagram accounts choose your account and turn on Full control.", "Under Apps choose Demo Publisher and turn on Full control."]},
-        {"id": "6.10", "title": "Generate the token", "do": ["Select demobot, click Generate token and choose the app Demo Publisher.", "Choose the longest or 'never expires' option.", "Tick the permissions from step 6.6.", "Click Generate and copy the token. You can see it only once.", "Save it privately. Never share it, never put it on a website, and never click 'Revoke tokens'."]},
-        {"id": "6.11", "title": "Find your Page ID and Instagram ID", "do": ["Open Business settings, Accounts, Pages. The Page ID is shown beside the name.", "Do the same in Instagram accounts for the Instagram ID.", "Save both numbers with the token."]},
-        {"id": "6.12", "title": "Test the token", "do": ["We test that the token can read your Page. We do this safely in Chapter 8 with the prompt, so the token never leaves your laptop."],
-         "prompt_id": "P6.12", "prompt": "I have a Meta system-user token, a Facebook Page ID and an Instagram account ID. I will save them in a file called .env in this project (never in code, never in git). Please: 1) make sure .env is listed in .gitignore, 2) create a small Python script that reads META_TOKEN, FB_PAGE_ID and IG_USER_ID from .env and makes ONE read-only call to the Facebook Graph API to show my Page name and my Instagram username, 3) tell me exactly what to type in .env (names only, I will type the values myself). Do not ask me to paste the token in chat. Ask before you run anything."}
+        {
+          "id": "6.1",
+          "title": "Create a business portfolio",
+          "do": [
+            "Open business.facebook.com in Chrome, logged in to your Facebook account.",
+            "Create a business portfolio. Name: Demo Hub Portfolio. Enter your name and business email.",
+            "Meta may create a portfolio for you automatically when you make a Page. If you already have one, use it."
+          ]
+        },
+        {
+          "id": "6.2",
+          "title": "Add your Page",
+          "do": [
+            "Open Business settings.",
+            "Go to Accounts, then Pages, then Add.",
+            "Choose 'Add a Page' and pick Demo Creator Hub."
+          ]
+        },
+        {
+          "id": "6.3",
+          "title": "Add your Instagram account",
+          "do": [
+            "In Business settings go to Accounts, then Instagram accounts, then Add.",
+            "Log in to the Instagram account and accept."
+          ]
+        },
+        {
+          "id": "6.4",
+          "title": "Become a Meta developer",
+          "do": [
+            "Open developers.facebook.com and click Get started.",
+            "Accept the terms and verify your account if asked."
+          ]
+        },
+        {
+          "id": "6.5",
+          "title": "Create the app",
+          "do": [
+            "Click Create app.",
+            "App name: Demo Publisher. Add your email.",
+            "Choose the use cases for Pages and Instagram: managing your Page, and Instagram content publishing with Facebook login.",
+            "Connect the app to Demo Hub Portfolio when asked."
+          ],
+          "tip": "If the app creation does not work or shows a wrong-password message, try again in the same Chrome where you are already logged in to Facebook."
+        },
+        {
+          "id": "6.6",
+          "title": "Permissions inside the app",
+          "do": [
+            "Open the app, then Use cases, and customize each use case.",
+            "Add these permissions: pages_show_list, pages_read_engagement, pages_manage_posts, instagram_basic, instagram_content_publish.",
+            "The permissions must be added here FIRST. If you skip this, the token screen shows only 2 permissions."
+          ]
+        },
+        {
+          "id": "6.7",
+          "title": "App basic settings",
+          "do": [
+            "Open App settings, then Basic.",
+            "Add a privacy policy page, terms page and data deletion page URLs. These can be simple pages on any website you own.",
+            "You can keep the app in Development mode. That is fine for posting to your own accounts."
+          ]
+        },
+        {
+          "id": "6.8",
+          "title": "Create a system user",
+          "do": [
+            "Business settings, then Users, then System users, then Add.",
+            "Name: demobot (small letters, no hyphens, no capitals). Role: Admin.",
+            "A system user is a robot account. Its token does not expire."
+          ]
+        },
+        {
+          "id": "6.9",
+          "title": "Give the robot access",
+          "do": [
+            "Select demobot and click Add assets.",
+            "Under Pages choose Demo Creator Hub and turn on Full control.",
+            "Under Instagram accounts choose your account and turn on Full control.",
+            "Under Apps choose Demo Publisher and turn on Full control."
+          ]
+        },
+        {
+          "id": "6.10",
+          "title": "Generate the token",
+          "do": [
+            "Select demobot, click Generate token and choose the app Demo Publisher.",
+            "Choose the longest or 'never expires' option.",
+            "Tick the permissions from step 6.6.",
+            "Click Generate and copy the token. You can see it only once.",
+            "Save it privately. Never share it, never put it on a website, and never click 'Revoke tokens'."
+          ]
+        },
+        {
+          "id": "6.11",
+          "title": "Find your Page ID and Instagram ID",
+          "do": [
+            "Open Business settings, Accounts, Pages. The Page ID is shown beside the name.",
+            "Do the same in Instagram accounts for the Instagram ID.",
+            "Save both numbers with the token."
+          ]
+        },
+        {
+          "id": "6.12",
+          "title": "Test the token",
+          "do": [
+            "We test that the token can read your Page. We do this safely in Chapter 8 with the prompt, so the token never leaves your laptop."
+          ],
+          "prompt_id": "P6.12",
+          "prompt": "I have a Meta system-user token, a Facebook Page ID and an Instagram account ID. I will save them in a file called .env in this project (never in code, never in git). Please: 1) make sure .env is listed in .gitignore, 2) create a small Python script that reads META_TOKEN, FB_PAGE_ID and IG_USER_ID from .env and makes ONE read-only call to the Facebook Graph API to show my Page name and my Instagram username, 3) tell me exactly what to type in .env (names only, I will type the values myself). Do not ask me to paste the token in chat. Ask before you run anything."
+        }
       ]
     },
     {
-      "num": 7, "title": "YouTube and Google Setup",
+      "num": 7,
+      "title": "YouTube and Google Setup",
       "intro": "This lets your system upload videos to your YouTube channel.",
       "steps": [
-        {"id": "7.1", "title": "Create a Google Cloud project", "do": ["Open console.cloud.google.com with your Gmail.", "Create a project. Name: demo-creator-hub."]},
-        {"id": "7.2", "title": "Turn on the YouTube API", "do": ["Open APIs and Services, then Library.", "Search YouTube Data API v3 and click Enable."]},
-        {"id": "7.3", "title": "Set up the consent screen", "do": ["Open Google Auth Platform (OAuth consent screen).", "Choose External. Add your app name and support email.", "Add your Gmail as a test user."]},
-        {"id": "7.4", "title": "Add the upload permission and publish", "do": ["Add the scope youtube.upload.", "Publish the app to 'In production' so your login does not expire every 7 days."]},
-        {"id": "7.5", "title": "Create the login key", "do": ["Create an OAuth client of type Desktop app. Name it demo-uploader.", "Download the JSON file. Google shows the secret clearly only once, so keep the file safe.", "Never put this file in git or on a website."]},
-        {"id": "7.6", "title": "Get your upload permission", "do": ["The AI will write a small script. It opens a Google login in your browser, you allow it, and the script saves a refresh token privately."],
-         "prompt_id": "P7.6", "prompt": "I downloaded a Google OAuth Desktop client JSON file for the YouTube Data API. Please write a small Python script that does the one-time login in my browser with the youtube.upload scope, then saves the refresh token into my local .env file as YT_REFRESH_TOKEN (and the client id and secret as YT_CLIENT_ID and YT_CLIENT_SECRET). Make sure .env is in .gitignore. Do not print the secrets in chat. Tell me which file path to give the script. Ask me before you run it."},
-        {"id": "7.7", "title": "Important: videos stay private at first", "do": ["New Google projects can only upload PRIVATE videos until Google approves a compliance audit.", "Fill the YouTube API audit form from the YouTube API Services page and explain that it is your own channel.", "In my case, the first test upload came out public about 11 days after I sent the form. Keep posting to Instagram and Facebook meanwhile."]}
+        {
+          "id": "7.1",
+          "title": "Create a Google Cloud project",
+          "do": [
+            "Open console.cloud.google.com with your Gmail.",
+            "Create a project. Name: demo-creator-hub."
+          ]
+        },
+        {
+          "id": "7.2",
+          "title": "Turn on the YouTube API",
+          "do": [
+            "Open APIs and Services, then Library.",
+            "Search YouTube Data API v3 and click Enable."
+          ]
+        },
+        {
+          "id": "7.3",
+          "title": "Set up the consent screen",
+          "do": [
+            "Open Google Auth Platform (OAuth consent screen).",
+            "Choose External. Add your app name and support email.",
+            "Add your Gmail as a test user."
+          ]
+        },
+        {
+          "id": "7.4",
+          "title": "Add the upload permission and publish",
+          "do": [
+            "Add the scope youtube.upload.",
+            "Publish the app to 'In production' so your login does not expire every 7 days."
+          ]
+        },
+        {
+          "id": "7.5",
+          "title": "Create the login key",
+          "do": [
+            "Create an OAuth client of type Desktop app. Name it demo-uploader.",
+            "Download the JSON file. Google shows the secret clearly only once, so keep the file safe.",
+            "Never put this file in git or on a website."
+          ]
+        },
+        {
+          "id": "7.6",
+          "title": "Get your upload permission",
+          "do": [
+            "The AI will write a small script. It opens a Google login in your browser, you allow it, and the script saves a refresh token privately."
+          ],
+          "prompt_id": "P7.6",
+          "prompt": "I downloaded a Google OAuth Desktop client JSON file for the YouTube Data API. Please write a small Python script that does the one-time login in my browser with the youtube.upload scope, then saves the refresh token into my local .env file as YT_REFRESH_TOKEN (and the client id and secret as YT_CLIENT_ID and YT_CLIENT_SECRET). Make sure .env is in .gitignore. Do not print the secrets in chat. Tell me which file path to give the script. Ask me before you run it."
+        },
+        {
+          "id": "7.7",
+          "title": "Important: videos stay private at first",
+          "do": [
+            "New Google projects can only upload PRIVATE videos until Google approves a compliance audit.",
+            "Fill the YouTube API audit form from the YouTube API Services page and explain that it is your own channel.",
+            "In my case, the first test upload came out public about 11 days after I sent the form. Keep posting to Instagram and Facebook meanwhile."
+          ]
+        }
       ]
     },
     {
-      "num": 8, "title": "Start in VS Code",
+      "num": 8,
+      "title": "Start in VS Code",
       "intro": "Make your project folder and meet your AI helper.",
       "steps": [
-        {"id": "8.1", "title": "Make a project folder", "do": ["On your Desktop, create a folder called creator-automation.", "In VS Code, click File, Open Folder and choose it."]},
-        {"id": "8.2", "title": "Open Claude Code", "do": ["Open the Claude Code panel (the Claude icon in the sidebar).", "Say hello and ask it what it can see in the folder."]},
-        {"id": "8.3", "title": "Make the secret file", "do": ["Your keys live only in a file called .env. It is never uploaded.", "Use the prompt below so the AI creates .env and .gitignore safely."],
-         "prompt_id": "P8.3", "prompt": "Please set up this new project folder for a creator automation system. Create: 1) a .gitignore that ignores .env, any *.json key files, output videos and cache folders, 2) an empty .env file with these names only and no values: META_TOKEN, FB_PAGE_ID, IG_USER_ID, YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN, GEMINI_API_KEY, 3) a README.md with 5 short lines about what this project is. Explain each file in one simple sentence. Ask me before you create anything."},
-        {"id": "8.4", "title": "Put it on GitHub (private)", "do": ["Create a free GitHub account.", "Create a new PRIVATE repository named creator-automation.", "Use the prompt below to connect your folder to it."],
-         "prompt_id": "P8.4", "prompt": "Help me put this folder on GitHub as a PRIVATE repository. I already created an empty private repo on github.com. Check that .env is ignored first. Then give me the exact git commands one at a time (init, add, commit, remote, push) and explain each in one simple line. Do not push anything until I say 'push'."},
-        {"id": "8.5", "title": "Give your AI its rules file", "do": ["A file called CLAUDE.md tells the AI how to work with you every time.", "Use the prompt in the next chapter to write it."]}
+        {
+          "id": "8.1",
+          "title": "Make a project folder",
+          "do": [
+            "On your Desktop, create a folder called creator-automation.",
+            "In VS Code, click File, Open Folder and choose it."
+          ]
+        },
+        {
+          "id": "8.2",
+          "title": "Open Claude Code",
+          "do": [
+            "Open the Claude Code panel (the Claude icon in the sidebar).",
+            "Say hello and ask it what it can see in the folder."
+          ]
+        },
+        {
+          "id": "8.3",
+          "title": "Make the secret file",
+          "do": [
+            "Your keys live only in a file called .env. It is never uploaded.",
+            "Use the prompt below so the AI creates .env and .gitignore safely."
+          ],
+          "prompt_id": "P8.3",
+          "prompt": "Please set up this new project folder for a creator automation system. Create: 1) a .gitignore that ignores .env, any *.json key files, output videos and cache folders, 2) an empty .env file with these names only and no values: META_TOKEN, FB_PAGE_ID, IG_USER_ID, YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN, GEMINI_API_KEY, 3) a README.md with 5 short lines about what this project is. Explain each file in one simple sentence. Ask me before you create anything."
+        },
+        {
+          "id": "8.4",
+          "title": "Put it on GitHub (private)",
+          "do": [
+            "Create a free GitHub account.",
+            "Create a new PRIVATE repository named creator-automation.",
+            "Use the prompt below to connect your folder to it."
+          ],
+          "prompt_id": "P8.4",
+          "prompt": "Help me put this folder on GitHub as a PRIVATE repository. I already created an empty private repo on github.com. Check that .env is ignored first. Then give me the exact git commands one at a time (init, add, commit, remote, push) and explain each in one simple line. Do not push anything until I say 'push'."
+        },
+        {
+          "id": "8.5",
+          "title": "Give your AI its rules file",
+          "do": [
+            "A file called CLAUDE.md tells the AI how to work with you every time.",
+            "Use the prompt in the next chapter to write it."
+          ]
+        }
       ]
     },
     {
-      "num": 9, "title": "Train Your Agent",
+      "num": 9,
+      "title": "Train Your Agent",
       "intro": "Tell the AI what kind of content you make and who you like.",
       "steps": [
-        {"id": "9.1", "title": "Choose your content", "do": ["Pick one topic you can shoot every week. Write it in one line.", "Pick a style: for example fast reels with captions, or calm tutorials."]},
-        {"id": "9.2", "title": "Collect 3 to 5 reference creators", "do": ["Save the links of creators whose videos you like.", "AI cannot watch Instagram by itself. Screen-record or download a few clips and drop them in a folder called reference."]},
-        {"id": "9.3", "title": "Write the rules file", "do": ["Use the prompt below. Fill in the brackets first."],
-         "prompt_id": "P9.3", "prompt": "Please write a CLAUDE.md for this project. About me: I am a creator, my topic is [YOUR TOPIC], my style is [YOUR STYLE]. Rules for you: 1) explain what you will do in 1 to 2 lines and ask 'Can I do this?' before you change any file, run a command or push to git, 2) never put keys or tokens in code or git, only in .env, 3) never copy other creators' videos, only learn their style, 4) the first 3 seconds of every video must hook the viewer, 5) keep replies short and in simple English, 6) never post a video without my OK. Also add a short Progress Log section that you update after each work session."},
-        {"id": "9.4", "title": "Teach it your reference style", "do": ["Put 3 to 5 reference clips in the reference folder.", "Use the prompt below. The AI studies how fast they cut, how the captions look and how the hook works."],
-         "prompt_id": "P9.4", "prompt": "I put reference videos in the folder called reference. Please study them one by one (look at frames and captions) and write down in a file called STYLE.md: how long each video is, how the first 3 seconds hook the viewer, how fast the cuts are, the caption style, the music style and the colours. Do not copy anything: we only learn the style. Then show me a short summary and ask what I want to keep or change."}
+        {
+          "id": "9.1",
+          "title": "Choose your content",
+          "do": [
+            "Pick one topic you can shoot every week. Write it in one line.",
+            "Pick a style: for example fast reels with captions, or calm tutorials."
+          ]
+        },
+        {
+          "id": "9.2",
+          "title": "Collect 3 to 5 reference creators",
+          "do": [
+            "Save the links of creators whose videos you like.",
+            "AI cannot watch Instagram by itself. Screen-record or download a few clips and drop them in a folder called reference."
+          ]
+        },
+        {
+          "id": "9.3",
+          "title": "Write the rules file",
+          "do": [
+            "Use the prompt below. Fill in the brackets first."
+          ],
+          "prompt_id": "P9.3",
+          "prompt": "Please write a CLAUDE.md for this project. About me: I am a creator, my topic is [YOUR TOPIC], my style is [YOUR STYLE]. Rules for you: 1) explain what you will do in 1 to 2 lines and ask 'Can I do this?' before you change any file, run a command or push to git, 2) never put keys or tokens in code or git, only in .env, 3) never copy other creators' videos, only learn their style, 4) the first 3 seconds of every video must hook the viewer, 5) keep replies short and in simple English, 6) never post a video without my OK. Also add a short Progress Log section that you update after each work session."
+        },
+        {
+          "id": "9.4",
+          "title": "Teach it your reference style",
+          "do": [
+            "Put 3 to 5 reference clips in the reference folder.",
+            "Use the prompt below. The AI studies how fast they cut, how the captions look and how the hook works."
+          ],
+          "prompt_id": "P9.4",
+          "prompt": "I put reference videos in the folder called reference. Please study them one by one (look at frames and captions) and write down in a file called STYLE.md: how long each video is, how the first 3 seconds hook the viewer, how fast the cuts are, the caption style, the music style and the colours. Do not copy anything: we only learn the style. Then show me a short summary and ask what I want to keep or change."
+        }
       ]
     },
     {
-      "num": 10, "title": "Connect the Video Tools",
+      "num": 10,
+      "title": "Connect the Video Tools",
       "intro": "Tools are like hands for the AI brain. Here are the free ones.",
       "steps": [
-        {"id": "10.1", "title": "The big idea", "do": ["Claude is the brain. The tools are hands: one edits video, one makes voice, one finds clips, one posts.", "You do not write code. You ask the AI to connect each tool."]},
-        {"id": "10.2", "title": "Free voice", "do": ["Use a free voice so you pay nothing. Ask the AI to set up the free Microsoft voices (edge-tts)."],
-         "prompt_id": "P10.2", "prompt": "Please install the free Python package edge-tts in a virtual environment for this project, and write a small script that turns a text file into a voice-over mp3 with the voice en-IN-NeerjaNeural, makes each sentence separately, trims the silence at the start and end of each sentence, and joins them with a short 0.14 second gap so it sounds smooth and not slow. Show me how to run it and ask me before you install anything."},
-        {"id": "10.3", "title": "Free clips and pictures", "do": ["Create a free Pixabay account and get a free API key. Put it in .env as PIXABAY_API_KEY.", "Only use clips that the license allows."]},
-        {"id": "10.4", "title": "The video maker", "do": ["Choose a way to draw videos with code. Two good free ones are HyperFrames and Remotion.", "Ask the AI to set one up and make a 10-second test video from your clips and your voice."],
-         "prompt_id": "P10.4", "prompt": "Please set up HyperFrames (a free tool that makes videos from HTML) in a folder called video-maker. Make one 10 second 9:16 vertical sample with a title, my voice-over file and simple captions. Open the preview first so I can watch it, wait for my OK, and only then render the mp4. Tell me where the file is saved."},
-        {"id": "10.5", "title": "Sound and music", "do": ["Use free or code-made sound effects and a quiet music bed so nothing breaks copyright."]}
+        {
+          "id": "10.1",
+          "title": "The big idea",
+          "do": [
+            "Claude is the brain. The tools are hands: one edits video, one makes voice, one finds clips, one posts.",
+            "You do not write code. You ask the AI to connect each tool."
+          ]
+        },
+        {
+          "id": "10.2",
+          "title": "Free voice",
+          "do": [
+            "Use a free voice so you pay nothing. Ask the AI to set up the free Microsoft voices (edge-tts)."
+          ],
+          "prompt_id": "P10.2",
+          "prompt": "Please install the free Python package edge-tts in a virtual environment for this project, and write a small script that turns a text file into a voice-over mp3 with the voice en-IN-NeerjaNeural, makes each sentence separately, trims the silence at the start and end of each sentence, and joins them with a short 0.14 second gap so it sounds smooth and not slow. Show me how to run it and ask me before you install anything."
+        },
+        {
+          "id": "10.3",
+          "title": "Free clips and pictures",
+          "do": [
+            "Create a free Pixabay account and get a free API key. Put it in .env as PIXABAY_API_KEY.",
+            "Only use clips that the license allows."
+          ]
+        },
+        {
+          "id": "10.4",
+          "title": "The video maker",
+          "do": [
+            "Choose a way to draw videos with code. Two good free ones are HyperFrames and Remotion.",
+            "Ask the AI to set one up and make a 10-second test video from your clips and your voice."
+          ],
+          "prompt_id": "P10.4",
+          "prompt": "Please set up HyperFrames (a free tool that makes videos from HTML) in a folder called video-maker. Make one 10 second 9:16 vertical sample with a title, my voice-over file and simple captions. Open the preview first so I can watch it, wait for my OK, and only then render the mp4. Tell me where the file is saved."
+        },
+        {
+          "id": "10.5",
+          "title": "Sound and music",
+          "do": [
+            "Use free or code-made sound effects and a quiet music bed so nothing breaks copyright."
+          ]
+        }
       ]
     },
     {
-      "num": 11, "title": "First Test and Schedule",
+      "num": 11,
+      "title": "First Test and Schedule",
       "intro": "Make one real video, post it, then put the system on a server so it runs by itself.",
       "steps": [
-        {"id": "11.1", "title": "Shoot and give your clips", "do": ["Shoot a few clips on your phone. Copy them to a folder called raw footage."]},
-        {"id": "11.2", "title": "Make the first video", "do": ["Ask the AI to make a vertical video from your clips in your style. Watch the preview and ask for changes."]},
-        {"id": "11.3", "title": "Post one test video", "do": ["Use the prompt below to write the posting script for Instagram and Facebook with your token."],
-         "prompt_id": "P11.3", "prompt": "Using my META_TOKEN, FB_PAGE_ID and IG_USER_ID from .env, please write a Python script that posts ONE finished mp4 as an Instagram Reel and as a Facebook Reel with a caption I give. Use the official Meta Graph API reels flow. Never print the token. Do a dry run first that only prints what it would post. Do not post anything until I say 'post'."},
-        {"id": "11.4", "title": "Put it on a server (Railway)", "do": ["Create an account at railway.com and buy the Hobby plan (about 5 US dollars a month).", "Create a project from your GitHub repo. Add a volume so files are kept.", "Add your keys in Railway under Variables, typed by you, never pasted in chat.", "A push to GitHub then updates the server in about 2 minutes."],
-         "prompt_id": "P11.4", "prompt": "Help me deploy this project to Railway. Please: 1) create a Dockerfile that has Python, Node 22 and ffmpeg, 2) create a railway.json, 3) write a simple scheduler that checks the time every minute and posts the next ready video at the times I set, never more than one post per slot, 4) add a /healthz page that shows whether the app is alive and the last error, with no secrets. Give me the list of Variable NAMES I must type in Railway myself. Ask me before every change and do not push until I say 'push'."},
-        {"id": "11.5", "title": "Set your posting times", "do": ["Choose times when your viewers are awake. Start with 1 or 2 posts a day.", "Check the /healthz page after a deploy."]},
-        {"id": "11.6", "title": "Upload the same video to YouTube Shorts", "do": ["Ask the AI to add YouTube upload with your refresh token from Chapter 7.", "Remember: uploads stay private until Google approves your audit."]}
+        {
+          "id": "11.1",
+          "title": "Shoot and give your clips",
+          "do": [
+            "Shoot a few clips on your phone. Copy them to a folder called raw footage."
+          ]
+        },
+        {
+          "id": "11.2",
+          "title": "Make the first video",
+          "do": [
+            "Ask the AI to make a vertical video from your clips in your style. Watch the preview and ask for changes."
+          ]
+        },
+        {
+          "id": "11.3",
+          "title": "Post one test video",
+          "do": [
+            "Use the prompt below to write the posting script for Instagram and Facebook with your token."
+          ],
+          "prompt_id": "P11.3",
+          "prompt": "Using my META_TOKEN, FB_PAGE_ID and IG_USER_ID from .env, please write a Python script that posts ONE finished mp4 as an Instagram Reel and as a Facebook Reel with a caption I give. Use the official Meta Graph API reels flow. Never print the token. Do a dry run first that only prints what it would post. Do not post anything until I say 'post'."
+        },
+        {
+          "id": "11.4",
+          "title": "Put it on a server (Railway)",
+          "do": [
+            "Create an account at railway.com and buy the Hobby plan (about 5 US dollars a month).",
+            "Create a project from your GitHub repo. Add a volume so files are kept.",
+            "Add your keys in Railway under Variables, typed by you, never pasted in chat.",
+            "A push to GitHub then updates the server in about 2 minutes."
+          ],
+          "prompt_id": "P11.4",
+          "prompt": "Help me deploy this project to Railway. Please: 1) create a Dockerfile that has Python, Node 22 and ffmpeg, 2) create a railway.json, 3) write a simple scheduler that checks the time every minute and posts the next ready video at the times I set, never more than one post per slot, 4) add a /healthz page that shows whether the app is alive and the last error, with no secrets. Give me the list of Variable NAMES I must type in Railway myself. Ask me before every change and do not push until I say 'push'."
+        },
+        {
+          "id": "11.5",
+          "title": "Set your posting times",
+          "do": [
+            "Choose times when your viewers are awake. Start with 1 or 2 posts a day.",
+            "Check the /healthz page after a deploy."
+          ]
+        },
+        {
+          "id": "11.6",
+          "title": "Upload the same video to YouTube Shorts",
+          "do": [
+            "Ask the AI to add YouTube upload with your refresh token from Chapter 7.",
+            "Remember: uploads stay private until Google approves your audit."
+          ]
+        }
       ]
     },
     {
-      "num": 12, "title": "Ads and Your Daily Routine",
+      "num": 12,
+      "title": "Ads and Your Daily Routine",
       "intro": "A small ad push can help, and a 5-minute daily habit keeps it all running.",
       "steps": [
-        {"id": "12.1", "title": "Create an ad account inside your portfolio", "do": ["In Business settings, open Accounts, then Ad accounts, then Add and create a new ad account inside Demo Hub Portfolio.", "Currency INR. Add funds. Top-ups include 18 percent GST."]},
-        {"id": "12.2", "title": "Run a small ad", "do": ["In Ads Manager choose the goal Page followers or Profile visits.", "Use one of your best reels.", "Run it for 5 to 7 days with a small budget. Meta's minimum is about Rs 97 per day for each ad set.", "Check the cost per follower after 7 days. If it is very high, change the reel or audience before spending more."],
-         "tip": "Ads do not fix weak content. Test small first."},
-        {"id": "12.3", "title": "Your 5-minute daily routine", "do": ["Open the health page: is everything alive?", "Look at what posted yesterday.", "Shoot new clips when you have time and drop them in the raw footage folder.", "Once a week, ask the AI for a short results summary and one idea to improve."]},
-        {"id": "12.4", "title": "Monthly costs", "do": ["Claude plan about Rs 2,000.", "Railway about 5 US dollars.", "Ads: only what you choose.", "Everything else in this setup is free."]},
-        {"id": "12.5", "title": "Common mistakes", "do": ["Python not added to PATH.", "Typing the token in chat or on a website.", "Skipping the permissions in the app Use cases before generating the token.", "Posting many videos at once. Keep one post per slot.", "Copying other creators' videos. Learn their style, never reuse their content."]},
-        {"id": "12.6", "title": "What video do you want next? Comment below", "do": [
-          "Business setup (it is a different setup).", "How to capture leads from Instagram and Facebook messages.", "Leads tracking.", "How to create a website.", "How to create a CRM.", "How to create any software with AI.", "This automation in more depth.", "WhatsApp automation.", "How to connect different tools (integrations).", "Meta ads in detail.",
-          "I will make the next video on the topic with the most comments. Subscribe and wait for it."]}
+        {
+          "id": "12.1",
+          "title": "Create an ad account inside your portfolio",
+          "do": [
+            "In Business settings, open Accounts, then Ad accounts, then Add and create a new ad account inside Demo Hub Portfolio.",
+            "Currency INR. Add funds. Top-ups include 18 percent GST."
+          ]
+        },
+        {
+          "id": "12.2",
+          "title": "Run a small ad",
+          "do": [
+            "In Ads Manager choose the goal Page followers or Profile visits.",
+            "Use one of your best reels.",
+            "Run it for 5 to 7 days with a small budget. Meta's minimum is about Rs 97 per day for each ad set.",
+            "Check the cost per follower after 7 days. If it is very high, change the reel or audience before spending more."
+          ],
+          "tip": "Ads do not fix weak content. Test small first."
+        },
+        {
+          "id": "12.3",
+          "title": "Your 5-minute daily routine",
+          "do": [
+            "Open the health page: is everything alive?",
+            "Look at what posted yesterday.",
+            "Shoot new clips when you have time and drop them in the raw footage folder.",
+            "Once a week, ask the AI for a short results summary and one idea to improve."
+          ]
+        },
+        {
+          "id": "12.4",
+          "title": "Monthly costs",
+          "do": [
+            "Claude plan about Rs 2,000.",
+            "Railway about 5 US dollars.",
+            "Ads: only what you choose.",
+            "Everything else in this setup is free."
+          ]
+        },
+        {
+          "id": "12.5",
+          "title": "Common mistakes",
+          "do": [
+            "Python not added to PATH.",
+            "Typing the token in chat or on a website.",
+            "Skipping the permissions in the app Use cases before generating the token.",
+            "Posting many videos at once. Keep one post per slot.",
+            "Copying other creators' videos. Learn their style, never reuse their content."
+          ]
+        },
+        {
+          "id": "12.6",
+          "title": "What video do you want next? Comment below",
+          "do": [
+            "Business setup (it is a different setup).",
+            "How to capture leads from Instagram and Facebook messages.",
+            "Leads tracking.",
+            "How to create a website.",
+            "How to create a CRM.",
+            "How to create any software with AI.",
+            "This automation in more depth.",
+            "WhatsApp automation.",
+            "How to connect different tools (integrations).",
+            "Meta ads in detail.",
+            "I will make the next video on the topic with the most comments. Subscribe and wait for it."
+          ]
+        }
       ]
     }
   ]
